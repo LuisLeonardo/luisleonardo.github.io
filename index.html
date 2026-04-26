@@ -1,200 +1,226 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centro Popular de Estudios Económicos</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Paleta de colores */
-        :root {
-            --fondo-crema: #fff1da; /* Beige/Crema de fondo */
-            --verde-oscuro: #2a4939; /* Verde para detalles */
-            --cafe-detalles: #2B1B12; /* Café para líneas */
-            --texto-negro: #000000; /* Todo el texto en negro */
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centro Popular de Estudios Económicos</title>
 
-        body {
-            background-color: var(--fondo-crema);
-            color: var(--texto-negro);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            max-width: 800px; /* Ancho ideal para lectura en computadora */
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
-        /* Títulos */
-        h1, h2 {
-            font-family: 'Playfair Display', serif;
-            color: var(--texto-negro);
-            margin-bottom: 0.2rem;
-        }
+<style>
+:root {
+    --fondo-crema: #fff1da;
+    --verde-oscuro: #2a4939;
+    --cafe-detalles: #2B1B12;
+    --texto-negro: #000000;
+}
 
-        /* Encabezado */
-        header {
-            text-align: center;
-            border-bottom: 2px solid var(--cafe-detalles); /* Línea café */
-            padding-bottom: 2rem;
-            margin-bottom: 3rem;
-        }
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
+body {
+    background-color: var(--fondo-crema);
+    color: var(--texto-negro);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+}
 
-        .lema {
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            font-size: 1.1rem;
-            color: var(--texto-negro);
-            font-style: italic;
-            margin-top: 0;
-        }
+/* CONTENEDOR CENTRAL */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
 
-        /* Contenedor de las 3 secciones */
-        .secciones-contenedor {
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
-        }
+/* HEADER */
+header {
+    text-align: center;
+    border-bottom: 2px solid var(--cafe-detalles);
+    padding-bottom: 2rem;
+    margin-bottom: 3rem;
+}
 
-        /* Cada una de las secciones */
-        .seccion {
-            border-left: 5px solid var(--verde-oscuro); /* Detalle verde a la izquierda */
-            padding-left: 20px;
-            border-bottom: 1px solid rgba(107, 78, 61, 0.2); /* Línea café muy tenue abajo */
-            padding-bottom: 1.5rem;
-        }
+header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
 
-        .seccion h2 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-top: 0;
-        }
+.lema {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-top: 8px;
+    opacity: 0.8;
+}
 
-        .subtitulo {
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            font-size: 1.05rem;
-            color: var(--texto-negro);
-            display: block;
-        }
+/* SECCIONES */
+.secciones-contenedor {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
 
-        /* Pie de página */
-        footer {
-            margin-top: 4rem;
-            text-align: center;
-            border-top: 3px solid var(--verde-oscuro); /* Línea gruesa verde */
-            padding-top: 20px;
-            font-size: 0.85rem;
-            font-weight: 300;
-        }
-        /* --- ESTILOS DEL MENÚ HAMBURGUESA --- */
-        .icono-menu {
-            position: fixed; /* Se queda fijo aunque bajes la página */
-            top: 20px;
-            left: 20px;
-            font-size: 30px;
-            cursor: pointer;
-            color: #2B1B12; /* Café oscuro institucional */
-            z-index: 1000;
-        }
+.seccion {
+    border-left: 5px solid var(--verde-oscuro);
+    padding: 20px;
+    background: rgba(255,255,255,0.4);
+    border-radius: 6px;
+    transition: all 0.25s ease;
+    border-bottom: 1px solid rgba(43,27,18,0.2);
+}
 
-        .menu-desplegable {
-            display: none; /* Oculto por defecto */
-            position: fixed;
-            top: 60px;
-            left: 20px;
-            background-color: #2B1B12; /* Fondo oscuro para contrastar */
-            padding: 10px 0;
-            border-radius: 8px;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
-            z-index: 999;
-            min-width: 200px;
-        }
+.seccion:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 6px 18px rgba(0,0,0,0.08);
+    background: rgba(255,255,255,0.7);
+}
 
-        .menu-desplegable a {
-            display: block;
-            color: #D7C4A5; /* Letra ocre para que resalte */
-            text-decoration: none;
-            padding: 15px 20px;
-            font-weight: bold;
-            border-bottom: 1px solid #3d261a;
-        }
+.seccion h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 6px;
+}
 
-        .menu-desplegable a:hover {
-            background-color: #3d261a; /* Cambia un poco al pasar el mouse */
-        }
-        /* ------------------------------------ */
-    </style>
+.subtitulo {
+    font-size: 1rem;
+    opacity: 0.85;
+}
+
+/* LINKS LIMPIOS */
+a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* FOOTER */
+footer {
+    margin-top: 4rem;
+    text-align: center;
+    border-top: 3px solid var(--verde-oscuro);
+    padding-top: 20px;
+    font-size: 0.9rem;
+}
+
+/* MENÚ */
+.icono-menu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--cafe-detalles);
+    z-index: 1000;
+}
+
+.menu-desplegable {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 20px;
+    background-color: var(--cafe-detalles);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.25);
+    z-index: 999;
+    min-width: 220px;
+}
+
+.menu-desplegable a {
+    color: #D7C4A5;
+    padding: 14px 18px;
+    font-weight: 500;
+    border-bottom: 1px solid #3d261a;
+    transition: background 0.2s;
+}
+
+.menu-desplegable a:hover {
+    background-color: #3d261a;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    .seccion h2 {
+        font-size: 1.5rem;
+    }
+}
+</style>
 </head>
+
 <body>
-    <div class="icono-menu" onclick="toggleMenu()">☰</div>
 
-    <nav id="miMenu" class="menu-desplegable">
-        <a href="index.html">Inicio</a>
-        <a href="quienes-somos/index.html">¿Quiénes somos?</a>
-        <a href="mision/index.html">Nuestra misión</a>
-        <a href="colaboraciones/index.html">Colaboraciones</a>
-    </nav>
+<div class="icono-menu" onclick="toggleMenu()">☰</div>
 
-    <header>
-        <h1>Centro Popular de Estudios Económicos</h1>
-        <p class="lema">Construcción y difusión de Ciencia Social aplicada</p>
-    </header>
+<nav id="miMenu" class="menu-desplegable">
+    <a href="index.html">Inicio</a>
+    <a href="quienes-somos/index.html">¿Quiénes somos?</a>
+    <a href="mision/index.html">Nuestra misión</a>
+    <a href="colaboraciones/index.html">Colaboraciones</a>
+</nav>
 
-    <main class="secciones-contenedor">
-        
-  <a href="laboratorio/index.html" style="text-decoration: none; color: inherit; display: block;">
+<div class="container">
+
+<header>
+    <h1>Centro Popular de Estudios Económicos</h1>
+    <p class="lema">Construcción y difusión de Ciencia Social aplicada</p>
+</header>
+
+<main class="secciones-contenedor">
+
+<a href="laboratorio/index.html">
     <section class="seccion">
         <h2>Laboratorio.</h2>
-        <span class="subtitulo">Espacio de experimentación, herramientas cuantitativas y analisis estadistico.</span>
+        <span class="subtitulo">Espacio de experimentación, herramientas cuantitativas y análisis estadístico.</span>
     </section>
 </a>
 
-  <a href="recursos/index.html" style="text-decoration: none; color: inherit; display: block;">
+<a href="recursos/index.html">
     <section class="seccion">
         <h2>Recursos.</h2>
-        <span class="subtitulo">Libros, lecturas y herramientas seleccionadas</span>
+        <span class="subtitulo">Libros, lecturas y herramientas seleccionadas.</span>
     </section>
 </a>
 
-   <a href="analisis/index.html" style="text-decoration: none; color: inherit; display: block;">
+<a href="analisis/index.html">
     <section class="seccion">
         <h2>Análisis.</h2>
         <span class="subtitulo">Artículos, ensayos y reseñas críticas.</span>
     </section>
 </a>
 
-  <a href="cursos/index.html" style="text-decoration: none; color: inherit; display: block;">
+<a href="cursos/index.html">
     <section class="seccion">
         <h2>Cursos y Convocatorias.</h2>
-        <span class="subtitulo">Cursos y Convocatorias de interes para la comunidad estudiantil.</span>
+        <span class="subtitulo">Oportunidades académicas para la comunidad estudiantil.</span>
     </section>
 </a>
 
-    </main>
+</main>
 
-    <footer style="text-align: center; margin-top: 60px; padding-top: 20px; border-top: 3px solid #2a4939; font-size: 0.9em; color: #2B1B12;">
-        <p style="margin: 5px 0;">© 2026 Centro Popular de Estudios Económicos.</p>
-        <p style="margin: 5px 0;"><em>Herramienta en construcción.</em></p>
-    </footer>
+<footer>
+    <p>© 2026 Centro Popular de Estudios Económicos.</p>
+    <p><em>Herramienta en construcción.</em></p>
+</footer>
+
+</div>
+
 <script>
-        function toggleMenu() {
-            var menu = document.getElementById("miMenu");
-            if (menu.style.display === "block") {
-                menu.style.display = "none";
-            } else {
-                menu.style.display = "block";
-            }
-        }
-    </script>
-</body>
+function toggleMenu() {
+    var menu = document.getElementById("miMenu");
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+}
+</script>
 
+</body>
 </html>
