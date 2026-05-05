@@ -39,12 +39,81 @@ body {
     overflow-x: hidden;
 }
 
+/* ─── BARRA SUPERIOR FIJA ───────────────────────────────── */
+
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 68px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px 0 80px; /* deja espacio al botón hamburguesa */
+    background: rgba(255, 241, 218, 0.88);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(43, 27, 18, 0.1);
+    pointer-events: none; /* para que el overlay del menú quede encima */
+}
+
+/* Dejamos la zona derecha interactiva */
+.top-bar-nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    pointer-events: all;
+}
+
+.top-bar-nav a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--cafe-claro);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    letter-spacing: 0.01em;
+    transition: background 0.2s, color 0.2s;
+}
+
+.top-bar-nav a:hover {
+    background: rgba(43, 27, 18, 0.07);
+    color: var(--cafe);
+}
+
+/* Botón de sesión */
+#nav-login {
+    background-color: var(--cafe) !important;
+    color: #D7C4A5 !important;
+    padding: 7px 16px !important;
+    border-radius: 7px !important;
+    font-weight: 600 !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, color 0.2s, border 0.2s !important;
+    border: 1px solid transparent;
+}
+
+#nav-login:hover {
+    background-color: var(--verde) !important;
+    color: var(--crema) !important;
+}
+
+/* Estado "Cerrar sesión" — se aplica desde JS pero respetamos la intención visual */
+#nav-login.sesion-activa {
+    background-color: transparent !important;
+    color: var(--cafe) !important;
+    border: 1px solid var(--cafe) !important;
+}
+
 /* ─── MENÚ ─────────────────────────────────────────────── */
 
 .menu-trigger {
     position: fixed;
-    top: 22px;
-    left: 24px;
+    top: 12px;
+    left: 14px;
     z-index: 1100;
     background: var(--cafe);
     border: none;
@@ -174,7 +243,7 @@ body {
 
 header {
     position: relative;
-    padding: 110px 48px 70px;
+    padding: 130px 48px 70px; /* más top para la top-bar fija */
     border-bottom: 1px solid rgba(43,27,18,0.18);
     overflow: hidden;
 }
@@ -439,8 +508,6 @@ main {
     padding: 32px 30px;
 }
 
-
-
 .card-grande .card-visual {
     width: 90px;
     height: 90px;
@@ -518,8 +585,16 @@ footer {
 /* ─── RESPONSIVE ─────────────────────────────────────────── */
 
 @media (max-width: 640px) {
+    .top-bar {
+        padding: 0 16px 0 70px;
+    }
+
+    .top-bar-nav a:not(#nav-login) {
+        display: none; /* en móvil solo mostramos el botón de sesión */
+    }
+
     header {
-        padding: 90px 24px 50px;
+        padding: 100px 24px 50px;
     }
 
     main {
@@ -549,6 +624,13 @@ footer {
 </head>
 
 <body>
+
+<!-- ── BARRA SUPERIOR FIJA ────────────────────────────────── -->
+<div class="top-bar">
+    <nav class="top-bar-nav">
+        <a href="login.html" id="nav-login">Iniciar Sesión</a>
+    </nav>
+</div>
 
 <!-- ── BOTÓN MENÚ ─────────────────────────────────────── -->
 <button class="menu-trigger" id="menuBtn" aria-label="Abrir menú" onclick="toggleMenu()">
@@ -603,18 +685,18 @@ footer {
 
     <div class="secciones-grid">
 
- <a href="analisis/index.html" class="card card-grande">
-    <div class="card-content">        
-            <h2>Análisis</h2>
-            <p>Artículos, ensayos y reseñas críticas.</p>
+        <a href="analisis/index.html" class="card card-grande">
+            <div class="card-content">        
+                <h2>Análisis</h2>
+                <p>Artículos, ensayos y reseñas críticas.</p>
             </div>
             <div class="card-arrow">→</div>
             <div class="card-visual">⚗</div> 
         </a>
 
         <a href="laboratorio/index.html" class="card">
-                <h2>Laboratorio</h2>
-                <p>Espacio de experimentación, herramientas cuantitativas y análisis estadístico.</p>
+            <h2>Laboratorio</h2>
+            <p>Espacio de experimentación, herramientas cuantitativas y análisis estadístico.</p>
             <div class="card-arrow">→</div>
         </a>
 
@@ -624,10 +706,9 @@ footer {
             <div class="card-arrow">→</div>
         </a>
 
-
         <a href="cursos/index.html" class="card">
             <h2>Cursos y Convocatorias</h2>
-            <p>Cursos y convocatorias de interes para la comunidad estudiantil.</p>
+            <p>Cursos y convocatorias externos de interes para la comunidad estudiantil.</p>
             <div class="card-arrow">→</div>
         </a>
 
@@ -643,6 +724,7 @@ footer {
     </div>
 </footer>
 
+<!-- ── MENÚ: LÓGICA JS ────────────────────────────────── -->
 <script>
     function toggleMenu() {
         const btn = document.getElementById('menuBtn');
@@ -664,6 +746,63 @@ footer {
         if (e.key === 'Escape') {
             const panel = document.getElementById('menuPanel');
             if (panel.classList.contains('abierto')) toggleMenu();
+        }
+    });
+</script>
+
+<!-- ── FIREBASE: VIGILANTE DE SESIÓN ─────────────────── -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyA5YZCAHcrMA36PmgpOxmHnTOI6zgZNMgg",
+        authDomain: "cpee-plataforma-a655a.firebaseapp.com",
+        projectId: "cpee-plataforma-a655a",
+        storageBucket: "cpee-plataforma-a655a.firebasestorage.app",
+        messagingSenderId: "684415102099",
+        appId: "1:684415102099:web:3f2b649a34386677a87166"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const btnLogin       = document.getElementById("nav-login");
+    const linkLaboratorio = document.getElementById("nav-laboratorio");
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            // ── SESIÓN ACTIVA ──────────────────────────────────────
+            btnLogin.innerText = "Cerrar Sesión";
+            btnLogin.href = "#";
+            btnLogin.classList.add("sesion-activa");
+
+            // Sobrescribimos los estilos inline del estado cerrado-sesión
+            btnLogin.style.backgroundColor = "transparent";
+            btnLogin.style.color = "var(--cafe)";
+            btnLogin.style.border = "1px solid var(--cafe)";
+
+            btnLogin.addEventListener("click", (e) => {
+                e.preventDefault();
+                signOut(auth).then(() => window.location.reload());
+            });
+
+            // Laboratorio accesible
+            linkLaboratorio.href = "laboratorio/lab.html";
+
+        } else {
+            // ── SIN SESIÓN ─────────────────────────────────────────
+            btnLogin.innerText = "Iniciar Sesión";
+            btnLogin.href = "login.html";
+            btnLogin.classList.remove("sesion-activa");
+
+            // Restauramos el estilo del botón
+            btnLogin.style.backgroundColor = "";
+            btnLogin.style.color = "";
+            btnLogin.style.border = "";
+
+            // Laboratorio redirige a login
+            linkLaboratorio.href = "login.html";
         }
     });
 </script>

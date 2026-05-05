@@ -506,5 +506,34 @@ footer {
         }
     });
 </script>
+<!-- CANDADO DE SEGURIDAD DEL LABORATORIO -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+        // Tus llaves del CPEE
+        const firebaseConfig = {
+            apiKey: "AIzaSyA5YZCAHcrMA36PmgpOxmHnTOI6zgZNMgg",
+            authDomain: "cpee-plataforma-a655a.firebaseapp.com",
+            projectId: "cpee-plataforma-a655a",
+            storageBucket: "cpee-plataforma-a655a.firebasestorage.app",
+            messagingSenderId: "684415102099",
+            appId: "1:684415102099:web:3f2b649a34386677a87166"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // El vigilante de la puerta
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                // Si NO hay usuario, lo regresamos a la pantalla de login.
+                // Como este archivo está adentro de la carpeta 'laboratorio', 
+                // usamos '../' para decirle que salga una carpeta hacia atrás.
+                window.location.href = "../login.html";
+            }
+            // Si SÍ hay usuario, el código no hace nada y le permite ver la clase.
+        });
+    </script>
 </body>
 </html>

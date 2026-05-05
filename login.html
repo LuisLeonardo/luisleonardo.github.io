@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Plataforma - CPEE</title>
+    <style>
+        body {
+            background-color: #fff1da;
+            color: #000;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-box {
+            background: #fff;
+            padding: 40px;
+            border: 2px solid #2B1B12;
+            border-radius: 8px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h2 { color: #1B3022; border-bottom: 2px solid #1B3022; padding-bottom: 10px; margin-top: 0; }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #2B1B12;
+            color: #D7C4A5;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 4px;
+            font-size: 1.05em;
+        }
+        .btn:hover { background: #3d261a; }
+        .btn-google {
+            background: white;
+            color: #444;
+            border: 1px solid #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-google:hover { background: #f1f1f1; }
+        .btn-google img { width: 20px; }
+        .mensaje { margin-top: 15px; font-size: 0.9em; color: red; }
+    </style>
+</head>
+<body>
+
+    <div class="login-box">
+        <h2>Ingreso al Laboratorio</h2>
+        <p style="font-size: 0.9em; margin-bottom: 20px;">Inicia sesión para guardar tu progreso.</p>
+
+        <input type="email" id="email" placeholder="Correo electrónico">
+        <input type="password" id="password" placeholder="Contraseña">
+
+        <button class="btn" id="btnLogin">Iniciar Sesión</button>
+        <button class="btn" id="btnRegister" style="background: #2a4939;">Crear Cuenta Nueva</button>
+
+        <div style="margin: 20px 0; border-bottom: 1px solid #ccc;"></div>
+
+        <button class="btn btn-google" id="btnGoogle">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+            Ingresar con Google
+        </button>
+
+        <p class="mensaje" id="mensaje-error"></p>
+        <a href="index.html" style="display: block; margin-top: 20px; color: #2B1B12; text-decoration: none;">← Volver al inicio</a>
+    </div>
+
+    <!-- CEREBRO DE FIREBASE (Tipo Módulo) -->
+    <script type="module">
+        // 1. Importar las herramientas de Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+        // 2. TUS LLAVES EXACTAS DE LA CAPTURA
+        const firebaseConfig = {
+            apiKey: "AIzaSyA5YZCAHcrMA36PmgpOxmHnTOI6zgZNMgg",
+            authDomain: "cpee-plataforma-a655a.firebaseapp.com",
+            projectId: "cpee-plataforma-a655a",
+            storageBucket: "cpee-plataforma-a655a.firebasestorage.app",
+            messagingSenderId: "684415102099",
+            appId: "1:684415102099:web:3f2b649a34386677a87166"
+        };
+
+        // 3. Encender Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        // 4. Conectar los botones con el código
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const mensajeError = document.getElementById('mensaje-error');
+
+        // BOTÓN: ACCESO CON GOOGLE
+        document.getElementById('btnGoogle').addEventListener('click', () => {
+            signInWithPopup(auth, provider)
+            .then((result) => {
+                alert("¡Bienvenido " + result.user.displayName + "!");
+                window.location.href = "laboratorio/lab.html"; // Te manda al curso
+            }).catch((error) => {
+                mensajeError.innerText = "Error con Google: " + error.message;
+            });
+        });
+
+        // BOTÓN: CREAR CUENTA CON CORREO
+        document.getElementById('btnRegister').addEventListener('click', () => {
+            createUserWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
+            .then((userCredential) => {
+                alert("¡Cuenta creada con éxito!");
+                window.location.href = "laboratorio/lab.hmtl";
+            })
+            .catch((error) => {
+                mensajeError.innerText = "Error al crear cuenta. La contraseña debe tener al menos 6 caracteres.";
+            });
+        });
+
+        // BOTÓN: INICIAR SESIÓN CON CORREO
+        document.getElementById('btnLogin').addEventListener('click', () => {
+            signInWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
+            .then((userCredential) => {
+                window.location.href = "laboratorio/lab.html";
+            })
+            .catch((error) => {
+                mensajeError.innerText = "Correo o contraseña incorrectos.";
+            });
+        });
+    </script>
+</body>
+</html>
