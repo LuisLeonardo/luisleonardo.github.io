@@ -943,7 +943,7 @@ footer {
         </ul>
         <p style="margin-top: 25px; font-weight: bold;">Estás listo para dar el salto a las múltiples dimensiones en el <strong>Módulo 3: Álgebra Lineal</strong>.</p>
         <div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
-    <button id="btnCompletarM1" style="background-color: #2a4939; color: #fff1da; padding: 14px 28px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.05rem; transition: background 0.3s;">
+    <button id="btnCompletarM2" style="background-color: #2a4939; color: #fff1da; padding: 14px 28px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.05rem; transition: background 0.3s;">
         Marcar Módulo 2 como Completado
     </button>
 </div>
@@ -1039,5 +1039,81 @@ footer {
 
     updateUI();
 </script>
+<!-- CEREBRO DE FIREBASE: CONTROL DE ACCESO Y BOTÓN DE PROGRESO -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+        // Tus credenciales del CPEE
+        const firebaseConfig = {
+            apiKey: "AIzaSyA5YZCAHcrMA36PmgpOxmHnTOI6zgZNMgg",
+            authDomain: "cpee-plataforma-a655a.firebaseapp.com",
+            projectId: "cpee-plataforma-a655a",
+            storageBucket: "cpee-plataforma-a655a.firebasestorage.app",
+            messagingSenderId: "684415102099",
+            appId: "1:684415102099:web:3f2b649a34386677a87166"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Conectamos con el botón físico usando su ID
+        const btnCompletar = document.getElementById("btnCompletarM2");
+
+        // Función para cambiar el aspecto cuando ya está guardado
+        function marcarBotonComoCompletado() {
+            if (btnCompletar) {
+                btnCompletar.innerText = "✅ Módulo 2 Completado";
+                btnCompletar.style.backgroundColor = "#6b4c35";
+                btnCompletar.disabled = true;
+                btnCompletar.style.cursor = "default";
+            }
+        }
+
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                // Si no tiene cuenta, lo manda a iniciar sesión (ajusta la ruta si tu login está en otra carpeta)
+                window.location.href = "login.html"; 
+            } else {
+                const docRef = doc(db, "progreso_usuarios", user.uid);
+                const docSnap = await getDoc(docRef);
+
+                // 1. SEGURIDAD: Si no tiene la llave de matemáticas, lo pateamos a la página de inicio
+                if (!docSnap.exists() || docSnap.data().acceso_matematicas !== true) {
+                    window.location.href = "matematicas_inicio.html"; 
+                    return; // Detiene la ejecución del código
+                }
+
+                // 2. Revisar si YA había completado este módulo antes
+                if (docSnap.data().modulo1_completado === true) {
+                    marcarBotonComoCompletado();
+                }
+
+                // 3. Darle vida al botón para guardar en la nube
+                if (btnCompletar) {
+                    btnCompletar.addEventListener("click", async () => {
+                        btnCompletar.innerText = "Guardando..."; 
+                        
+                        try {
+                            await setDoc(docRef, {
+                                correo: user.email,
+                                modulo1_completado: true,
+                                fecha_completado_m1: new Date()
+                            }, { merge: true }); 
+                            
+                            marcarBotonComoCompletado();
+                            alert("¡Felicidades! Tu progreso en el Módulo 2 ha sido guardado.");
+                        } catch (error) {
+                            console.error("Error al guardar: ", error);
+                            alert("Hubo un error al guardar tu progreso.");
+                            btnCompletar.innerText = "Marcar Módulo 2 como Completado";
+                        }
+                    });
+                }
+            }
+        });
+    </script>
 </body>
 </html>
