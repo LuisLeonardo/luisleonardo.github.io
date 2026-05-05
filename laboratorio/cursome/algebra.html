@@ -1087,7 +1087,7 @@ footer {
                 }
 
                 // 2. Revisar si YA había completado este módulo antes
-                if (docSnap.data().modulo1_completado === true) {
+                if (docSnap.data().modulo2_completado === true) {
                     marcarBotonComoCompletado();
                 }
 
@@ -1099,8 +1099,8 @@ footer {
                         try {
                             await setDoc(docRef, {
                                 correo: user.email,
-                                modulo1_completado: true,
-                                fecha_completado_m1: new Date()
+                                modulo2_completado: true,
+                                fecha_completado_m2: new Date()
                             }, { merge: true }); 
                             
                             marcarBotonComoCompletado();
