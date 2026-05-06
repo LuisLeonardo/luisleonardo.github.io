@@ -587,323 +587,409 @@ footer {
         <!-- Tarjeta de diapositivas -->
         <div class="slide-container">
 
-            <!-- ── DIAPOSITIVA 1 ── -->
-            <div class="slide active">
-                <h2>¿Para qué sirven las matemáticas en economía?</h2>
-                <div class="contenido-texto">
-                    <p>En el análisis económico, las matemáticas cumplen funciones críticas que van más allá del simple cálculo:</p>
-                    <ul>
-                        <li>Nos permiten expresar suposiciones y conclusiones mediante símbolos y ecuaciones, evitando caer en ambigüedades.</li>
-                        <li>Al utilizar teoremas matemáticos, el analista se ve forzado a explicar todos los supuestos o condiciones necesarias para no perder el sentido económico.</li>
-                        <li>Las matemáticas nos permiten trabajar con <em>n</em> variables, permitiéndonos hacer modelos que reflejen la realidad.</li>
-                        <li>Herramientas como el cálculo sirven para optimizar (maximizar ganancias o minimizar costos) y el álgebra lineal para analizar la interdependencia entre los distintos sectores de una economía.</li>
-                    </ul>
-                </div>
-            </div>
+<!-- ── DIAPOSITIVA 1: INTRODUCCIÓN ── -->
+<div class="slide active">
+    <h2>10.1 Inferencia: El Salto de Fe Matemático</h2>
+    <div class="contenido-texto">
+        <p>En el Módulo 9, aprendimos a describir exactamente lo que tenemos en la mano (la <strong>Muestra</strong>). Pero en la vida real, a nadie le importan esos 1,000 encuestados. A las empresas y a los gobiernos les importan los 130 millones de personas de la <strong>Población</strong>.</p>
+        <p>La <strong>Inferencia Estadística</strong> es el arte de usar la información incompleta de una muestra pequeña para sacar conclusiones contundentes sobre la población total.</p>
+        <p>¿Cómo es posible que entrevistando a 1,500 personas podamos saber quién ganará la presidencia en un país de 90 millones de votantes? No es magia, es probabilidad pura. Y todo comienza con el teorema más hermoso de las matemáticas.</p>
+    </div>
+</div>
 
-            <!-- ── TEMA 1: LÓGICA PROPOSICIONAL (Sin tablas de verdad) ── -->
+<!-- ── TEMA 1: EL TEOREMA DEL LÍMITE CENTRAL ── -->
 <!-- ── DIAPOSITIVA 2 ── -->
 <div class="slide">
-    <h2>1.1 Lógica Proposicional: Conceptos Básicos</h2>
+    <h2>10.2 El Teorema del Límite Central (TLC)</h2>
     <div class="contenido-texto">
-        <p>Iniciamos con la <strong>proposición</strong>: una afirmación que solo puede ser verdadera ($V$) o falsa ($F$). Los <strong>conectivos lógicos</strong> nos permiten crear argumentos complejos a partir de ideas simples:</p>
-        <ul>
-            <li><strong>Negación ($\neg p$):</strong> Afirma exactamente lo contrario a $p$.</li>
-            <li><strong>Conjunción ($p \land q$):</strong> "Y". Exige que ambas condiciones se cumplan estrictamente al mismo tiempo.</li>
-            <li><strong>Disyunción ($p \lor q$):</strong> "O". Es flexible; basta con que al menos una condición sea cierta para que todo el enunciado lo sea.</li>
-            <li><strong>Implicación ($p \implies q$):</strong> "Si $p$, entonces $q$". Establece una relación causa-efecto o de condición suficiente. Es la base de cualquier teorema matemático.</li>
-            <li><strong>Bicondicional ($p \iff q$):</strong> "Si y solo si". Significa que $p$ y $q$ son equivalentes; no puede ocurrir una sin la otra.</li>
-        </ul>
+        <p>Imagina que la distribución de salarios en tu país es un desastre asimétrico y caótico. Si tomas los salarios de una sola persona, no sabes qué esperar.</p>
+        <p>Pero el <strong>Teorema del Límite Central</strong> dice lo siguiente: Si en lugar de tomar a una persona, tomas una muestra de 30 personas y sacas su <em>promedio</em>, y luego lo haces con otra muestra, y otra, y otra... <strong>la distribución de esos promedios siempre, SIEMPRE, formará una Campana de Gauss perfecta.</strong></p>
+        <p>¡No importa qué forma rara, fea o sesgada tengan los datos originales! Si el tamaño de tu muestra es lo suficientemente grande ($n \geq 30$), los promedios muestrales ($\bar{x}$) se distribuyen de forma Normal.</p>
     </div>
 </div>
 
-<!-- ── DIAPOSITIVA 3 ── -->
+<!-- ── DIAPOSITIVA 3 (Con Gráfica SVG 1) ── -->
 <div class="slide">
-    <h2>1.2 Tautologías y Equivalencias</h2>
-    <div class="contenido-texto">
-        <p>En lugar de memorizar escenarios mecánicos, en matemáticas buscamos identificar estructuras lógicas que siempre funcionan:</p>
-        <ul>
-            <li><strong>Tautología:</strong> Un argumento que siempre es verdadero por su pura estructura lógica, sin importar de qué estemos hablando. Por ejemplo, la frase "Llueve o no llueve" ($p \lor \neg p$) es una verdad absoluta indiscutible.</li>
-            <li><strong>Contradicción:</strong> Algo que es imposible por definición. Por ejemplo, "Subió y no subió" ($p \land \neg p$).</li>
-            <li><strong>Leyes de De Morgan:</strong> Son trucos de oro para negar ideas agrupadas.
-                <ul style="margin-top: 5px;">
-                    <li>Negar que pasaron <em>ambas</em> cosas ($\neg(p \land q)$), es lo mismo que decir que falló la primera <em>o</em> falló la segunda ($\neg p \lor \neg q$).</li>
-                    <li>Negar que pasó <em>al menos una</em> de las dos ($\neg(p \lor q)$), es lo mismo que decir que no pasó la primera <em>y</em> tampoco la segunda ($\neg p \land \neg q$).</li>
-                </ul>
-            </li>
-        </ul>
+    <h2>10.3 Visualizando el "Milagro" del TLC</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>Arriba: La realidad cruda (ej. distribución de ingresos reales, muy sesgada).<br>
+        Abajo: La distribución de las <em>medias muestrales</em>. Se convierte en una Normal perfecta centrada exactamente en la verdad poblacional ($\mu$).</p>
+        
+        <!-- INICIO DE GRÁFICA SVG 1: TLC -->
+        <div style="text-align: center; margin: 15px 0;">
+            <svg viewBox="0 0 400 240" width="100%" max-width="350px" style="background-color: #fafafa; border: 1px solid #ddd; border-radius: 8px;">
+                <!-- Población Original (Asimétrica) -->
+                <path d="M 40 80 Q 70 20 100 20 T 360 80" fill="rgba(217, 83, 79, 0.3)" stroke="#d9534f" stroke-width="2" />
+                <line x1="40" y1="80" x2="360" y2="80" stroke="#888" stroke-width="1" />
+                <text x="50" y="40" font-size="11" font-weight="bold" fill="#d9534f">Población Original (Sesgada)</text>
+                
+                <!-- Flechas de Muestreo -->
+                <path d="M 120 90 L 150 130 M 180 90 L 180 130 M 240 90 L 210 130" fill="none" stroke="#666" stroke-width="2" stroke-dasharray="3,3" />
+                <text x="250" y="115" font-size="10" font-style="italic" fill="#666">Muestreo (n > 30)</text>
+
+                <!-- Distribución Muestral (Normal y estrecha) -->
+                <path d="M 100 220 Q 180 220 180 150 T 260 220" fill="rgba(42, 73, 57, 0.4)" stroke="#2a4939" stroke-width="3" />
+                <line x1="40" y1="220" x2="360" y2="220" stroke="#888" stroke-width="2" />
+                
+                <!-- Línea de la Media verdadera -->
+                <line x1="180" y1="220" x2="180" y2="150" stroke="#333" stroke-width="2" stroke-dasharray="2,2" />
+                <text x="180" y="235" font-size="12" font-weight="bold" text-anchor="middle">μ</text>
+                <text x="270" y="165" font-size="11" font-weight="bold" fill="#2a4939">Distribución de X̄ (Normal)</text>
+            </svg>
+        </div>
+        
+        <p>Gracias a esto, podemos usar todas las reglas de probabilidad de la Campana de Gauss que aprendimos en el Módulo 9, <strong>incluso si nuestros datos económicos originales no son normales</strong>. Es la licencia para hacer inferencia.</p>
     </div>
 </div>
 
+<!-- ── TEMA 2: ESTIMACIÓN PUNTUAL Y PROPIEDADES ── -->
 <!-- ── DIAPOSITIVA 4 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Lógica Proposicional</h2>
+    <h2>10.4 Estimadores: Nuestro Mejor Disparo</h2>
     <div class="contenido-texto">
-        <p>Realiza los siguientes ejercicios analíticos en tu cuaderno:</p>
+        <p>Como no podemos conocer el verdadero parámetro de la población (por ejemplo, el salario promedio nacional $\mu$), usamos nuestra muestra para calcular un <strong>Estimador Puntual</strong> (el salario promedio de los 1,000 encuestados $\bar{x}$).</p>
+        <p>Un estimador es simplemente una fórmula. Pero no todas las fórmulas son buenas. Un buen estimador debe cumplir dos reglas de oro para los econometristas:</p>
         <ol>
-            <li><strong>Traducción:</strong> Sean $p$: "Hay inflación" y $q$: "El banco central interviene". Escribe en lenguaje natural las siguientes expresiones formales: 
-                <ul>
-                    <li>$p \implies q$</li>
-                    <li>$\neg q \implies \neg p$</li>
-                </ul>
-                ¿Tienen el mismo significado en la vida real?
-            </li>
-            <li><strong>Aplicación de De Morgan:</strong> Un reglamento dice: "Para aprobar necesitas entregar la tesis ($t$) Y pasar el examen ($e$)". Si un estudiante reprueba, ¿cómo expresas lógicamente lo que le faltó usando la Ley de De Morgan?</li>
+            <li><strong>Insesgado (Unbiased):</strong> Que "no tire chueco". En promedio, la fórmula debe darte el valor real, sin subestimar ni sobreestimar sistemáticamente.</li>
+            <li><strong>Eficiente (Efficient):</strong> Que "no tiemble la mano". Que tenga la menor varianza (margen de error) posible al compararlo con otros estimadores.</li>
         </ol>
     </div>
 </div>
 
-<!-- ── TEMA 2: LÓGICA DE PREDICADOS (Simplificada) ── -->
 <!-- ── DIAPOSITIVA 5 ── -->
 <div class="slide">
-    <h2>1.3 Lógica de Predicados: De lo particular a lo general</h2>
+    <h2>10.5 El Problema del Estimador Puntual</h2>
     <div class="contenido-texto">
-        <p>Una proposición normal dice: <em>"Juan es estudiante"</em>. Es fácil saber si es verdad. Pero un <strong>predicado</strong> usa variables: <em>"$x$ es estudiante"</em>. No podemos saber si es verdad hasta saber quién es $x$ o a cuántos nos referimos.</p>
-        <p>Para eso usamos los <strong>cuantificadores</strong>, que nos dicen de cuántos elementos estamos hablando:</p>
-        <ul>
-            <li><strong>Cuantificador Universal ($\forall$):</strong> Significa "Para todos". <br>
-            <em>Ejemplo: $\forall x$, $x$ necesita comer. (Todos necesitan comer).</em></li>
-            <li><strong>Cuantificador Existencial ($\exists$):</strong> Significa "Existe al menos uno" (puede haber más, pero mínimo hay uno). <br>
-            <em>Ejemplo: $\exists x$ tal que $x$ tiene un millón de dólares. (Alguien es millonario).</em></li>
-        </ul>
+        <p>Imagina que encuestas a 100 familias y su gasto mensual promedio ($\bar{x}$) es de $\$8,500$.</p>
+        <p>Tú puedes ir con el presidente de la empresa y decirle: <em>"Señor, el gasto promedio de todo el país es exactamente de $\$8,500$".</em></p>
+        <p>Pero en el fondo, sabes que estás mintiendo. Las probabilidades de que el gasto de 130 millones de personas sea <em>exactamente</em> $8,500.00$ son prácticamente del 0%. Necesitamos dejar de dar un solo número y empezar a dar <strong>Redes de Seguridad</strong>.</p>
     </div>
 </div>
 
+<!-- ── TEMA 3: INTERVALOS DE CONFIANZA ── -->
 <!-- ── DIAPOSITIVA 6 ── -->
 <div class="slide">
-    <h2>1.4 ¿Cómo contradecir a alguien? (Negación de Cuantificadores)</h2>
+    <h2>10.6 Intervalos de Confianza (IC)</h2>
     <div class="contenido-texto">
-        <p>Negar cuantificadores es simplemente usar el sentido común para ganar un debate:</p>
-        <ul>
-            <li><strong>Para negar un "Todos" ($\forall$):</strong> <br>
-            Si yo afirmo: <em>"Todos los cisnes son blancos"</em>, tú no necesitas revisar cada cisne del mundo para demostrar que miento. Solo necesitas traerme <strong>un</strong> cisne que sea negro. <br>
-            <strong>Regla:</strong> $\neg (\forall x, P(x))$ se convierte en $\exists x, \neg P(x)$.</li>
-            <br>
-            <li><strong>Para negar un "Existe" ($\exists$):</strong> <br>
-            Si yo afirmo: <em>"Existe un monstruo debajo de la cama"</em>, para demostrar que miento, tú tienes que encender la luz y comprobar que <strong>ninguno</strong> de los rincones tiene un monstruo. <br>
-            <strong>Regla:</strong> $\neg (\exists x, P(x))$ se convierte en $\forall x, \neg P(x)$.</li>
-        </ul>
+        <p>Un <strong>Intervalo de Confianza</strong> es pasar de pescar con un arpón (estimador puntual) a pescar con una red (el intervalo).</p>
+        <p>En lugar de decir: "El promedio es $\$8,500$", decimos: <em>"Estoy 95% seguro de que el promedio real de todo el país se encuentra en algún lugar entre $\$8,200$ y $\$8,800$".</em></p>
+        <p>La anatomía del intervalo es hermosa y lógica:</p>
+        <p style="text-align: center; font-size: 1.2rem; font-weight: bold; margin: 15px 0;">
+            $$ IC = \text{Estimador} \pm (\text{Nivel de Confianza} \times \text{Error Estándar}) $$
+        </p>
     </div>
 </div>
 
-<!-- ── DIAPOSITIVA 7 ── -->
+<!-- ── DIAPOSITIVA 7 (Con Gráfica SVG 2) ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Lógica de Predicados</h2>
-    <div class="contenido-texto">
-        <p>Pon a prueba tu intuición con estos ejercicios:</p>
-        <ol>
-            <li>Escribe usando los símbolos $\forall$ o $\exists$ la siguiente frase matemática: "Existe al menos un número real $x$ que, al multiplicarse por cero, da como resultado uno". ¿Es verdadera o falsa?</li>
-            <li>Un político afirma: "Todos los programas sociales reducen la pobreza" ($\forall x, R(x)$). Si fueras un investigador que quiere demostrar que el político miente, ¿qué tendrías que encontrar en los datos? Escribe tu objetivo usando símbolos lógicos.</li>
-            <li>Traduce la frase "No hay reglas sin excepciones" al lenguaje de cuantificadores usando $\forall$ (Todos) y $\exists$ (Existe).</li>
-        </ol>
+    <h2>10.7 Visualizando el Intervalo del 95%</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>Para construir la red, usamos nuestra querida Campana de Gauss. Nos quedamos con el "bulto" central del 95% y dejamos un 5% de riesgo de equivocarnos (el nivel de significancia $\alpha$, dividido en las dos colitas rojas).</p>
+        
+        <!-- INICIO DE GRÁFICA SVG 2: INTERVALO DE CONFIANZA -->
+        <div style="text-align: center; margin: 15px 0;">
+            <svg viewBox="0 0 400 200" width="100%" max-width="400px" style="background-color: #fafafa; border: 1px solid #ddd; border-radius: 8px;">
+                <!-- Ejes -->
+                <line x1="20" y1="160" x2="380" y2="160" stroke="#888" stroke-width="2" />
+                
+                <!-- Zonas Rojas (Colas de error alfa/2 = 2.5%) -->
+                <path d="M 20 160 Q 60 155 80 145 L 80 160 Z" fill="rgba(217, 83, 79, 0.6)" />
+                <path d="M 380 160 Q 340 155 320 145 L 320 160 Z" fill="rgba(217, 83, 79, 0.6)" />
+                
+                <!-- Zona Verde (95% de confianza) -->
+                <path d="M 80 160 L 80 145 Q 140 60 200 20 T 320 145 L 320 160 Z" fill="rgba(42, 73, 57, 0.2)" stroke="#2a4939" stroke-width="2" />
+                
+                <!-- Líneas Límite (Z score) -->
+                <line x1="80" y1="160" x2="80" y2="145" stroke="#333" stroke-dasharray="2,2" />
+                <line x1="320" y1="160" x2="320" y2="145" stroke="#333" stroke-dasharray="2,2" />
+                <line x1="200" y1="160" x2="200" y2="20" stroke="#333" stroke-width="1" />
+                
+                <!-- Textos -->
+                <text x="200" y="110" font-size="14" font-weight="bold" fill="#2a4939" text-anchor="middle">Confianza: 1 - α (95%)</text>
+                <text x="50" y="140" font-size="11" fill="#d9534f" font-weight="bold">α/2 = 2.5%</text>
+                <text x="350" y="140" font-size="11" fill="#d9534f" font-weight="bold">α/2 = 2.5%</text>
+                <text x="80" y="175" font-size="11" text-anchor="middle">Límite Inferior</text>
+                <text x="320" y="175" font-size="11" text-anchor="middle">Límite Superior</text>
+                <text x="200" y="175" font-size="12" text-anchor="middle">X̄</text>
+            </svg>
+        </div>
+        
+        <p>Ese multiplicador que determina el ancho de la red se obtiene de la tabla $Z$. Para el famosísimo 95% de confianza, el valor de $Z$ es exactamente **1.96**.</p>
     </div>
 </div>
-<!-- ── TEMA 3: MÉTODOS DE DEMOSTRACIÓN ── -->
+
 <!-- ── DIAPOSITIVA 8 ── -->
 <div class="slide">
-    <h2>1.5 Métodos de Demostración: El arte de probar</h2>
+    <h2>10.8 La Fórmula del Intervalo (Muestras Grandes)</h2>
     <div class="contenido-texto">
-        <p>En matemáticas, no basta con que algo parezca cierto; hay que <strong>demostrarlo</strong> sin dejar lugar a dudas. Toda demostración parte de supuestos conocidos (hipótesis, $p$) para llegar a una conclusión irrebatible ($q$).</p>
+        <p>Cuando tu muestra es robusta ($n \geq 30$), aplicamos la distribución Normal (Z).</p>
+        <p style="text-align: center; font-size: 1.2rem; margin: 15px 0;">
+            $$ IC = \bar{x} \pm Z_{\alpha/2} \left( \frac{\sigma}{\sqrt{n}} \right) $$
+        </p>
         <ul>
-            <li><strong>Demostración Directa:</strong> Es el camino recto. Asumimos que $p$ es verdadero y, mediante álgebra y lógica paso a paso, llegamos a $q$.<br>
-            <em>Ejemplo:</em> Demostrar que "Si $x$ es un número par, entonces $x^2$ es par". Asumes que $x = 2k$, lo elevas al cuadrado ($4k^2$) y factorizas un 2 para probarlo: $2(2k^2)$.</li>
+            <li>$\bar{x}$: El promedio de tu muestra.</li>
+            <li>$Z_{\alpha/2}$: El multiplicador de confianza (1.96 para el 95%).</li>
+            <li>$\sigma / \sqrt{n}$: El <strong>Error Estándar</strong>. Observa que si el tamaño de tu muestra ($n$) se vuelve inmenso, divides entre un número gigante. El error se hace casi cero, y tu red se vuelve súper estrecha y precisa.</li>
         </ul>
-        <p>Pero a veces, el camino directo es muy complicado. Para eso existen las estrategias indirectas.</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 9 ── -->
 <div class="slide">
-    <h2>1.6 Demostración por Contrapositiva y Contradicción</h2>
+    <h2>Ejemplos Resueltos: Calculando un Intervalo (Z)</h2>
     <div class="contenido-texto">
-        <p>Cuando probar $p \implies q$ es difícil, usamos trucos lógicos:</p>
-        <ul>
-            <li><strong>Por Contrapositiva:</strong> Lógicamente, decir "Si llueve, el piso se moja" es exactamente igual a decir "Si el piso NO está mojado, entonces NO llovió". <br>
-            En lugar de probar $p \implies q$, probamos su equivalente: $\neg q \implies \neg p$. A veces, trabajar con las negaciones hace el álgebra mucho más fácil.</li>
-            <br>
-            <li><strong>Por Contradicción (Reducción al absurdo):</strong> Es el método del investigador. Asumimos que lo que queremos probar es falso y seguimos las reglas matemáticas hasta llegar a algo imposible (como $1 = 0$). Como la matemática no se equivoca, nuestro supuesto inicial debió ser el error, probando así que la afirmación original era cierta.</li>
-        </ul>
+        <p><strong>Ejemplo 1: Salarios de Economistas</strong><br>
+        Tomas una muestra de $100$ economistas recién graduados. Su salario mensual promedio es $\bar{x} = \$15,000$. Sabemos que la desviación estándar de la industria es $\sigma = \$2,000$. Calcula el IC al 95%.</p>
+        <p><em>Paso 1:</em> Identificamos los datos. $n = 100$, $\bar{x} = 15000$, $\sigma = 2000$. Para el 95%, $Z = 1.96$.</p>
+        <p><em>Paso 2:</em> Calculamos el Error Estándar.<br>
+        $EE = \frac{2000}{\sqrt{100}} = \frac{2000}{10} = 200$</p>
+        <p><em>Paso 3:</em> Multiplicamos por $Z$ para obtener el Margen de Error.<br>
+        $ME = 1.96 \times 200 = 392$</p>
+        <p><em>Paso 4:</em> Construimos el intervalo: $15000 \pm 392$.<br>
+        Límite Inferior: $15000 - 392 = \$14,608$<br>
+        Límite Superior: $15000 + 392 = \$15,392$</p>
+        <p><strong>Estamos 95% seguros de que el salario promedio REAL de TODOS los graduados está entre $14,608 y $15,392.</strong></p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 10 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Métodos de Demostración</h2>
+    <h2>10.9 El Problema de las Muestras Pequeñas: La T de Student</h2>
     <div class="contenido-texto">
-        <p>Aplica la lógica de demostración en los siguientes casos:</p>
-        <ol>
-            <li><strong>Directa:</strong> Demuestra que la suma de dos números impares siempre da como resultado un número par. <em>(Pista: Un número impar se escribe como $2k + 1$).</em></li>
-            <li><strong>Contrapositiva:</strong> Queremos demostrar la frase: "Si $3x + 2$ es impar, entonces $x$ es impar". ¿Cuál sería la afirmación contrapositiva que tendrías que demostrar? Escríbela en lenguaje natural.</li>
-            <li><strong>Contradicción (Análisis de argumento):</strong> Un abogado dice: "Asumamos que mi cliente robó el banco. Si lo hizo, debió estar en la ciudad a las 3 PM. Pero las cámaras lo ubican en otro país a esa hora". ¿Por qué esto demuestra la inocencia del cliente usando reducción al absurdo?</li>
-        </ol>
+        <p>¿Qué pasa si solo lograste encuestar a 15 personas? El Teorema del Límite Central no te salva. La campana normal ya no sirve porque una muestra tan pequeña tiene muchísima incertidumbre.</p>
+        <p>Para eso se inventó la <strong>Distribución t-Student</strong> (creada por un empleado de la cervecería Guinness para hacer control de calidad con pocas cervezas).</p>
+        <ul>
+            <li>Es una campana, pero "aplastada" en el centro y con "colas gordas" (fat tails).</li>
+            <li>Al tener colas más gordas, es más pesimista. Para tener un 95% de confianza, el multiplicador $t$ será mayor a 1.96, lo que hará que tu red (el intervalo) sea más ancha y segura para compensar tu falta de datos.</li>
+            <li>Depende de los <strong>Grados de Libertad</strong> ($gl = n - 1$). A medida que $n$ crece, la curva T muta hasta convertirse en una Normal.</li>
+        </ul>
     </div>
 </div>
 
-<!-- ── TEMA 4: TEORÍA DE CONJUNTOS ── -->
 <!-- ── DIAPOSITIVA 11 ── -->
 <div class="slide">
-    <h2>1.7 Teoría de Conjuntos: El alfabeto de las matemáticas</h2>
-    <div class="contenido-texto">
-        <p>Un <strong>conjunto</strong> es simplemente una colección bien definida de objetos o números, a los que llamamos <strong>elementos</strong>. Casi toda la matemática moderna está escrita en lenguaje de conjuntos.</p>
-        <ul>
-            <li><strong>Pertenencia ($\in$):</strong> Indica que un elemento vive dentro del conjunto. Si $A = \{1, 2, 3\}$, entonces $2 \in A$ (2 pertenece a A), pero $5 \notin A$ (5 no pertenece a A).</li>
-            <li><strong>Subconjunto ($\subseteq$):</strong> Decimos que $B$ es subconjunto de $A$ si <em>todos</em> los elementos de $B$ también están dentro de $A$.</li>
-            <li><strong>Conjunto Vacío ($\emptyset$):</strong> Es el conjunto que no tiene ningún elemento. Es un concepto filosófico poderoso: la nada también es un conjunto y es subconjunto de todos los demás.</li>
-        </ul>
+    <h2>Ejemplos Resueltos: Intervalo con t-Student</h2>
+    <div class="contenido-texto" style="font-size: 0.95rem;">
+        <p><strong>Ejemplo 2: Microempresas</strong><br>
+        Mides las ventas diarias de $9$ taquerías. El promedio es $\bar{x} = \$4,000$ con una desviación estándar <em>de la muestra</em> $s = \$600$. Calcula el IC al 95%.</p>
+        <p><em>Paso 1:</em> Como $n = 9$ (menor a 30) y no sabemos la desviación de toda la población, usamos "t".<br>
+        Grados de libertad $gl = 9 - 1 = 8$. Buscando en la tabla t para $95\%$ y $8\, gl$, obtenemos $t = 2.306$.</p>
+        <p><em>Paso 2:</em> Error Estándar.<br>
+        $EE = \frac{600}{\sqrt{9}} = \frac{600}{3} = 200$</p>
+        <p><em>Paso 3:</em> Margen de Error.<br>
+        $ME = 2.306 \times 200 = 461.2$</p>
+        <p><em>Paso 4:</em> Intervalo: $4000 \pm 461.2$.<br>
+        <strong>Estamos 95% seguros de que el promedio nacional es de $\$3,538.8$ a $\$4,461.2$.</strong><br>
+        <em>(Nota cómo la red se hizo mucho más ancha porque tenemos muy pocos datos).</em></p>
     </div>
 </div>
 
+<!-- ── TEMA 4: PRUEBAS DE HIPÓTESIS ── -->
 <!-- ── DIAPOSITIVA 12 ── -->
 <div class="slide">
-    <h2>1.8 Operaciones con Conjuntos</h2>
+    <h2>10.10 Pruebas de Hipótesis: El Juicio Estadístico</h2>
     <div class="contenido-texto">
-        <p>Podemos combinar conjuntos de la misma forma que sumamos o restamos números. Estas operaciones están directamente conectadas con los conectivos lógicos que ya aprendimos :</p>
+        <p>Llegamos a la herramienta principal de la ciencia. Las <strong>Pruebas de Hipótesis</strong> funcionan exactamente igual que un juicio penal.</p>
         <ul>
-            <li><strong>Unión ($A \cup B$):</strong> Junta todos los elementos de $A$ con los de $B$. Está conectada con la disyunción lógica "O" ($p \lor q$).</li>
-            <li><strong>Intersección ($A \cap B$):</strong> Toma <em>únicamente</em> los elementos que tienen en común. Está conectada con la conjunción lógica "Y" ($p \land q$).</li>
-            <li><strong>Diferencia ($A \setminus B$):</strong> A los elementos del conjunto $A$, le quitamos cualquiera que también esté en $B$.</li>
-            <li><strong>Complemento ($A^c$):</strong> Son todos los elementos del universo que NO están en $A$. Está conectado con la negación lógica ($\neg p$).</li>
+            <li><strong>La Hipótesis Nula ($H_0$):</strong> Es el estatus quo. Es decir, "El acusado es Inocente" o "La nueva política económica NO tuvo ningún efecto". Asumimos que $H_0$ es verdad desde el principio.</li>
+            <li><strong>La Hipótesis Alternativa ($H_1$ o $H_a$):</strong> Es lo que tú, como investigador o fiscal, quieres probar. "El acusado es Culpable" o "La nueva política SÍ aumentó el empleo".</li>
         </ul>
+        <p>Para condenar a $H_0$ a la basura estadística, no basta con una sospecha. Necesitas <strong>"Evidencia más allá de toda duda razonable"</strong>. Esa duda razonable es nuestro margen de error $\alpha$ (casi siempre del 5%).</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 13 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Teoría de Conjuntos</h2>
+    <h2>10.11 Los Dos Errores Fatales</h2>
     <div class="contenido-texto">
-        <p>Sean los siguientes conjuntos. Universo $U = \{1, 2, 3, 4, 5, 6, 7, 8, 9\}$, $A = \{2, 4, 6, 8\}$ y $B = \{3, 4, 5, 6\}$.</p>
+        <p>Como estamos adivinando basados en una muestra, podemos equivocarnos en nuestro veredicto. Hay dos formas de arruinarlo:</p>
         <ol>
-            <li>Encuentra los elementos que forman la intersección: $A \cap B$.</li>
-            <li>Encuentra los elementos que forman la diferencia: $A \setminus B$. ¿Es el mismo resultado que $B \setminus A$?</li>
-            <li>Calcula el complemento de $A$ ($A^c$) y luego encuentra la intersección de ese resultado con el conjunto $B$. Es decir, resuelve: $A^c \cap B$.</li>
-            <li>Analiza lógicamente: Si sabes que la intersección de dos conjuntos está vacía ($X \cap Y = \emptyset$), ¿qué puedes concluir sobre los elementos de $X$ y $Y$?</li>
+            <li><strong>Error Tipo I ($\alpha$ - Falso Positivo):</strong> Rechazas $H_0$ cuando en realidad era verdadera. <em>Metiste a un inocente a la cárcel.</em> Lanzas al mercado un medicamento creyendo que funciona, pero era agua con azúcar.</li>
+            <li><strong>Error Tipo II ($\beta$ - Falso Negativo):</strong> Aceptas (o "no rechazas") $H_0$ cuando en realidad era falsa. <em>Dejaste libre al asesino.</em> Tenías una campaña de marketing brillante que sí funcionaba, pero por mala suerte tu muestra te dijo que no, y la cancelaste.</li>
         </ol>
+        <p>En estadística, protegemos a la sociedad fijando el riesgo del peor error (Tipo I) en un nivel muy bajo: el famoso $\alpha = 0.05$ (solo aceptamos un 5% de riesgo de Falso Positivo).</p>
     </div>
 </div>
-<!-- ── TEMA 5: RELACIONES ── -->
-<!-- ── DIAPOSITIVA 14 ── -->
+
+<!-- ── DIAPOSITIVA 14 (Con Gráfica SVG 3) ── -->
 <div class="slide">
-    <h2>1.9 Producto Cartesiano y Relaciones</h2>
-    <div class="contenido-texto">
-        <p>Antes de hablar de funciones, necesitamos entender cómo interactúan los elementos de dos conjuntos distintos.</p>
-        <ul>
-            <li><strong>Producto Cartesiano ($A \times B$):</strong> Es el conjunto de <em>todos</em> los pares ordenados $(a, b)$ que se pueden formar tomando el primer elemento del conjunto $A$ y el segundo del conjunto $B$. Es la base matemática de cualquier sistema de coordenadas.</li>
-            <li><strong>Relación:</strong> Una relación matemática de $A$ en $B$ es, formalmente, cualquier subconjunto del producto cartesiano. Es decir, es una regla que asocia <em>algunos</em> elementos de un conjunto con los de otro, sin restricciones estrictas.</li>
-        </ul>
+    <h2>10.12 Las Zonas de Rechazo</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>Construimos una campana asumiendo que $H_0$ (El Estatus Quo) es el centro. Si nuestro resultado muestral cae cerquita del centro, fue suerte, no podemos probar nada. Si cae en las colas rojas (muy lejos del centro), es "evidencia más allá de la duda razonable" y RECHAZAMOS $H_0$.</p>
+        
+        <!-- INICIO DE GRÁFICA SVG 3: PRUEBA DE HIPÓTESIS -->
+        <div style="text-align: center; margin: 15px 0;">
+            <svg viewBox="0 0 400 200" width="100%" max-width="400px" style="background-color: #fafafa; border: 1px solid #ddd; border-radius: 8px;">
+                <!-- Ejes -->
+                <line x1="20" y1="160" x2="380" y2="160" stroke="#888" stroke-width="2" />
+                
+                <!-- Zonas de Rechazo (Rojas, extremas) -->
+                <path d="M 20 160 Q 60 155 90 130 L 90 160 Z" fill="rgba(217, 83, 79, 0.8)" />
+                <path d="M 380 160 Q 340 155 310 130 L 310 160 Z" fill="rgba(217, 83, 79, 0.8)" />
+                
+                <!-- Zona de No Rechazo (Verde central) -->
+                <path d="M 90 160 L 90 130 Q 140 60 200 20 T 310 130 L 310 160 Z" fill="rgba(42, 73, 57, 0.1)" stroke="#2a4939" stroke-width="2" />
+                
+                <!-- Líneas Límite (Z crítico) -->
+                <line x1="90" y1="160" x2="90" y2="130" stroke="#d9534f" stroke-width="2" stroke-dasharray="2,2" />
+                <line x1="310" y1="160" x2="310" y2="130" stroke="#d9534f" stroke-width="2" stroke-dasharray="2,2" />
+                
+                <!-- Textos -->
+                <text x="200" y="100" font-size="14" font-weight="bold" fill="#2a4939" text-anchor="middle">Zona de NO Rechazo</text>
+                <text x="200" y="120" font-size="12" font-style="italic" fill="#2a4939" text-anchor="middle">(H₀ vive)</text>
+                
+                <text x="55" y="120" font-size="11" fill="#d9534f" font-weight="bold" text-anchor="middle">Rechazo</text>
+                <text x="345" y="120" font-size="11" fill="#d9534f" font-weight="bold" text-anchor="middle">Rechazo</text>
+                
+                <text x="90" y="175" font-size="11" text-anchor="middle" font-weight="bold">-Z Crítico</text>
+                <text x="310" y="175" font-size="11" text-anchor="middle" font-weight="bold">+Z Crítico</text>
+            </svg>
+        </div>
+        
+        <p>Esa zona roja delimita a las muestras que son tan raras que "es imposible que haya sido pura suerte".</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 15 ── -->
 <div class="slide">
-    <h2>1.10 Propiedades de las Relaciones</h2>
+    <h2>10.13 El P-Value: El Número más Famoso (y Malentendido)</h2>
     <div class="contenido-texto">
-        <p>Si analizamos una relación dentro de un mismo conjunto (elementos relacionándose entre sí mismos), esta puede tener ciertas propiedades lógicas:</p>
+        <p>En lugar de estar buscando valores de "Z" o "T" en tablas aburridas, todo el software estadístico del mundo (R, Python, Excel) te va a arrojar un número mágico llamado <strong>p-value (valor p)</strong>.</p>
+        <p><strong>¿Qué demonios es el p-value?</strong><br>
+        Es la probabilidad de obtener el resultado que obtuviste (o uno más extremo) asumiendo que la Hipótesis Nula ($H_0$) fuera totalmente cierta. <em>Es la probabilidad de que todo haya sido una coincidencia.</em></p>
         <ul>
-            <li><strong>Reflexiva:</strong> Todo elemento está relacionado consigo mismo. ($x$ se relaciona con $x$). Ejemplo clásico: El signo de igualdad ($=$).</li>
-            <li><strong>Simétrica:</strong> Si $x$ está relacionado con $y$, entonces $y$ está forzosamente relacionado con $x$. Ejemplo: "Ser hermano de".</li>
-            <li><strong>Transitiva:</strong> Si $x$ se relaciona con $y$, y a su vez $y$ se relaciona con $z$, entonces $x$ se relaciona con $z$. Ejemplo: "Ser mayor que" ($>$).</li>
+            <li><strong>Si el p-value es ALTO (ej. $0.40$):</strong> Hay un 40% de probabilidad de que tus resultados sean pura suerte o ruido aleatorio. ¡No puedes rechazar $H_0$!</li>
+            <li><strong>Si el p-value es BAJO ($< 0.05$):</strong> Hay menos del 5% de probabilidad de que sea suerte. Esto es demasiado raro. <strong>¡Rechazamos $H_0$!</strong> ¡Tus resultados son Estadísticamente Significativos!</li>
         </ul>
-        <p>Si una relación matemática cumple estas tres propiedades al mismo tiempo, se le llama <strong>Relación de Equivalencia</strong>.</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 16 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Relaciones</h2>
-    <div class="contenido-texto">
-        <p>Analiza las siguientes relaciones y determina sus propiedades lógicas:</p>
-        <ol>
-            <li>Si $A = \{1, 2\}$ y $B = \{x, y\}$, escribe todos los pares ordenados que conforman el producto cartesiano $A \times B$.</li>
-            <li>Considera la relación "ser amigo de" en una red social como Facebook. Analiza lógicamente: ¿Es reflexiva? ¿Es simétrica? ¿Es transitiva? Justifica cada respuesta.</li>
-            <li>En el conjunto de los números naturales, analiza la relación "es múltiplo de" (ej. 4 es múltiplo de 2). Determina si esta relación cumple con las propiedades reflexiva, simétrica y transitiva.</li>
-        </ol>
+    <h2>Ejemplos Resueltos: Los 5 Pasos del Juicio</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p><strong>Ejemplo 3: Producción Fabril</strong><br>
+        Históricamente, las máquinas hacían $\mu = 500$ piezas diarias. Implementas una nueva técnica y tomas una muestra de $36$ días. La nueva media es $\bar{x} = 515$ con una desviación poblacional conocida de $\sigma = 40$. ¿Puedes comprobar que la técnica funciona? (Nivel de significancia $\alpha = 0.05$).</p>
+        <p><em>Paso 1: Plantear Hipótesis.</em><br>
+        $H_0: \mu = 500$ (La técnica no sirve, todo sigue igual).<br>
+        $H_1: \mu > 500$ (La técnica SÍ sirve, la media subió. Prueba de 1 cola).</p>
+        <p><em>Paso 2: Nivel de Riesgo.</em><br>
+        $\alpha = 0.05$. Como es de 1 cola (hacia arriba), el $Z$ crítico de la tabla es $1.645$. Si pasamos de ahí, ganamos el juicio.</p>
+        <p><em>Paso 3: Calcular el Estadístico de Prueba.</em><br>
+        Convertimos nuestro 515 en unidades de "Z" midiendo qué tan lejos quedó del 500 (medido en errores estándar).<br>
+        $Z_{calc} = \frac{\bar{x} - \mu}{\sigma / \sqrt{n}} = \frac{515 - 500}{40 / \sqrt{36}} = \frac{15}{40 / 6} = \frac{15}{6.66} = 2.25$</p>
     </div>
 </div>
 
-<!-- ── TEMA 6: FUNCIONES ── -->
 <!-- ── DIAPOSITIVA 17 ── -->
 <div class="slide">
-    <h2>1.11 Funciones: La máquina matemática</h2>
+    <h2>Ejemplos Resueltos: Veredicto</h2>
     <div class="contenido-texto">
-        <p>Una <strong>función</strong> es un tipo muy especial y estricto de relación. Es una regla de correspondencia que asigna a <em>cada</em> elemento de un conjunto inicial <strong>exactamente un</strong> elemento de un conjunto final.</p>
-        <ul>
-            <li><strong>Dominio:</strong> Todos los valores de entrada permitidos (las $x$).</li>
-            <li><strong>Codominio y Rango:</strong> El codominio es el conjunto de llegada posible. El <strong>rango</strong> (o imagen) son los valores que <em>realmente</em> escupe la función (las $y$).</li>
-        </ul>
-        <p><em>Regla de oro:</em> De un elemento del dominio solo puede salir una flecha. Una función es como una máquina predecible: no puedes meter un $2$ y que a veces te devuelva un $4$ y a veces un $5$.</p>
+        <p><strong>Continuación Ejemplo 3: El Veredicto Final</strong></p>
+        <p><em>Paso 4: Tomar la decisión.</em><br>
+        Comparamos nuestro puntaje calculado ($Z_{calc} = 2.25$) con la línea límite del tribunal ($Z_{crit} = 1.645$).<br>
+        Como $2.25 > 1.645$, nuestro resultado cayó de lleno en la Zona de Rechazo roja. (La probabilidad de que esto pasara por suerte [p-value] es de apenitas $0.012$, mucho menor a nuestro límite de $0.05$).</p>
+        <p><em>Paso 5: Conclusión Económica.</em><br>
+        <strong>Rechazamos $H_0$.</strong> Tenemos evidencia estadísticamente significativa al 95% de confianza para afirmar que la nueva técnica ha aumentado efectivamente la producción diaria de las máquinas.</p>
+        <p><em>(¡Imagina mandar este reporte exacto a la junta directiva!)</em></p>
     </div>
 </div>
 
+<!-- ── TEMA 5: COMPARANDO DOS GRUPOS ── -->
 <!-- ── DIAPOSITIVA 18 ── -->
 <div class="slide">
-    <h2>1.12 Inyectividad, Suprayectividad y Biyectividad</h2>
+    <h2>10.14 Diferencia de Medias (Prueba A/B)</h2>
     <div class="contenido-texto">
-        
-        <p>Clasificamos las funciones según cómo interactúan con el conjunto de llegada:</p>
-        <ul>
-            <li><strong>Inyectiva (Uno a uno):</strong> Nunca dos elementos diferentes del dominio ($x$) dan el mismo resultado en el rango ($y$). <br>
-            <em>Formalmente:</em> Si $f(x_1) = f(x_2) \implies x_1 = x_2$.</li>
-            <li><strong>Suprayectiva (Sobre):</strong> El rango cubre la totalidad del codominio. Ningún elemento del conjunto de llegada se queda "solo" sin ser apuntado por la regla de la función.</li>
-            <li><strong>Biyectiva:</strong> Es inyectiva y suprayectiva al mismo tiempo. Es una correspondencia perfecta, sin que sobre ni falte nada. <em>Solo las funciones biyectivas tienen función inversa ($f^{-1}$).</em></li>
-        </ul>
+        <p>En el mundo real del marketing o la política pública, casi nunca comparamos contra un número histórico. <strong>Comparamos dos grupos entre sí.</strong></p>
+        <p>Las empresas tecnológicas lo llaman "A/B Testing". Haces que la mitad de los usuarios vean el botón de compra "Rojo" (Grupo 1) y la otra mitad el "Azul" (Grupo 2). ¿Cuál generó más ingresos reales?</p>
+        <p>La Hipótesis Nula en estos casos siempre asume la igualdad:<br>
+        $H_0: \mu_1 - \mu_2 = 0$ (Rojo y Azul rinden exactamente igual).<br>
+        $H_1: \mu_1 \neq \mu_2$ (Un color definitivamente vende más).</p>
+        <p>Calculamos un intervalo de confianza para la <em>diferencia</em> de las medias. Si el intervalo incluye al $0$, entonces no hay diferencia estadística entre los grupos (se cancelan).</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 19 ── -->
 <div class="slide">
-    <h2>1.13 Composición de Funciones</h2>
-    <div class="contenido-texto">
-        <p>A menudo necesitamos evaluar el resultado de una función directamente dentro de otra. Esto se llama <strong>composición</strong> y se denota como $(g \circ f)(x)$, que significa evaluar $g(f(x))$.</p>
-        <p>Funciona como una línea de ensamblaje en una fábrica:</p>
+    <h2>Práctica Autónoma: TLC y Estimadores (1-4)</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>Aplica tus conocimientos como todo un analista de datos:</p>
         <ol>
-            <li>Tomas un valor $x$ y lo procesas en la máquina $f$.</li>
-            <li>La máquina $f$ te devuelve un resultado intermedio.</li>
-            <li>Tomas ese resultado intermedio y lo metes inmediatamente en la máquina $g$ para obtener el valor final.</li>
+            <li><strong>Teoría Crítica:</strong> Explica con tus propias palabras (como si se lo explicaras a un gerente de marketing) por qué el Teorema del Límite Central te permite analizar los clics de los usuarios de internet aunque no sigan una distribución de campana perfecta.</li>
+            <li>Define la diferencia entre "Error Estándar" y "Desviación Estándar de la población". ¿Qué le pasa al Error Estándar si cuadruplicas el tamaño de tu encuesta de 100 a 400 personas?</li>
+            <li>En un país, el salario promedio reportado fue calculado con un estimador que siempre ignora al 5% de los más pobres debido a cómo se aplica la encuesta telefónica. ¿Este estimador es "Insesgado"? Justifica.</li>
+            <li>Si tienes dos fórmulas diferentes para predecir la inflación, ambas aciertan en promedio (insesgadas), pero la Fórmula A tiene una varianza de error de $2\%$ y la Fórmula B tiene una varianza de $8\%$. ¿A cuál eliges basándote en la propiedad de la "Eficiencia"?</li>
         </ol>
-        <p><em>Ojo matemático:</em> En general, el orden de las operaciones altera el producto. Evaluar $g(f(x))$ casi nunca es igual a evaluar $f(g(x))$.</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 20 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Funciones</h2>
-    <div class="contenido-texto">
-        <p>Aplica los conceptos estrictos de funciones en estos ejercicios:</p>
-        <ol>
-            <li>Identifica si la siguiente relación es una función: "A cada persona en un país se le asigna su número de teléfono celular". <em>(Pista: Analiza qué pasa si alguien tiene dos líneas a su nombre bajo la regla de "exactamente un" elemento).</em></li>
-            <li>Determina si la función $f(x) = x^2$ (definida para todos los números reales) es inyectiva. Justifica usando la definición formal matemática.</li>
-            <li>Sean $f(x) = 2x + 1$ y $g(x) = x^2$. Calcula:
-                <ul>
-                    <li>La composición $(g \circ f)(x)$</li>
-                    <li>La composición $(f \circ g)(x)$</li>
-                </ul>
-                ¿Los resultados son equivalentes?
-            </li>
+    <h2>Práctica Autónoma: Intervalos de Confianza (5-8)</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <ol start="5">
+            <li><strong>Muestra Grande (Z):</strong> Encuestas a $n=64$ turistas en Cancún. El gasto promedio diario en tu muestra es $\bar{x} = \$250$ USD. Asumiendo una desviación poblacional conocida de $\sigma = \$40$, construye un Intervalo de Confianza del 95% ($Z=1.96$) para el gasto promedio nacional.</li>
+            <li><strong>Muestra Pequeña (t):</strong> Vas a evaluar el rendimiento (litros producidos) de una nueva raza de $16$ vacas experimentales. El promedio de leche es $\bar{x} = 22$ litros, con una desviación muestral de $s = 4$ litros. Busca el valor "t" para $95\%$ de confianza y $15$ grados de libertad en una tabla (es $2.131$). Construye el Intervalo.</li>
+            <li>Observando la fórmula del intervalo, responde: ¿Si quisieras pasar de un 95% de certeza a estar 99% seguro de que no te equivocas, tu red (el intervalo) tendría que hacerse más estrecha o más ancha?</li>
+            <li>Verdadero o Falso: Un intervalo del 95% entre $\$50$ y $\$80$ significa que el 95% de la población gana entre $\$50$ y $\$80$. (Pista: Revisa la definición formal del IC).</li>
         </ol>
     </div>
 </div>
 
-<!-- ── DIAPOSITIVA 21: CIERRE DEL MÓDULO ── -->
+<!-- ── DIAPOSITIVA 21 ── -->
 <div class="slide">
-    <h2 style="color: #2a4939; text-align: center; margin-bottom: 20px;">¡Felicidades! Has completado el Módulo 1</h2>
-    <div class="contenido-texto" style="text-align: center;">
-        <div style="font-size: 3rem; margin-bottom: 15px;">🎓</div>
-        <p>Has construido los cimientos analíticos necesarios para adentrarte en las matemáticas superiores sin temor al rigor formal.</p>
-        <p style="margin-top: 15px;">Ahora dominas:</p>
-        <ul style="text-align: left; display: inline-block; margin-top: 10px;">
-            <li>La estructura lógica para construir argumentos irrebatibles ($p \implies q$).</li>
-            <li>El uso correcto de los cuantificadores ($\forall, \exists$) y su negación.</li>
-            <li>Las estrategias matemáticas para demostrar la veracidad de una afirmación.</li>
-            <li>El lenguaje de los conjuntos, las relaciones y la definición estricta de una función.</li>
-        </ul>
-        <p style="margin-top: 25px; font-weight: bold;">Estás listo para iniciar el <strong>Módulo 2: Álgebra</strong>.</p>
-        <div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
-    <button id="btnCompletarM1" style="background-color: #2a4939; color: #fff1da; padding: 14px 28px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.05rem; transition: background 0.3s;">
-        Marcar Módulo 1 como Completado
-    </button>
-</div>
+    <h2>Práctica Autónoma: Hipótesis (9-12)</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <ol start="9">
+            <li><strong>Planteamiento:</strong> Una organización afirma que los jóvenes mexicanos pasan $\mu = 4$ horas diarias en TikTok. Tú sospechas que el verdadero número es MUCHO MAYOR. Escribe la Hipótesis Nula ($H_0$) y la Alternativa ($H_1$) para tu estudio.</li>
+            <li><strong>Lógica de Errores:</strong> En la prueba forense de un medicamento contra el cáncer, el Error Tipo I sería declarar que la medicina funciona cuando es agua natural. El Error Tipo II sería decir que la medicina no sirve cuando en realidad curaba la enfermedad. ¿Qué error preferirías evitar a toda costa (es decir, qué nivel de $\alpha$ exigirías) y por qué?</li>
+            <li>Si tu software te arroja un P-value de $0.0003$ en un estudio sobre el aumento del PIB. ¿Qué significa ese número y qué veredicto le das a la Hipótesis Nula?</li>
+            <li>Si el software te da un P-value de $0.45$. ¿Rechazas o no rechazas la Hipótesis Nula asumiendo el umbral clásico del 5%?</li>
+        </ol>
     </div>
 </div>
+
+<!-- ── DIAPOSITIVA 22 ── -->
+<div class="slide">
+    <h2>Práctica Autónoma: El Juicio Final (13-15)</h2>
+    <div class="contenido-texto" style="font-size: 0.85rem;">
+        <ol start="13">
+            <li><strong>Z-Test Completo:</strong> El tiempo de espera en una sucursal bancaria afirma ser de $\mu = 15$ minutos. Un gerente furioso audita $49$ transacciones y saca una media de $\bar{x} = 18$ minutos. La desviación es $\sigma = 7$ minutos. Usando $\alpha = 0.05$ (Z crítico = $1.96$ para dos colas):
+                <ul style="margin-top: 5px;">
+                    <li>Calcula el puntaje Z del gerente.</li>
+                    <li>Emite el veredicto: ¿La sucursal está mintiendo estadísticamente en sus tiempos de espera?</li>
+                </ul>
+            </li>
+            <li><strong>A/B Testing:</strong> Dos algoritmos de precios son evaluados. El algoritmo A (30 pruebas) da ganancias promedio de $\$500$. El B (30 pruebas) da $\$520$. El programa estadístico arroja que el "Intervalo de Confianza al 95% para la Diferencia ($\mu_B - \mu_A$)" es $[-10, 50]$. Basado <em>solamente</em> en que el número Cero ($0$) está metido adentro de ese intervalo, ¿puedes concluir que el algoritmo B es superior?</li>
+            <li>Reto: ¿Por qué la estadística en la ciencia nunca dice "Aceptamos la Hipótesis Nula", y en cambio los papers dicen fríamente "No tenemos evidencia suficiente para rechazarla"?</li>
+        </ol>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 23: CIERRE DEL MÓDULO ── -->
+<div class="slide">
+    <h2 style="color: #2a4939; text-align: center; margin-bottom: 20px;">¡Felicidades! Has completado el Módulo 10</h2>
+    <div class="contenido-texto" style="text-align: center;">
+        <div style="font-size: 3rem; margin-bottom: 15px;">⚖️</div>
+        <p>Acabas de dominar el proceso mental de la ciencia moderna. Ya no te dejas engañar por "promedios" sueltos. Ahora exiges pruebas, márgenes de error y p-values.</p>
+        <p style="margin-top: 15px;">Tu formación como analista incluye ahora:</p>
+        <ul style="text-align: left; display: inline-block; margin-top: 10px;">
+            <li>Apoyarte en el milagro del Teorema del Límite Central.</li>
+            <li>Lanzar redes de seguridad con Intervalos de Confianza (Z y T).</li>
+            <li>Llevar al banquillo de los acusados a cualquier teoría usando Pruebas de Hipótesis.</li>
+            <li>Interpretar P-values y balancear el riesgo de cometer Errores Tipo I y II.</li>
+        </ul>
+        <p style="margin-top: 25px; font-weight: bold;">Estás listo para el clímax absoluto de tus estudios matemáticos: predecir el futuro encontrando la relación oculta entre los datos en el <strong>Módulo 11: Econometría</strong>.</p>
+        
+        <!-- BOTÓN DE COMPLETADO M10 -->
+        <div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
+            <button id="btnCompletarM10" style="background-color: #2a4939; color: #fff1da; padding: 14px 28px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.05rem; transition: background 0.3s;">
+                Marcar Módulo 10 como Completado
+            </button>
+        </div>
+    </div>
+</div>
+
             <!-- ── NAVEGACIÓN ── -->
             <div class="nav-buttons">
                 <button class="btn-nav" id="prevBtn" onclick="changeSlide(-1)" disabled>← Anterior</button>

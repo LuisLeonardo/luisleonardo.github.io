@@ -587,323 +587,517 @@ footer {
         <!-- Tarjeta de diapositivas -->
         <div class="slide-container">
 
-            <!-- ── DIAPOSITIVA 1 ── -->
-            <div class="slide active">
-                <h2>¿Para qué sirven las matemáticas en economía?</h2>
-                <div class="contenido-texto">
-                    <p>En el análisis económico, las matemáticas cumplen funciones críticas que van más allá del simple cálculo:</p>
-                    <ul>
-                        <li>Nos permiten expresar suposiciones y conclusiones mediante símbolos y ecuaciones, evitando caer en ambigüedades.</li>
-                        <li>Al utilizar teoremas matemáticos, el analista se ve forzado a explicar todos los supuestos o condiciones necesarias para no perder el sentido económico.</li>
-                        <li>Las matemáticas nos permiten trabajar con <em>n</em> variables, permitiéndonos hacer modelos que reflejen la realidad.</li>
-                        <li>Herramientas como el cálculo sirven para optimizar (maximizar ganancias o minimizar costos) y el álgebra lineal para analizar la interdependencia entre los distintos sectores de una economía.</li>
-                    </ul>
-                </div>
-            </div>
+<!-- ── DIAPOSITIVA 1: INTRODUCCIÓN ── -->
+<div class="slide active">
+    <h2>9.1 Los Datos Cuentan Historias</h2>
+    <div class="contenido-texto">
+        <p>Vivimos en la era del Big Data. Todos los días se generan millones de datos sobre empleo, inflación, pobreza, clics en internet y ventas. Pero los datos crudos son como piezas de un rompecabezas en una caja: no sirven de nada hasta que los ordenas.</p>
+        <p>La <strong>Estadística</strong> es la ciencia (y el arte) de recolectar, organizar, analizar e interpretar datos para tomar decisiones bajo incertidumbre.</p>
+        <p>En este módulo aprenderemos <strong>Estadística Descriptiva</strong>: cómo tomar una base de datos gigante (como el censo de un país) y resumirla en un par de números y gráficas que cualquier persona pueda entender al instante.</p>
+    </div>
+</div>
 
-            <!-- ── TEMA 1: LÓGICA PROPOSICIONAL (Sin tablas de verdad) ── -->
 <!-- ── DIAPOSITIVA 2 ── -->
 <div class="slide">
-    <h2>1.1 Lógica Proposicional: Conceptos Básicos</h2>
+    <h2>9.2 Población vs. Muestra</h2>
     <div class="contenido-texto">
-        <p>Iniciamos con la <strong>proposición</strong>: una afirmación que solo puede ser verdadera ($V$) o falsa ($F$). Los <strong>conectivos lógicos</strong> nos permiten crear argumentos complejos a partir de ideas simples:</p>
+        <p>El primer gran concepto estadístico es entender a quién estamos estudiando.</p>
         <ul>
-            <li><strong>Negación ($\neg p$):</strong> Afirma exactamente lo contrario a $p$.</li>
-            <li><strong>Conjunción ($p \land q$):</strong> "Y". Exige que ambas condiciones se cumplan estrictamente al mismo tiempo.</li>
-            <li><strong>Disyunción ($p \lor q$):</strong> "O". Es flexible; basta con que al menos una condición sea cierta para que todo el enunciado lo sea.</li>
-            <li><strong>Implicación ($p \implies q$):</strong> "Si $p$, entonces $q$". Establece una relación causa-efecto o de condición suficiente. Es la base de cualquier teorema matemático.</li>
-            <li><strong>Bicondicional ($p \iff q$):</strong> "Si y solo si". Significa que $p$ y $q$ son equivalentes; no puede ocurrir una sin la otra.</li>
+            <li><strong>Población ($N$):</strong> Es el universo TOTAL de individuos o elementos. <em>Ejemplo: Todos los 130 millones de habitantes de México.</em> Estudiar a la población completa requiere un "Censo", lo cual es carísimo y tarda años.</li>
+            <li><strong>Muestra ($n$):</strong> Es un subconjunto pequeño, pero representativo, de la población. <em>Ejemplo: Encuestar a 5,000 mexicanos elegidos al azar.</em> </li>
         </ul>
+        <p><em>Interpretación:</em> Si la muestra está bien elegida, lo que descubramos en esos 5,000 mexicanos aplicará para todo el país. (A ese salto de la muestra a la población le llamaremos "Inferencia" en el Módulo 10).</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 3 ── -->
 <div class="slide">
-    <h2>1.2 Tautologías y Equivalencias</h2>
+    <h2>9.3 Tipos de Variables</h2>
     <div class="contenido-texto">
-        <p>En lugar de memorizar escenarios mecánicos, en matemáticas buscamos identificar estructuras lógicas que siempre funcionan:</p>
+        <p>No todos los datos se miden igual. Una "Variable" es cualquier característica que cambia de individuo a individuo.</p>
+        <p><strong>1. Variables Cualitativas (Categóricas):</strong> Describen cualidades o etiquetas, no cantidades matemáticas reales.</p>
         <ul>
-            <li><strong>Tautología:</strong> Un argumento que siempre es verdadero por su pura estructura lógica, sin importar de qué estemos hablando. Por ejemplo, la frase "Llueve o no llueve" ($p \lor \neg p$) es una verdad absoluta indiscutible.</li>
-            <li><strong>Contradicción:</strong> Algo que es imposible por definición. Por ejemplo, "Subió y no subió" ($p \land \neg p$).</li>
-            <li><strong>Leyes de De Morgan:</strong> Son trucos de oro para negar ideas agrupadas.
-                <ul style="margin-top: 5px;">
-                    <li>Negar que pasaron <em>ambas</em> cosas ($\neg(p \land q)$), es lo mismo que decir que falló la primera <em>o</em> falló la segunda ($\neg p \lor \neg q$).</li>
-                    <li>Negar que pasó <em>al menos una</em> de las dos ($\neg(p \lor q)$), es lo mismo que decir que no pasó la primera <em>y</em> tampoco la segunda ($\neg p \land \neg q$).</li>
-                </ul>
-            </li>
+            <li><em>Nominales:</em> No tienen orden. (Ej: Género, Estado de residencia, Sector económico).</li>
+            <li><em>Ordinales:</em> Tienen un orden jerárquico. (Ej: Nivel socioeconómico [Bajo, Medio, Alto], Nivel de educación).</li>
+        </ul>
+        <p><strong>2. Variables Cuantitativas (Numéricas):</strong> Son números reales con los que sí podemos sumar y promediar.</p>
+        <ul>
+            <li><em>Discretas:</em> Se cuentan en números enteros. No hay fracciones. (Ej: Número de hijos, número de empresas quebradas).</li>
+            <li><em>Continuas:</em> Pueden tener infinitos decimales. Se miden. (Ej: Salario, Estatura, Tasa de inflación, Tiempo).</li>
         </ul>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 4 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Lógica Proposicional</h2>
+    <h2>Ejemplos de Clasificación de Variables</h2>
     <div class="contenido-texto">
-        <p>Realiza los siguientes ejercicios analíticos en tu cuaderno:</p>
+        <p>Imagina una base de datos del INEGI (Encuesta de Empleo). Vamos a clasificar sus columnas:</p>
         <ol>
-            <li><strong>Traducción:</strong> Sean $p$: "Hay inflación" y $q$: "El banco central interviene". Escribe en lenguaje natural las siguientes expresiones formales: 
-                <ul>
-                    <li>$p \implies q$</li>
-                    <li>$\neg q \implies \neg p$</li>
-                </ul>
-                ¿Tienen el mismo significado en la vida real?
-            </li>
-            <li><strong>Aplicación de De Morgan:</strong> Un reglamento dice: "Para aprobar necesitas entregar la tesis ($t$) Y pasar el examen ($e$)". Si un estudiante reprueba, ¿cómo expresas lógicamente lo que le faltó usando la Ley de De Morgan?</li>
+            <li><strong>"Horas trabajadas a la semana"</strong> $\to$ Cuantitativa Continua (Puedes trabajar 40.5 horas).</li>
+            <li><strong>"Estado Civil"</strong> $\to$ Cualitativa Nominal (Soltero, Casado, Divorciado no tienen "rango").</li>
+            <li><strong>"Nivel de satisfacción con su salario (1 al 5)"</strong> $\to$ Cualitativa Ordinal (El 5 es mejor que el 1, pero la distancia entre ellos es subjetiva, no es matemática pura).</li>
+            <li><strong>"Número de personas que viven en la casa"</strong> $\to$ Cuantitativa Discreta (No puedes tener 3.2 personas viviendo en casa, son 3 o son 4).</li>
+            <li><strong>"Ingreso mensual (Pesos)"</strong> $\to$ Cuantitativa Continua (Se mide hasta los centavos).</li>
         </ol>
     </div>
 </div>
 
-<!-- ── TEMA 2: LÓGICA DE PREDICADOS (Simplificada) ── -->
+<!-- ── TEMA 1: MEDIDAS DE TENDENCIA CENTRAL ── -->
 <!-- ── DIAPOSITIVA 5 ── -->
 <div class="slide">
-    <h2>1.3 Lógica de Predicados: De lo particular a lo general</h2>
+    <h2>9.4 Medidas de Tendencia Central</h2>
     <div class="contenido-texto">
-        <p>Una proposición normal dice: <em>"Juan es estudiante"</em>. Es fácil saber si es verdad. Pero un <strong>predicado</strong> usa variables: <em>"$x$ es estudiante"</em>. No podemos saber si es verdad hasta saber quién es $x$ o a cuántos nos referimos.</p>
-        <p>Para eso usamos los <strong>cuantificadores</strong>, que nos dicen de cuántos elementos estamos hablando:</p>
+        <p>Si tuvieras que describir a todo un país usando un solo número, usarías una medida de tendencia central. Buscan el "centro de gravedad" de los datos.</p>
         <ul>
-            <li><strong>Cuantificador Universal ($\forall$):</strong> Significa "Para todos". <br>
-            <em>Ejemplo: $\forall x$, $x$ necesita comer. (Todos necesitan comer).</em></li>
-            <li><strong>Cuantificador Existencial ($\exists$):</strong> Significa "Existe al menos uno" (puede haber más, pero mínimo hay uno). <br>
-            <em>Ejemplo: $\exists x$ tal que $x$ tiene un millón de dólares. (Alguien es millonario).</em></li>
+            <li><strong>La Media (Promedio):</strong> Sumas todos los datos y divides entre el total. Es el punto de equilibrio perfecto. (Se denota como $\bar{x}$ para muestra y $\mu$ para población).</li>
+            <li><strong>La Mediana ($Me$):</strong> Es el número que está exactamente en la mitad cuando ordenas los datos de menor a mayor. Divide a la población en 50% y 50%.</li>
+            <li><strong>La Moda ($Mo$):</strong> Es el valor que más se repite. (A veces hay datos "bimodales" con dos modas).</li>
         </ul>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 6 ── -->
 <div class="slide">
-    <h2>1.4 ¿Cómo contradecir a alguien? (Negación de Cuantificadores)</h2>
+    <h2>9.5 El Sesgo y la Realidad Socioeconómica</h2>
     <div class="contenido-texto">
-        <p>Negar cuantificadores es simplemente usar el sentido común para ganar un debate:</p>
-        <ul>
-            <li><strong>Para negar un "Todos" ($\forall$):</strong> <br>
-            Si yo afirmo: <em>"Todos los cisnes son blancos"</em>, tú no necesitas revisar cada cisne del mundo para demostrar que miento. Solo necesitas traerme <strong>un</strong> cisne que sea negro. <br>
-            <strong>Regla:</strong> $\neg (\forall x, P(x))$ se convierte en $\exists x, \neg P(x)$.</li>
-            <br>
-            <li><strong>Para negar un "Existe" ($\exists$):</strong> <br>
-            Si yo afirmo: <em>"Existe un monstruo debajo de la cama"</em>, para demostrar que miento, tú tienes que encender la luz y comprobar que <strong>ninguno</strong> de los rincones tiene un monstruo. <br>
-            <strong>Regla:</strong> $\neg (\exists x, P(x))$ se convierte en $\forall x, \neg P(x)$.</li>
-        </ul>
+        <p><strong>¡Atención economistas!</strong> La Media (el promedio) tiene un defecto fatal: es extremadamente sensible a los valores atípicos (los súper ricos).</p>
+        <p>Imagina un bar con 9 maestros que ganan $\$10,000$ al mes. El salario promedio es $\$10,000$. De pronto, entra Carlos Slim al bar (gana $\$100,000,000$ al mes). ¡El salario promedio de ese bar ahora es de diez millones de pesos!</p>
+        <p>¿Decir que el "promedio" del bar es de 10 millones describe bien la realidad de las personas ahí? <strong>No.</strong></p>
+        <p>Por eso, cuando hablamos de ingresos, riqueza o precios de casas, <strong>los economistas serios siempre usan la Mediana</strong>. La mediana del bar seguirá siendo $\$10,000$, porque Slim solo representa a 1 persona en el ordenamiento.</p>
     </div>
 </div>
 
-<!-- ── DIAPOSITIVA 7 ── -->
+<!-- ── DIAPOSITIVA 7 (Con Gráfica SVG 1) ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Lógica de Predicados</h2>
-    <div class="contenido-texto">
-        <p>Pon a prueba tu intuición con estos ejercicios:</p>
-        <ol>
-            <li>Escribe usando los símbolos $\forall$ o $\exists$ la siguiente frase matemática: "Existe al menos un número real $x$ que, al multiplicarse por cero, da como resultado uno". ¿Es verdadera o falsa?</li>
-            <li>Un político afirma: "Todos los programas sociales reducen la pobreza" ($\forall x, R(x)$). Si fueras un investigador que quiere demostrar que el político miente, ¿qué tendrías que encontrar en los datos? Escribe tu objetivo usando símbolos lógicos.</li>
-            <li>Traduce la frase "No hay reglas sin excepciones" al lenguaje de cuantificadores usando $\forall$ (Todos) y $\exists$ (Existe).</li>
-        </ol>
+    <h2>9.6 Visualizando la Desigualdad (Asimetría)</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>En sociedades con mucha desigualdad, la gráfica de ingresos tiene una "cola larga" hacia la derecha (Sesgo Positivo). La Media es "jalada" por los ricos, mientras que la Mediana y la Moda se quedan con la mayoría.</p>
+        
+        <!-- INICIO DE GRÁFICA SVG 1: SESGO POSITIVO -->
+        <div style="text-align: center; margin: 15px 0;">
+            <svg viewBox="0 0 400 200" width="100%" max-width="400px" style="background-color: #fafafa; border: 1px solid #ddd; border-radius: 8px;">
+                <!-- Ejes -->
+                <line x1="30" y1="160" x2="360" y2="160" stroke="#888" stroke-width="2" />
+                <line x1="30" y1="160" x2="30" y2="20" stroke="#888" stroke-width="2" />
+                
+                <!-- Curva Sesgada (Lognormal) -->
+                <path d="M 30 160 Q 60 20 100 20 T 360 155" fill="rgba(42, 73, 57, 0.2)" stroke="#2a4939" stroke-width="3" />
+                
+                <!-- Línea de Moda (Pico más alto) -->
+                <line x1="85" y1="160" x2="85" y2="22" stroke="#d9534f" stroke-width="2" stroke-dasharray="4,4" />
+                <text x="85" y="175" font-size="11" fill="#d9534f" text-anchor="middle" font-weight="bold">Moda</text>
+                
+                <!-- Línea de Mediana (Mitad del área) -->
+                <line x1="120" y1="160" x2="120" y2="40" stroke="#0275d8" stroke-width="2" stroke-dasharray="4,4" />
+                <text x="120" y="190" font-size="11" fill="#0275d8" text-anchor="middle" font-weight="bold">Mediana</text>
+                
+                <!-- Línea de Media (Jalada a la derecha) -->
+                <line x1="160" y1="160" x2="160" y2="70" stroke="#f0ad4e" stroke-width="2" stroke-dasharray="4,4" />
+                <text x="160" y="175" font-size="11" fill="#f0ad4e" text-anchor="middle" font-weight="bold">Media</text>
+                
+                <!-- Textos -->
+                <text x="340" y="150" font-size="11" fill="#666">Ingresos →</text>
+            </svg>
+        </div>
+        
+        <p><strong>Regla Estadística:</strong> Si la Media es mucho mayor que la Mediana, hay concentración de riqueza en una minoría.</p>
     </div>
 </div>
-<!-- ── TEMA 3: MÉTODOS DE DEMOSTRACIÓN ── -->
+
 <!-- ── DIAPOSITIVA 8 ── -->
 <div class="slide">
-    <h2>1.5 Métodos de Demostración: El arte de probar</h2>
+    <h2>Ejemplos Resueltos: Medidas Centrales</h2>
     <div class="contenido-texto">
-        <p>En matemáticas, no basta con que algo parezca cierto; hay que <strong>demostrarlo</strong> sin dejar lugar a dudas. Toda demostración parte de supuestos conocidos (hipótesis, $p$) para llegar a una conclusión irrebatible ($q$).</p>
-        <ul>
-            <li><strong>Demostración Directa:</strong> Es el camino recto. Asumimos que $p$ es verdadero y, mediante álgebra y lógica paso a paso, llegamos a $q$.<br>
-            <em>Ejemplo:</em> Demostrar que "Si $x$ es un número par, entonces $x^2$ es par". Asumes que $x = 2k$, lo elevas al cuadrado ($4k^2$) y factorizas un 2 para probarlo: $2(2k^2)$.</li>
-        </ul>
-        <p>Pero a veces, el camino directo es muy complicado. Para eso existen las estrategias indirectas.</p>
+        <p><strong>Ejemplo 1: Calculando Media, Mediana y Moda</strong><br>
+        Tenemos los ingresos diarios (en dólares) de 7 trabajadores: $15, 20, 15, 80, 25, 15, 40$.</p>
+        <p><em>Paso 1: Ordenar los datos. (¡Vital para la Mediana!)</em><br>
+        $15, 15, 15, 20, 25, 40, 80$</p>
+        <p><em>Paso 2: Calcular la Media ($\bar{x}$).</em><br>
+        $\bar{x} = \frac{15 + 15 + 15 + 20 + 25 + 40 + 80}{7} = \frac{210}{7} = 30$<br>
+        El promedio es $\$30$.</p>
+        <p><em>Paso 3: Calcular la Mediana ($Me$).</em><br>
+        Buscamos el número del centro en nuestra lista ordenada. Como son 7 datos, el 4to dato es el centro.<br>
+        La Mediana es $\$20$.</p>
+        <p><em>Paso 4: Calcular la Moda ($Mo$).</em><br>
+        El número que más se repite es el $\$15$ (aparece 3 veces).<br>
+        La Moda es $\$15$.</p>
     </div>
 </div>
 
+<!-- ── TEMA 2: MEDIDAS DE DISPERSIÓN ── -->
 <!-- ── DIAPOSITIVA 9 ── -->
 <div class="slide">
-    <h2>1.6 Demostración por Contrapositiva y Contradicción</h2>
+    <h2>9.7 Medidas de Dispersión (Variabilidad)</h2>
     <div class="contenido-texto">
-        <p>Cuando probar $p \implies q$ es difícil, usamos trucos lógicos:</p>
+        <p>El promedio no dice toda la verdad. Imagina que metes tu cabeza al horno (100°C) y tus pies en hielo (0°C). En promedio tu cuerpo está a unos cómodos 50°C, ¡pero te estás muriendo!</p>
+        <p>Las <strong>Medidas de Dispersión</strong> nos dicen qué tan "alejados" o "esparcidos" están los datos respecto a la media.</p>
         <ul>
-            <li><strong>Por Contrapositiva:</strong> Lógicamente, decir "Si llueve, el piso se moja" es exactamente igual a decir "Si el piso NO está mojado, entonces NO llovió". <br>
-            En lugar de probar $p \implies q$, probamos su equivalente: $\neg q \implies \neg p$. A veces, trabajar con las negaciones hace el álgebra mucho más fácil.</li>
-            <br>
-            <li><strong>Por Contradicción (Reducción al absurdo):</strong> Es el método del investigador. Asumimos que lo que queremos probar es falso y seguimos las reglas matemáticas hasta llegar a algo imposible (como $1 = 0$). Como la matemática no se equivoca, nuestro supuesto inicial debió ser el error, probando así que la afirmación original era cierta.</li>
+            <li><strong>Rango:</strong> El dato más grande menos el más chico ($Max - Min$).</li>
+            <li><strong>Varianza ($\sigma^2$ o $s^2$):</strong> Es el promedio de las distancias al cuadrado entre cada dato y la media. (Al estar al cuadrado, castiga fuertemente a los datos muy extremos).</li>
+            <li><strong>Desviación Estándar ($\sigma$ o $s$):</strong> Es la raíz cuadrada de la varianza. Nos regresa las unidades a su escala original (pesos, no "pesos cuadrados").</li>
         </ul>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 10 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Métodos de Demostración</h2>
+    <h2>9.8 La Dispersión en la Economía y Finanzas</h2>
     <div class="contenido-texto">
-        <p>Aplica la lógica de demostración en los siguientes casos:</p>
-        <ol>
-            <li><strong>Directa:</strong> Demuestra que la suma de dos números impares siempre da como resultado un número par. <em>(Pista: Un número impar se escribe como $2k + 1$).</em></li>
-            <li><strong>Contrapositiva:</strong> Queremos demostrar la frase: "Si $3x + 2$ es impar, entonces $x$ es impar". ¿Cuál sería la afirmación contrapositiva que tendrías que demostrar? Escríbela en lenguaje natural.</li>
-            <li><strong>Contradicción (Análisis de argumento):</strong> Un abogado dice: "Asumamos que mi cliente robó el banco. Si lo hizo, debió estar en la ciudad a las 3 PM. Pero las cámaras lo ubican en otro país a esa hora". ¿Por qué esto demuestra la inocencia del cliente usando reducción al absurdo?</li>
-        </ol>
+        <p>En el análisis económico, la dispersión tiene un nombre muy específico: <strong>RIESGO</strong> y <strong>DESIGUALDAD</strong>.</p>
+        <p><strong>Finanzas:</strong> Tienes dos acciones. La Acción A gana 5% en promedio, pero su desviación estándar es 1% (ganará entre 4% y 6%). La Acción B gana 5% en promedio, pero su desviación estándar es 10% (puede ganar 15% o perder -5%). <br><em>A mayor desviación estándar, mayor volatilidad y riesgo.</em></p>
+        <p><strong>Sociedad:</strong> Si dos países tienen el mismo salario promedio, pero uno tiene una desviación estándar gigantesca, significa que en ese país hay extremos brutales de pobreza y riqueza.</p>
     </div>
 </div>
 
-<!-- ── TEMA 4: TEORÍA DE CONJUNTOS ── -->
-<!-- ── DIAPOSITIVA 11 ── -->
+<!-- ── DIAPOSITIVA 11 (Con Gráfica SVG 2) ── -->
 <div class="slide">
-    <h2>1.7 Teoría de Conjuntos: El alfabeto de las matemáticas</h2>
-    <div class="contenido-texto">
-        <p>Un <strong>conjunto</strong> es simplemente una colección bien definida de objetos o números, a los que llamamos <strong>elementos</strong>. Casi toda la matemática moderna está escrita en lenguaje de conjuntos.</p>
-        <ul>
-            <li><strong>Pertenencia ($\in$):</strong> Indica que un elemento vive dentro del conjunto. Si $A = \{1, 2, 3\}$, entonces $2 \in A$ (2 pertenece a A), pero $5 \notin A$ (5 no pertenece a A).</li>
-            <li><strong>Subconjunto ($\subseteq$):</strong> Decimos que $B$ es subconjunto de $A$ si <em>todos</em> los elementos de $B$ también están dentro de $A$.</li>
-            <li><strong>Conjunto Vacío ($\emptyset$):</strong> Es el conjunto que no tiene ningún elemento. Es un concepto filosófico poderoso: la nada también es un conjunto y es subconjunto de todos los demás.</li>
-        </ul>
+    <h2>9.9 Visualizando la Desviación Estándar</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>Ambas curvas tienen el mismo centro (Media = 50). Pero la curva verde es un país igualitario (o una inversión segura), y la curva roja es un país desigual (o una inversión riesgosa).</p>
+        
+        <!-- INICIO DE GRÁFICA SVG 2: DISPERSIÓN -->
+        <div style="text-align: center; margin: 15px 0;">
+            <svg viewBox="0 0 400 200" width="100%" max-width="400px" style="background-color: #fafafa; border: 1px solid #ddd; border-radius: 8px;">
+                <!-- Ejes -->
+                <line x1="30" y1="160" x2="360" y2="160" stroke="#888" stroke-width="2" />
+                <line x1="30" y1="160" x2="30" y2="20" stroke="#888" stroke-width="2" />
+                
+                <!-- Media (Centro) -->
+                <line x1="195" y1="160" x2="195" y2="20" stroke="#333" stroke-width="1" stroke-dasharray="3,3" />
+                <text x="195" y="175" font-size="12" text-anchor="middle" font-weight="bold">Media</text>
+                
+                <!-- Curva Baja Dispersión (Verde) -->
+                <path d="M 120 160 Q 150 150 160 80 Q 195 -40 230 80 Q 240 150 270 160" fill="rgba(42, 73, 57, 0.3)" stroke="#2a4939" stroke-width="3" />
+                
+                <!-- Curva Alta Dispersión (Roja) -->
+                <path d="M 40 160 Q 100 150 150 120 Q 195 80 240 120 Q 290 150 350 160" fill="none" stroke="#d9534f" stroke-width="3" />
+                
+                <!-- Textos Explicativos -->
+                <text x="120" y="50" font-size="11" fill="#2a4939" font-weight="bold">Baja Dispersión (Bajo Riesgo)</text>
+                <text x="260" y="100" font-size="11" fill="#d9534f" font-weight="bold">Alta Dispersión</text>
+            </svg>
+        </div>
+        
+        <p>La desviación estándar nos dice qué tan "ancha" es la campana de los datos.</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 12 ── -->
 <div class="slide">
-    <h2>1.8 Operaciones con Conjuntos</h2>
-    <div class="contenido-texto">
-        <p>Podemos combinar conjuntos de la misma forma que sumamos o restamos números. Estas operaciones están directamente conectadas con los conectivos lógicos que ya aprendimos :</p>
-        <ul>
-            <li><strong>Unión ($A \cup B$):</strong> Junta todos los elementos de $A$ con los de $B$. Está conectada con la disyunción lógica "O" ($p \lor q$).</li>
-            <li><strong>Intersección ($A \cap B$):</strong> Toma <em>únicamente</em> los elementos que tienen en común. Está conectada con la conjunción lógica "Y" ($p \land q$).</li>
-            <li><strong>Diferencia ($A \setminus B$):</strong> A los elementos del conjunto $A$, le quitamos cualquiera que también esté en $B$.</li>
-            <li><strong>Complemento ($A^c$):</strong> Son todos los elementos del universo que NO están en $A$. Está conectado con la negación lógica ($\neg p$).</li>
-        </ul>
+    <h2>Ejemplos Resueltos: Varianza y Desviación</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p><strong>Ejemplo 2: Calculando la Desviación Estándar Muestral ($s$)</strong><br>
+        Tenemos las edades de 4 emprendedores: $20, 22, 26, 32$.</p>
+        <p><em>Paso 1: Calcular la Media ($\bar{x}$).</em><br>
+        $\bar{x} = \frac{20 + 22 + 26 + 32}{4} = \frac{100}{4} = 25$ años.</p>
+        <p><em>Paso 2: Restar la media a cada dato y elevar al cuadrado (Distancias).</em><br>
+        $(20 - 25)^2 = (-5)^2 = 25$<br>
+        $(22 - 25)^2 = (-3)^2 = 9$<br>
+        $(26 - 25)^2 = (1)^2 = 1$<br>
+        $(32 - 25)^2 = (7)^2 = 49$</p>
+        <p><em>Paso 3: Sumar todo y dividir entre $n-1$ para obtener la Varianza ($s^2$).</em><br>
+        (Nota: En estadística inferencial, a las muestras se les divide entre $n-1$ para corregir sesgos).<br>
+        Suma = $25 + 9 + 1 + 49 = 84$.<br>
+        $s^2 = \frac{84}{4-1} = \frac{84}{3} = 28$ (Años cuadrados).</p>
+        <p><em>Paso 4: Raíz cuadrada para Desviación Estándar ($s$).</em><br>
+        $s = \sqrt{28} \approx 5.29$ años.<br>
+        <strong>Conclusión:</strong> Los emprendedores tienen 25 años en promedio, con una desviación "típica" de 5.29 años hacia arriba o hacia abajo.</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 13 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Teoría de Conjuntos</h2>
+    <h2>9.10 El Coeficiente de Variación (CV)</h2>
     <div class="contenido-texto">
-        <p>Sean los siguientes conjuntos. Universo $U = \{1, 2, 3, 4, 5, 6, 7, 8, 9\}$, $A = \{2, 4, 6, 8\}$ y $B = \{3, 4, 5, 6\}$.</p>
-        <ol>
-            <li>Encuentra los elementos que forman la intersección: $A \cap B$.</li>
-            <li>Encuentra los elementos que forman la diferencia: $A \setminus B$. ¿Es el mismo resultado que $B \setminus A$?</li>
-            <li>Calcula el complemento de $A$ ($A^c$) y luego encuentra la intersección de ese resultado con el conjunto $B$. Es decir, resuelve: $A^c \cap B$.</li>
-            <li>Analiza lógicamente: Si sabes que la intersección de dos conjuntos está vacía ($X \cap Y = \emptyset$), ¿qué puedes concluir sobre los elementos de $X$ y $Y$?</li>
-        </ol>
+        <p>¿Qué pasa si queremos comparar peras con manzanas? Imagina que la desviación estándar de los salarios en México es de $\$5,000$ MXN, y en EE.UU. es de $\$1,000$ USD. ¿Cuál país es más desigual?</p>
+        <p>No podemos comparar directamente porque las unidades y las escalas son diferentes. Para esto usamos el <strong>Coeficiente de Variación</strong>, que se expresa en porcentaje:</p>
+        <p style="text-align: center; font-size: 1.2rem; font-weight: bold;">
+            $$ CV = \left( \frac{\sigma}{\mu} \right) \times 100\% $$
+        </p>
+        <p>Simplemente divides la desviación estándar entre la media. Si el $CV > 30\%$, los estadísticos consideran que la población es muy heterogénea (dispersa).</p>
     </div>
 </div>
-<!-- ── TEMA 5: RELACIONES ── -->
+
+<!-- ── TEMA 3: MEDIDAS DE POSICIÓN ── -->
 <!-- ── DIAPOSITIVA 14 ── -->
 <div class="slide">
-    <h2>1.9 Producto Cartesiano y Relaciones</h2>
+    <h2>9.11 Cuartiles, Deciles y Percentiles</h2>
     <div class="contenido-texto">
-        <p>Antes de hablar de funciones, necesitamos entender cómo interactúan los elementos de dos conjuntos distintos.</p>
+        <p>Si la Mediana parte a la población en 2 rebanadas exactas, las medidas de posición parten a la población en más rebanadas para analizar grupos específicos.</p>
         <ul>
-            <li><strong>Producto Cartesiano ($A \times B$):</strong> Es el conjunto de <em>todos</em> los pares ordenados $(a, b)$ que se pueden formar tomando el primer elemento del conjunto $A$ y el segundo del conjunto $B$. Es la base matemática de cualquier sistema de coordenadas.</li>
-            <li><strong>Relación:</strong> Una relación matemática de $A$ en $B$ es, formalmente, cualquier subconjunto del producto cartesiano. Es decir, es una regla que asocia <em>algunos</em> elementos de un conjunto con los de otro, sin restricciones estrictas.</li>
+            <li><strong>Cuartiles ($Q_1, Q_2, Q_3$):</strong> Parten los datos ordenados en 4 partes del 25% cada una. El $Q_1$ acumula el 25% de los más pobres. El $Q_2$ es exactamente la Mediana (50%).</li>
+            <li><strong>Deciles ($D_1$ a $D_9$):</strong> Parten los datos en 10 partes (10% cada una). Es famosísimo en economía analizar el ingreso del "Decil X" (el 10% de los más ricos) contra el "Decil I" (el 10% más pobre).</li>
+            <li><strong>Percentiles ($P_1$ a $P_{99}$):</strong> Parten en 100 partes (1%). ¿Has escuchado "pertences al 1% de la población"? Hablan del Percentil 99.</li>
         </ul>
     </div>
 </div>
 
-<!-- ── DIAPOSITIVA 15 ── -->
+<!-- ── DIAPOSITIVA 15 (Con Gráfica SVG 3) ── -->
 <div class="slide">
-    <h2>1.10 Propiedades de las Relaciones</h2>
-    <div class="contenido-texto">
-        <p>Si analizamos una relación dentro de un mismo conjunto (elementos relacionándose entre sí mismos), esta puede tener ciertas propiedades lógicas:</p>
-        <ul>
-            <li><strong>Reflexiva:</strong> Todo elemento está relacionado consigo mismo. ($x$ se relaciona con $x$). Ejemplo clásico: El signo de igualdad ($=$).</li>
-            <li><strong>Simétrica:</strong> Si $x$ está relacionado con $y$, entonces $y$ está forzosamente relacionado con $x$. Ejemplo: "Ser hermano de".</li>
-            <li><strong>Transitiva:</strong> Si $x$ se relaciona con $y$, y a su vez $y$ se relaciona con $z$, entonces $x$ se relaciona con $z$. Ejemplo: "Ser mayor que" ($>$).</li>
-        </ul>
-        <p>Si una relación matemática cumple estas tres propiedades al mismo tiempo, se le llama <strong>Relación de Equivalencia</strong>.</p>
+    <h2>9.12 El Diagrama de Caja (Boxplot)</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>El Boxplot es la gráfica favorita de los analistas de datos para ver rápidamente los Cuartiles y encontrar valores atípicos (outliers).</p>
+        
+        <!-- INICIO DE GRÁFICA SVG 3: BOXPLOT -->
+        <div style="text-align: center; margin: 15px 0;">
+            <svg viewBox="0 0 400 150" width="100%" max-width="400px" style="background-color: #fafafa; border: 1px solid #ddd; border-radius: 8px;">
+                <!-- Eje base -->
+                <line x1="20" y1="120" x2="380" y2="120" stroke="#888" stroke-width="2" />
+                
+                <!-- Líneas de bigotes (Mínimo y Máximo no atípicos) -->
+                <line x1="60" y1="70" x2="120" y2="70" stroke="#2a4939" stroke-width="2" />
+                <line x1="280" y1="70" x2="330" y2="70" stroke="#2a4939" stroke-width="2" />
+                <!-- Topes de bigotes -->
+                <line x1="60" y1="50" x2="60" y2="90" stroke="#2a4939" stroke-width="2" />
+                <line x1="330" y1="50" x2="330" y2="90" stroke="#2a4939" stroke-width="2" />
+                
+                <!-- La CAJA (Desde Q1 hasta Q3) -->
+                <rect x="120" y="40" width="160" height="60" fill="rgba(42, 73, 57, 0.2)" stroke="#2a4939" stroke-width="2" />
+                
+                <!-- Línea de Q2 (Mediana) -->
+                <line x1="180" y1="40" x2="180" y2="100" stroke="#d9534f" stroke-width="3" />
+                
+                <!-- Puntos Atípicos (Outliers) -->
+                <circle cx="360" cy="70" r="4" fill="#f0ad4e" stroke="#333" stroke-width="1" />
+                <circle cx="375" cy="70" r="4" fill="#f0ad4e" stroke="#333" stroke-width="1" />
+                
+                <!-- Textos -->
+                <text x="60" y="110" font-size="11" text-anchor="middle">Mínimo</text>
+                <text x="120" y="30" font-size="11" text-anchor="middle" font-weight="bold">Q1 (25%)</text>
+                <text x="180" y="115" font-size="11" fill="#d9534f" text-anchor="middle" font-weight="bold">Mediana (Q2)</text>
+                <text x="280" y="30" font-size="11" text-anchor="middle" font-weight="bold">Q3 (75%)</text>
+                <text x="330" y="110" font-size="11" text-anchor="middle">Máximo</text>
+                <text x="367" y="55" font-size="10" fill="#f0ad4e" text-anchor="middle">Atípicos</text>
+            </svg>
+        </div>
+        
+        <p>La "Caja" central contiene exactamente al 50% de la población (la clase media estadística). El ancho de esta caja se llama <strong>Rango Intercuartílico (RIC = Q3 - Q1)</strong>.</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 16 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Relaciones</h2>
+    <h2>Ejemplos Resueltos: Calculando Cuartiles</h2>
     <div class="contenido-texto">
-        <p>Analiza las siguientes relaciones y determina sus propiedades lógicas:</p>
-        <ol>
-            <li>Si $A = \{1, 2\}$ y $B = \{x, y\}$, escribe todos los pares ordenados que conforman el producto cartesiano $A \times B$.</li>
-            <li>Considera la relación "ser amigo de" en una red social como Facebook. Analiza lógicamente: ¿Es reflexiva? ¿Es simétrica? ¿Es transitiva? Justifica cada respuesta.</li>
-            <li>En el conjunto de los números naturales, analiza la relación "es múltiplo de" (ej. 4 es múltiplo de 2). Determina si esta relación cumple con las propiedades reflexiva, simétrica y transitiva.</li>
-        </ol>
+        <p><strong>Ejemplo 3: Notas de Economía</strong><br>
+        Las calificaciones de 11 alumnos ordenadas de menor a mayor son: $4, 5, 5, 6, 7, 7, 8, 9, 9, 10, 10$.</p>
+        <p><em>Paso 1: Encontrar el $Q_2$ (Mediana).</em><br>
+        Como son 11 datos, el centro exacto es la posición 6.<br>
+        $Q_2 = 7$.</p>
+        <p><em>Paso 2: Encontrar el $Q_1$ (Mediana de la mitad inferior).</em><br>
+        La mitad inferior es: $4, 5, 5, 6, 7$. El centro de esta mitad es $5$.<br>
+        $Q_1 = 5$. (El 25% de los alumnos sacó 5 o menos).</p>
+        <p><em>Paso 3: Encontrar el $Q_3$ (Mediana de la mitad superior).</em><br>
+        La mitad superior es: $8, 9, 9, 10, 10$. El centro es $9$.<br>
+        $Q_3 = 9$. (Solo el 25% de los alumnos sacó 9 o 10).</p>
     </div>
 </div>
 
-<!-- ── TEMA 6: FUNCIONES ── -->
+<!-- ── TEMA 4: PROBABILIDAD Y VARIABLES ALEATORIAS ── -->
 <!-- ── DIAPOSITIVA 17 ── -->
 <div class="slide">
-    <h2>1.11 Funciones: La máquina matemática</h2>
+    <h2>9.13 De lo Descriptivo a la Probabilidad</h2>
     <div class="contenido-texto">
-        <p>Una <strong>función</strong> es un tipo muy especial y estricto de relación. Es una regla de correspondencia que asigna a <em>cada</em> elemento de un conjunto inicial <strong>exactamente un</strong> elemento de un conjunto final.</p>
-        <ul>
-            <li><strong>Dominio:</strong> Todos los valores de entrada permitidos (las $x$).</li>
-            <li><strong>Codominio y Rango:</strong> El codominio es el conjunto de llegada posible. El <strong>rango</strong> (o imagen) son los valores que <em>realmente</em> escupe la función (las $y$).</li>
-        </ul>
-        <p><em>Regla de oro:</em> De un elemento del dominio solo puede salir una flecha. Una función es como una máquina predecible: no puedes meter un $2$ y que a veces te devuelva un $4$ y a veces un $5$.</p>
+        <p>La estadística descriptiva mira hacia el pasado: te resume los datos que <em>ya</em> recolectaste. La <strong>Probabilidad</strong> mira hacia el futuro: te dice qué tan factible es que ocurra un evento.</p>
+        <p>La regla de oro de Laplace (probabilidad clásica):</p>
+        <p style="text-align: center; font-size: 1.2rem; font-weight: bold;">
+            $$ P(A) = \frac{\text{Casos a favor}}{\text{Casos Totales Posibles}} $$
+        </p>
+        <p>Si la probabilidad es $0$, es imposible. Si es $1$ (o $100\%$), es una certeza absoluta. En economía y finanzas, casi todo ocurre en algún punto intermedio.</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 18 ── -->
 <div class="slide">
-    <h2>1.12 Inyectividad, Suprayectividad y Biyectividad</h2>
+    <h2>9.14 Variables Aleatorias</h2>
     <div class="contenido-texto">
-        
-        <p>Clasificamos las funciones según cómo interactúan con el conjunto de llegada:</p>
+        <p>Una <strong>Variable Aleatoria (V.A.)</strong> es una regla que le asigna un número a cada resultado posible de un experimento.</p>
         <ul>
-            <li><strong>Inyectiva (Uno a uno):</strong> Nunca dos elementos diferentes del dominio ($x$) dan el mismo resultado en el rango ($y$). <br>
-            <em>Formalmente:</em> Si $f(x_1) = f(x_2) \implies x_1 = x_2$.</li>
-            <li><strong>Suprayectiva (Sobre):</strong> El rango cubre la totalidad del codominio. Ningún elemento del conjunto de llegada se queda "solo" sin ser apuntado por la regla de la función.</li>
-            <li><strong>Biyectiva:</strong> Es inyectiva y suprayectiva al mismo tiempo. Es una correspondencia perfecta, sin que sobre ni falte nada. <em>Solo las funciones biyectivas tienen función inversa ($f^{-1}$).</em></li>
+            <li><strong>Discretas:</strong> Saltos enteros. Ej. Lanzas dos monedas y cuentas "Número de Águilas" (Puede ser 0, 1 o 2).</li>
+            <li><strong>Continuas:</strong> Pueden tomar cualquier valor en un intervalo. Ej. El tipo de cambio Dólar-Peso para el día de mañana (Podría ser 17.54, 17.55, 17.543...).</li>
         </ul>
+        <p>Cada variable aleatoria tiene una <strong>Distribución de Probabilidad</strong>, que nos muestra gráficamente dónde es más probable que "caiga" el resultado.</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 19 ── -->
 <div class="slide">
-    <h2>1.13 Composición de Funciones</h2>
+    <h2>9.15 Valor Esperado (Esperanza Matemática)</h2>
     <div class="contenido-texto">
-        <p>A menudo necesitamos evaluar el resultado de una función directamente dentro de otra. Esto se llama <strong>composición</strong> y se denota como $(g \circ f)(x)$, que significa evaluar $g(f(x))$.</p>
-        <p>Funciona como una línea de ensamblaje en una fábrica:</p>
-        <ol>
-            <li>Tomas un valor $x$ y lo procesas en la máquina $f$.</li>
-            <li>La máquina $f$ te devuelve un resultado intermedio.</li>
-            <li>Tomas ese resultado intermedio y lo metes inmediatamente en la máquina $g$ para obtener el valor final.</li>
-        </ol>
-        <p><em>Ojo matemático:</em> En general, el orden de las operaciones altera el producto. Evaluar $g(f(x))$ casi nunca es igual a evaluar $f(g(x))$.</p>
+        <p>El "Valor Esperado" o "Esperanza" ($E[X]$) es el equivalente a la Media, pero para el futuro. Es el promedio ponderado de todos los resultados posibles, multiplicados por su probabilidad de ocurrir.</p>
+        <p><strong>Ejemplo 4: Riesgo de Inversión</strong><br>
+        Lanzas una startup. Tienes $80\%$ ($0.8$) de probabilidad de perder tu inversión de $-\$10,000$. Pero tienes un $20\%$ ($0.2$) de probabilidad de que sea un éxito rotundo y ganar $\$100,000$.</p>
+        <p>$$ E[X] = (-10,000 \times 0.8) + (100,000 \times 0.2) $$<br>
+        $$ E[X] = -8,000 + 20,000 = \$12,000 $$</p>
+        <p><strong>Interpretación:</strong> Aunque es muy probable que fracases, la recompensa es tan grande que tu "Esperanza" matemática es ganar $\$12,000$. ¡Es un proyecto que vale la pena financieramente!</p>
     </div>
 </div>
 
+<!-- ── TEMA 5: LA DISTRIBUCIÓN NORMAL ── -->
 <!-- ── DIAPOSITIVA 20 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Funciones</h2>
+    <h2>9.16 El Rey de la Estadística: La Campana de Gauss</h2>
     <div class="contenido-texto">
-        <p>Aplica los conceptos estrictos de funciones en estos ejercicios:</p>
+        <p>De todas las distribuciones continuas, la <strong>Distribución Normal</strong> es la más importante del universo. ¿Por qué? Porque la naturaleza y la sociedad tienden a agruparse en el centro y escasear en los extremos.</p>
+        <p>Características de la curva Normal perfecta:</p>
+        <ul>
+            <li>Es perfectamente simétrica (como un espejo).</li>
+            <li><strong>La Media, la Mediana y la Moda son exactamente el mismo número</strong> (Están en el pico central).</li>
+            <li>Tiene forma de campana suave. Los extremos (colas) nunca tocan el eje horizontal, se van al infinito.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 21 (Con Gráfica SVG 4) ── -->
+<div class="slide">
+    <h2>9.17 La Regla Empírica (68 - 95 - 99.7)</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>Si tus datos son "Normales", obedecen a una regla matemática inquebrantable basada en la desviación estándar ($\sigma$):</p>
+        
+        <!-- INICIO DE GRÁFICA SVG 4: DISTRIBUCIÓN NORMAL -->
+        <div style="text-align: center; margin: 15px 0;">
+            <svg viewBox="0 0 400 200" width="100%" max-width="400px" style="background-color: #fafafa; border: 1px solid #ddd; border-radius: 8px;">
+                <!-- Ejes -->
+                <line x1="20" y1="160" x2="380" y2="160" stroke="#888" stroke-width="2" />
+                
+                <!-- Curva Campana (Bezier) -->
+                <path d="M 20 160 Q 100 155 140 100 T 200 20 T 260 100 T 380 160" fill="rgba(2, 117, 216, 0.2)" stroke="#0275d8" stroke-width="3" />
+                
+                <!-- Línea Central (Media) -->
+                <line x1="200" y1="160" x2="200" y2="20" stroke="#333" stroke-width="2" />
+                
+                <!-- Líneas de 1 Desviación Estándar -->
+                <line x1="140" y1="160" x2="140" y2="100" stroke="#333" stroke-dasharray="3,3" />
+                <line x1="260" y1="160" x2="260" y2="100" stroke="#333" stroke-dasharray="3,3" />
+                <path d="M 140 120 Q 200 140 260 120" fill="none" stroke="#d9534f" stroke-width="2" />
+                <text x="200" y="115" font-size="11" fill="#d9534f" text-anchor="middle" font-weight="bold">68.2%</text>
+                
+                <!-- Líneas de 2 Desviaciones Estándar -->
+                <line x1="80" y1="160" x2="80" y2="145" stroke="#333" stroke-dasharray="3,3" />
+                <line x1="320" y1="160" x2="320" y2="145" stroke="#333" stroke-dasharray="3,3" />
+                <path d="M 80 145 Q 200 170 320 145" fill="none" stroke="#f0ad4e" stroke-width="2" />
+                <text x="200" y="152" font-size="11" fill="#f0ad4e" text-anchor="middle" font-weight="bold">95.4%</text>
+                
+                <!-- Etiquetas en Eje X -->
+                <text x="200" y="175" font-size="12" text-anchor="middle">μ</text>
+                <text x="140" y="175" font-size="11" text-anchor="middle">μ - 1σ</text>
+                <text x="260" y="175" font-size="11" text-anchor="middle">μ + 1σ</text>
+                <text x="80" y="175" font-size="11" text-anchor="middle">μ - 2σ</text>
+                <text x="320" y="175" font-size="11" text-anchor="middle">μ + 2σ</text>
+            </svg>
+        </div>
+        
+        <ul>
+            <li>El <strong>68%</strong> de la población está a solo $\pm 1$ desviación estándar del centro.</li>
+            <li>El <strong>95%</strong> está a $\pm 2$ desviaciones.</li>
+            <li>El <strong>99.7%</strong> (prácticamente todos) está a $\pm 3$ desviaciones.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 22 ── -->
+<div class="slide">
+    <h2>Ejemplos Resueltos: Interpretando la Regla Empírica</h2>
+    <div class="contenido-texto">
+        <p><strong>Ejemplo 5: Estaturas</strong><br>
+        Supongamos que la estatura de los hombres en México sigue una distribución Normal. La media ($\mu$) es $170$ cm y la desviación estándar ($\sigma$) es de $5$ cm.</p>
+        <p><em>Pregunta:</em> ¿Entre qué estaturas se encuentra el 68% de los mexicanos (la gran mayoría común)?</p>
+        <p><em>Solución:</em> Usamos la regla del $68\%$, que nos dice que abarca $1$ desviación estándar hacia arriba y $1$ hacia abajo.</p>
+        <p>Hacia abajo: $\mu - 1\sigma = 170 - 5 = 165$ cm.<br>
+        Hacia arriba: $\mu + 1\sigma = 170 + 5 = 175$ cm.</p>
+        <p><strong>Respuesta:</strong> El 68% de los mexicanos mide entre $1.65$m y $1.75$m.</p>
+        <p><em>(¿Y cuánto miden los que están a más de 3 desviaciones [arriba de 185 cm]? ¡Son apenas el 0.15% de la población, casos atípicos!).</em></p>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 23 ── -->
+<div class="slide">
+    <h2>Práctica Autónoma: Clasificación y Centralidad (1-5)</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>Resuelve en tu cuaderno:</p>
         <ol>
-            <li>Identifica si la siguiente relación es una función: "A cada persona en un país se le asigna su número de teléfono celular". <em>(Pista: Analiza qué pasa si alguien tiene dos líneas a su nombre bajo la regla de "exactamente un" elemento).</em></li>
-            <li>Determina si la función $f(x) = x^2$ (definida para todos los números reales) es inyectiva. Justifica usando la definición formal matemática.</li>
-            <li>Sean $f(x) = 2x + 1$ y $g(x) = x^2$. Calcula:
-                <ul>
-                    <li>La composición $(g \circ f)(x)$</li>
-                    <li>La composición $(f \circ g)(x)$</li>
+            <li>Clasifica las siguientes variables (Cualitativa Nominal/Ordinal, Cuantitativa Discreta/Continua):
+                <ul style="margin-top: 5px; margin-bottom: 5px;">
+                    <li>Temperatura ambiental en °C.</li>
+                    <li>Cantidad de celulares vendidos en una tienda.</li>
+                    <li>Marca de automóvil.</li>
                 </ul>
-                ¿Los resultados son equivalentes?
+            </li>
+            <li>Dada la muestra de edades: $18, 22, 22, 25, 30, 45, 90$. Calcula la Media y la Mediana.</li>
+            <li>Observando el resultado del ejercicio anterior, ¿cuál medida representa mejor a este grupo y por qué? (¿Qué efecto tuvo el de 90 años?).</li>
+            <li>Si en un país la Media de salarios es de $\$12,000$ pero la Mediana es de $\$6,000$, ¿qué forma tiene la gráfica de la distribución? (Simétrica, Sesgo Positivo o Sesgo Negativo).</li>
+            <li><strong>Moda:</strong> En una encuesta a 10 personas sobre su partido político favorito, los resultados son: A, B, B, C, A, A, D, B, A, C. ¿Cuál es la Moda?</li>
+        </ol>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 24 ── -->
+<div class="slide">
+    <h2>Práctica Autónoma: Dispersión (6-9)</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <ol start="6">
+            <li>Calcula el Rango, la Varianza Muestral ($s^2$) y la Desviación Estándar ($s$) del siguiente conjunto de precios (en dólares): $10, 12, 14, 16$.</li>
+            <li>En la industria de tecnología, el salario promedio es de $\$30,000$ con una desviación estándar de $\$5,000$. En la industria restaurantera, el salario promedio es $\$8,000$ con una desviación estándar de $\$2,000$. <br>Calcula el <strong>Coeficiente de Variación (CV)</strong> para ambos sectores. ¿Qué industria tiene mayor desigualdad interna salarial en proporción a su salario?</li>
+            <li>Dos ciudades tienen una temperatura media anual de 20°C. La Ciudad Alfa tiene una varianza de $2$, y la Ciudad Beta tiene una varianza de $50$. ¿En qué ciudad preferirías vivir si no soportas los climas extremos? Justifica tu respuesta.</li>
+            <li>Demuestra lógicamente: ¿Es posible tener una desviación estándar negativa? ¿Por qué sí o por qué no?</li>
+        </ol>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 25 ── -->
+<div class="slide">
+    <h2>Práctica Autónoma: Posición y Probabilidad (10-13)</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <ol start="10">
+            <li>Dada la lista ordenada de calificaciones: $5, 6, 6, 7, 7, 8, 8, 9, 10, 10$. Calcula los tres Cuartiles ($Q_1, Q_2, Q_3$).</li>
+            <li>Usando el resultado anterior, calcula el Rango Intercuartílico (RIC = Q3 - Q1). ¿Qué porcentaje de los alumnos se encuentra dentro de ese rango?</li>
+            <li><strong>Valor Esperado:</strong> Una compañía de seguros de autos sabe que tiene un 95% de probabilidad de que el cliente no choque (y la empresa gana $\$5,000$ por la póliza) y un 5% de probabilidad de que el cliente choque fuerte (y la empresa deba pagar $-\$50,000$). ¿Cuál es el valor esperado del seguro para la empresa? ¿Es un negocio rentable?</li>
+            <li>Si lanzas un dado normal de 6 caras, ¿cuál es la probabilidad matemática de que el resultado sea un número par mayor que 2?</li>
+        </ol>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 26 ── -->
+<div class="slide">
+    <h2>Práctica Autónoma: Distribución Normal (14-15)</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <ol start="14">
+            <li><strong>Regla Empírica 1:</strong> El peso de las cajas de cereal se distribuye normalmente con una media de $500$ gramos y una desviación estándar de $10$ gramos. ¿Entre qué pesos se encuentra el $95\%$ central de todas las cajas de cereal producidas por la fábrica?</li>
+            <li><strong>Regla Empírica 2:</strong> En un examen estandarizado a nivel nacional, la puntuación promedio fue de $1000$ puntos con una desviación estándar de $100$ puntos. Si sabes que tu calificación fue de $1300$ puntos:
+                <ul style="margin-top: 5px;">
+                    <li>¿A cuántas desviaciones estándar estás del promedio?</li>
+                    <li>Basado en la regla de la campana de Gauss, ¿eres considerado un caso común o un "outlier" (valor atípico)? ¡Felicítate según tu respuesta!</li>
+                </ul>
             </li>
         </ol>
     </div>
 </div>
 
-<!-- ── DIAPOSITIVA 21: CIERRE DEL MÓDULO ── -->
+<!-- ── DIAPOSITIVA 27: CIERRE DEL MÓDULO ── -->
 <div class="slide">
-    <h2 style="color: #2a4939; text-align: center; margin-bottom: 20px;">¡Felicidades! Has completado el Módulo 1</h2>
+    <h2 style="color: #2a4939; text-align: center; margin-bottom: 20px;">¡Felicidades! Has completado el Módulo 9</h2>
     <div class="contenido-texto" style="text-align: center;">
-        <div style="font-size: 3rem; margin-bottom: 15px;">🎓</div>
-        <p>Has construido los cimientos analíticos necesarios para adentrarte en las matemáticas superiores sin temor al rigor formal.</p>
-        <p style="margin-top: 15px;">Ahora dominas:</p>
+        <div style="font-size: 3rem; margin-bottom: 15px;">📊</div>
+        <p>Has aprendido a "hablar datos". Ya no te dejas engañar por promedios engañosos y comprendes cómo medir y visualizar la desigualdad, el riesgo y las probabilidades.</p>
+        <p style="margin-top: 15px;">Tu caja de herramientas analíticas ahora incluye:</p>
         <ul style="text-align: left; display: inline-block; margin-top: 10px;">
-            <li>La estructura lógica para construir argumentos irrebatibles ($p \implies q$).</li>
-            <li>El uso correcto de los cuantificadores ($\forall, \exists$) y su negación.</li>
-            <li>Las estrategias matemáticas para demostrar la veracidad de una afirmación.</li>
-            <li>El lenguaje de los conjuntos, las relaciones y la definición estricta de una función.</li>
+            <li>Clasificar variables y entender la diferencia entre Muestra y Población.</li>
+            <li>Diagnosticar sesgos económicos usando la Media y la Mediana.</li>
+            <li>Medir el riesgo financiero y la disparidad social mediante Varianza y Desviación Estándar.</li>
+            <li>Interpretar las reglas de oro de la campana de Gauss (Distribución Normal).</li>
         </ul>
-        <p style="margin-top: 25px; font-weight: bold;">Estás listo para iniciar el <strong>Módulo 2: Álgebra</strong>.</p>
+        <p style="margin-top: 25px; font-weight: bold;">Estás listo para dar el salto, adivinar parámetros poblacionales y probar hipótesis reales en el <strong>Módulo 10: Estadística 2 (Inferencia)</strong>.</p>
+        
+        <!-- BOTÓN DE COMPLETADO M9 -->
         <div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
-    <button id="btnCompletarM1" style="background-color: #2a4939; color: #fff1da; padding: 14px 28px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.05rem; transition: background 0.3s;">
-        Marcar Módulo 1 como Completado
-    </button>
-</div>
+            <button id="btnCompletarM9" style="background-color: #2a4939; color: #fff1da; padding: 14px 28px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.05rem; transition: background 0.3s;">
+                Marcar Módulo 9 como Completado
+            </button>
+        </div>
     </div>
 </div>
+
             <!-- ── NAVEGACIÓN ── -->
             <div class="nav-buttons">
                 <button class="btn-nav" id="prevBtn" onclick="changeSlide(-1)" disabled>← Anterior</button>

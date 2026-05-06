@@ -587,321 +587,501 @@ footer {
         <!-- Tarjeta de diapositivas -->
         <div class="slide-container">
 
-            <!-- ── DIAPOSITIVA 1 ── -->
-            <div class="slide active">
-                <h2>¿Para qué sirven las matemáticas en economía?</h2>
-                <div class="contenido-texto">
-                    <p>En el análisis económico, las matemáticas cumplen funciones críticas que van más allá del simple cálculo:</p>
-                    <ul>
-                        <li>Nos permiten expresar suposiciones y conclusiones mediante símbolos y ecuaciones, evitando caer en ambigüedades.</li>
-                        <li>Al utilizar teoremas matemáticos, el analista se ve forzado a explicar todos los supuestos o condiciones necesarias para no perder el sentido económico.</li>
-                        <li>Las matemáticas nos permiten trabajar con <em>n</em> variables, permitiéndonos hacer modelos que reflejen la realidad.</li>
-                        <li>Herramientas como el cálculo sirven para optimizar (maximizar ganancias o minimizar costos) y el álgebra lineal para analizar la interdependencia entre los distintos sectores de una economía.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- ── TEMA 1: LÓGICA PROPOSICIONAL (Sin tablas de verdad) ── -->
-<!-- ── DIAPOSITIVA 2 ── -->
-<div class="slide">
-    <h2>1.1 Lógica Proposicional: Conceptos Básicos</h2>
+<!-- ── DIAPOSITIVA 1: INTRODUCCIÓN ── -->
+<div class="slide active">
+    <h2>5.1 El Cálculo y el Análisis Marginal</h2>
     <div class="contenido-texto">
-        <p>Iniciamos con la <strong>proposición</strong>: una afirmación que solo puede ser verdadera ($V$) o falsa ($F$). Los <strong>conectivos lógicos</strong> nos permiten crear argumentos complejos a partir de ideas simples:</p>
+        <p>En el álgebra, veíamos fotos estáticas: una cantidad fija a un precio fijo. El <strong>Cálculo Diferencial</strong> nos permite ver la película completa: analiza el <em>movimiento</em> y las <em>tasas de cambio</em>.</p>
+        <p>En economía, la palabra "diferencial" o "derivada" es sinónimo de <strong>Marginal</strong>.</p>
         <ul>
-            <li><strong>Negación ($\neg p$):</strong> Afirma exactamente lo contrario a $p$.</li>
-            <li><strong>Conjunción ($p \land q$):</strong> "Y". Exige que ambas condiciones se cumplan estrictamente al mismo tiempo.</li>
-            <li><strong>Disyunción ($p \lor q$):</strong> "O". Es flexible; basta con que al menos una condición sea cierta para que todo el enunciado lo sea.</li>
-            <li><strong>Implicación ($p \implies q$):</strong> "Si $p$, entonces $q$". Establece una relación causa-efecto o de condición suficiente. Es la base de cualquier teorema matemático.</li>
-            <li><strong>Bicondicional ($p \iff q$):</strong> "Si y solo si". Significa que $p$ y $q$ son equivalentes; no puede ocurrir una sin la otra.</li>
+            <li><strong>Costo Marginal:</strong> ¿Cuánto me cuesta producir exactamente una unidad adicional?</li>
+            <li><strong>Ingreso Marginal:</strong> ¿Cuánto dinero extra entra a la caja si vendo un producto más?</li>
+            <li><strong>Utilidad Marginal:</strong> ¿Cuánta satisfacción extra me da consumir un taco más?</li>
         </ul>
+        <p>Para entender el cambio instantáneo, primero debemos entender hacia dónde se acercan las cosas: el concepto de Límite.</p>
     </div>
 </div>
 
-<!-- ── DIAPOSITIVA 3 ── -->
+<!-- ── TEMA 1: LÍMITES ── -->
+<!-- ── DIAPOSITIVA 2 ── -->
 <div class="slide">
-    <h2>1.2 Tautologías y Equivalencias</h2>
+    <h2>5.2 El Concepto de Límite</h2>
     <div class="contenido-texto">
-        <p>En lugar de memorizar escenarios mecánicos, en matemáticas buscamos identificar estructuras lógicas que siempre funcionan:</p>
-        <ul>
-            <li><strong>Tautología:</strong> Un argumento que siempre es verdadero por su pura estructura lógica, sin importar de qué estemos hablando. Por ejemplo, la frase "Llueve o no llueve" ($p \lor \neg p$) es una verdad absoluta indiscutible.</li>
-            <li><strong>Contradicción:</strong> Algo que es imposible por definición. Por ejemplo, "Subió y no subió" ($p \land \neg p$).</li>
-            <li><strong>Leyes de De Morgan:</strong> Son trucos de oro para negar ideas agrupadas.
-                <ul style="margin-top: 5px;">
-                    <li>Negar que pasaron <em>ambas</em> cosas ($\neg(p \land q)$), es lo mismo que decir que falló la primera <em>o</em> falló la segunda ($\neg p \lor \neg q$).</li>
-                    <li>Negar que pasó <em>al menos una</em> de las dos ($\neg(p \lor q)$), es lo mismo que decir que no pasó la primera <em>y</em> tampoco la segunda ($\neg p \land \neg q$).</li>
-                </ul>
-            </li>
-        </ul>
+        <p>Un <strong>Límite</strong> responde a la pregunta: <em>¿Hacia qué valor se acerca la función $f(x)$ cuando la variable $x$ se acerca a un número específico?</em></p>
+        <p>La notación matemática es:</p>
+        <p style="text-align: center; font-size: 1.2rem;">
+            $$ \lim_{x \to a} f(x) = L $$
+        </p>
+        <p>Lo fascinante del límite es que <strong>no nos importa qué pasa exactamente en el punto $a$</strong> (puede que la función ni siquiera exista ahí o el modelo económico colapse). Solo nos importa la tendencia: qué pasa <em>un milímetro antes</em> y <em>un milímetro después</em>.</p>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 3 (Con Gráfica) ── -->
+<div class="slide">
+    <h2>5.3 Análisis Gráfico de un Límite</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>Observa esta gráfica. En $x = 3$, hay un "hueco" (la función no existe o está indefinida por una división entre cero). Sin embargo, la <em>tendencia</em> es clara.</p>
+        
+        <!-- INICIO DE GRÁFICA SVG: LÍMITE CON HUECO -->
+        <div style="text-align: center; margin: 10px 0;">
+            <svg viewBox="0 0 400 200" width="100%" max-width="400px" style="background-color: #fafafa; border: 1px solid #ddd; border-radius: 8px;">
+                <!-- Ejes -->
+                <line x1="50" y1="150" x2="350" y2="150" stroke="#888" stroke-width="2" />
+                <line x1="50" y1="150" x2="50" y2="20" stroke="#888" stroke-width="2" />
+                
+                <!-- Curva de la función (parábola invertida simulada) -->
+                <path d="M 50 150 Q 200 10 350 150" fill="none" stroke="#2a4939" stroke-width="3" />
+                
+                <!-- El Hueco (Límite) -->
+                <circle cx="200" cy="80" r="5" fill="#fafafa" stroke="#2a4939" stroke-width="2" />
+                
+                <!-- Líneas guías punteadas -->
+                <line x1="200" y1="150" x2="200" y2="85" stroke="#f0ad4e" stroke-dasharray="4,4" />
+                <line x1="50" y1="80" x2="195" y2="80" stroke="#f0ad4e" stroke-dasharray="4,4" />
+                
+                <!-- Flechas de aproximación -->
+                <path d="M 160 160 L 190 160 M 190 160 L 185 155 M 190 160 L 185 165" fill="none" stroke="#d9534f" stroke-width="2"/>
+                <path d="M 240 160 L 210 160 M 210 160 L 215 155 M 210 160 L 215 165" fill="none" stroke="#d9534f" stroke-width="2"/>
+                
+                <!-- Textos -->
+                <text x="195" y="170" font-size="12" font-weight="bold">x = 3</text>
+                <text x="10" y="84" font-size="12" font-weight="bold">L = 5</text>
+            </svg>
+        </div>
+        
+        <p>A medida que nos acercamos a $x=3$ por la izquierda y por la derecha (flechas rojas), la altura de la gráfica se acerca inevitablemente a $5$. Por lo tanto, $\lim_{x \to 3} f(x) = 5$, ¡aunque $f(3)$ no exista!</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 4 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Lógica Proposicional</h2>
+    <h2>Ejemplos Resueltos: Cálculo de Límites</h2>
     <div class="contenido-texto">
-        <p>Realiza los siguientes ejercicios analíticos en tu cuaderno:</p>
-        <ol>
-            <li><strong>Traducción:</strong> Sean $p$: "Hay inflación" y $q$: "El banco central interviene". Escribe en lenguaje natural las siguientes expresiones formales: 
-                <ul>
-                    <li>$p \implies q$</li>
-                    <li>$\neg q \implies \neg p$</li>
-                </ul>
-                ¿Tienen el mismo significado en la vida real?
-            </li>
-            <li><strong>Aplicación de De Morgan:</strong> Un reglamento dice: "Para aprobar necesitas entregar la tesis ($t$) Y pasar el examen ($e$)". Si un estudiante reprueba, ¿cómo expresas lógicamente lo que le faltó usando la Ley de De Morgan?</li>
-        </ol>
+        <p><strong>Ejemplo 1: Sustitución Directa</strong><br>
+        La regla número uno de los límites es simplemente intentar meter el número en la función. Si da un resultado normal, terminaste.</p>
+        <p>Calcula: $\lim_{x \to 2} (3x^2 - 5x + 4)$</p>
+        <p><em>Solución:</em> Sustituimos $x = 2$<br>
+        $3(2)^2 - 5(2) + 4 = 3(4) - 10 + 4 = 12 - 10 + 4 = 6$<br>
+        <strong>El límite es 6.</strong></p>
+
+        <p><strong>Ejemplo 2: La Indeterminación $0/0$</strong><br>
+        Calcula: $\lim_{x \to 4} \frac{x^2 - 16}{x - 4}$</p>
+        <p><em>Paso 1:</em> Si sustituimos el 4, obtenemos $\frac{16-16}{4-4} = \frac{0}{0}$. ¡Esto es una indeterminación algebraica!<br>
+        <em>Paso 2:</em> Factorizamos el numerador (diferencia de cuadrados): $\frac{(x-4)(x+4)}{x-4}$<br>
+        <em>Paso 3:</em> Cancelamos el término problemático: $\lim_{x \to 4} (x + 4)$<br>
+        <em>Paso 4:</em> Evaluamos de nuevo: $4 + 4 = 8$<br>
+        <strong>El límite es 8.</strong></p>
     </div>
 </div>
 
-<!-- ── TEMA 2: LÓGICA DE PREDICADOS (Simplificada) ── -->
+<!-- ── TEMA 2: CONTINUIDAD ── -->
 <!-- ── DIAPOSITIVA 5 ── -->
 <div class="slide">
-    <h2>1.3 Lógica de Predicados: De lo particular a lo general</h2>
+    <h2>5.4 Continuidad de una Función</h2>
     <div class="contenido-texto">
-        <p>Una proposición normal dice: <em>"Juan es estudiante"</em>. Es fácil saber si es verdad. Pero un <strong>predicado</strong> usa variables: <em>"$x$ es estudiante"</em>. No podemos saber si es verdad hasta saber quién es $x$ o a cuántos nos referimos.</p>
-        <p>Para eso usamos los <strong>cuantificadores</strong>, que nos dicen de cuántos elementos estamos hablando:</p>
-        <ul>
-            <li><strong>Cuantificador Universal ($\forall$):</strong> Significa "Para todos". <br>
-            <em>Ejemplo: $\forall x$, $x$ necesita comer. (Todos necesitan comer).</em></li>
-            <li><strong>Cuantificador Existencial ($\exists$):</strong> Significa "Existe al menos uno" (puede haber más, pero mínimo hay uno). <br>
-            <em>Ejemplo: $\exists x$ tal que $x$ tiene un millón de dólares. (Alguien es millonario).</em></li>
-        </ul>
+        <p>Intuitivamente, una función es <strong>continua</strong> si puedes dibujar su gráfica sin despegar el lápiz del papel. Para que esto se cumpla matemáticamente en un punto $x=a$, deben pasar tres cosas simultáneamente:</p>
+        <ol>
+            <li>La función debe existir en ese punto: $f(a)$ existe.</li>
+            <li>El límite debe existir: $\lim_{x \to a} f(x)$ existe.</li>
+            <li>Ambos resultados deben ser idénticos: $\lim_{x \to a} f(x) = f(a)$.</li>
+        </ol>
+        <p>Si la función se "rompe", decimos que hay una <strong>discontinuidad</strong>.</p>
     </div>
 </div>
 
-<!-- ── DIAPOSITIVA 6 ── -->
+<!-- ── DIAPOSITIVA 6 (Con Gráfica) ── -->
 <div class="slide">
-    <h2>1.4 ¿Cómo contradecir a alguien? (Negación de Cuantificadores)</h2>
-    <div class="contenido-texto">
-        <p>Negar cuantificadores es simplemente usar el sentido común para ganar un debate:</p>
-        <ul>
-            <li><strong>Para negar un "Todos" ($\forall$):</strong> <br>
-            Si yo afirmo: <em>"Todos los cisnes son blancos"</em>, tú no necesitas revisar cada cisne del mundo para demostrar que miento. Solo necesitas traerme <strong>un</strong> cisne que sea negro. <br>
-            <strong>Regla:</strong> $\neg (\forall x, P(x))$ se convierte en $\exists x, \neg P(x)$.</li>
-            <br>
-            <li><strong>Para negar un "Existe" ($\exists$):</strong> <br>
-            Si yo afirmo: <em>"Existe un monstruo debajo de la cama"</em>, para demostrar que miento, tú tienes que encender la luz y comprobar que <strong>ninguno</strong> de los rincones tiene un monstruo. <br>
-            <strong>Regla:</strong> $\neg (\exists x, P(x))$ se convierte en $\forall x, \neg P(x)$.</li>
-        </ul>
+    <h2>5.5 Continuidad en la Economía</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>Las funciones discontinuas son más comunes de lo que crees. Piensa en los tramos de impuestos o los precios por volumen. El precio da un "salto" abrupto si pasas de cierta cantidad.</p>
+        
+        <!-- INICIO DE GRÁFICA SVG: DISCONTINUIDAD DE SALTO -->
+        <div style="text-align: center; margin: 10px 0;">
+            <svg viewBox="0 0 400 200" width="100%" max-width="400px" style="background-color: #fafafa; border: 1px solid #ddd; border-radius: 8px;">
+                <!-- Ejes -->
+                <line x1="50" y1="150" x2="350" y2="150" stroke="#888" stroke-width="2" />
+                <line x1="50" y1="150" x2="50" y2="20" stroke="#888" stroke-width="2" />
+                
+                <!-- Tramo 1 (Precio Alto) -->
+                <line x1="50" y1="60" x2="200" y2="60" stroke="#2a4939" stroke-width="3" />
+                <circle cx="200" cy="60" r="5" fill="#2a4939" />
+                
+                <!-- Tramo 2 (Precio Descuento) -->
+                <line x1="200" y1="110" x2="350" y2="110" stroke="#2a4939" stroke-width="3" />
+                <circle cx="200" cy="110" r="5" fill="#fafafa" stroke="#2a4939" stroke-width="2" />
+                
+                <!-- Etiquetas -->
+                <text x="200" y="170" font-size="12" font-weight="bold">Q = 100</text>
+                <text x="5" y="65" font-size="12" font-weight="bold">$20</text>
+                <text x="5" y="115" font-size="12" font-weight="bold">$15</text>
+                <text x="60" y="50" fill="#666" font-size="11">Precio Menudeo</text>
+                <text x="220" y="100" fill="#666" font-size="11">Precio Mayoreo</text>
+            </svg>
+        </div>
+        
+        <p>En este ejemplo, la función de precio salta de $20 a $15 exactamente al comprar 100 unidades. Hay una discontinuidad inevitable en $Q = 100$. En puntos discontinuos, <strong>no se puede calcular la derivada</strong>.</p>
     </div>
 </div>
 
+<!-- ── TEMA 3: DERIVADAS ── -->
 <!-- ── DIAPOSITIVA 7 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Lógica de Predicados</h2>
+    <h2>5.6 ¿Qué es la Derivada?</h2>
     <div class="contenido-texto">
-        <p>Pon a prueba tu intuición con estos ejercicios:</p>
-        <ol>
-            <li>Escribe usando los símbolos $\forall$ o $\exists$ la siguiente frase matemática: "Existe al menos un número real $x$ que, al multiplicarse por cero, da como resultado uno". ¿Es verdadera o falsa?</li>
-            <li>Un político afirma: "Todos los programas sociales reducen la pobreza" ($\forall x, R(x)$). Si fueras un investigador que quiere demostrar que el político miente, ¿qué tendrías que encontrar en los datos? Escribe tu objetivo usando símbolos lógicos.</li>
-            <li>Traduce la frase "No hay reglas sin excepciones" al lenguaje de cuantificadores usando $\forall$ (Todos) y $\exists$ (Existe).</li>
-        </ol>
-    </div>
-</div>
-<!-- ── TEMA 3: MÉTODOS DE DEMOSTRACIÓN ── -->
-<!-- ── DIAPOSITIVA 8 ── -->
-<div class="slide">
-    <h2>1.5 Métodos de Demostración: El arte de probar</h2>
-    <div class="contenido-texto">
-        <p>En matemáticas, no basta con que algo parezca cierto; hay que <strong>demostrarlo</strong> sin dejar lugar a dudas. Toda demostración parte de supuestos conocidos (hipótesis, $p$) para llegar a una conclusión irrebatible ($q$).</p>
+        <p>La <strong>Derivada</strong> es la tasa de cambio instantánea de una función. Visualmente, representa la <strong>pendiente de la recta tangente</strong> en un punto exacto de la curva.</p>
+        <p>Si la curva representa tu Costo Total:</p>
         <ul>
-            <li><strong>Demostración Directa:</strong> Es el camino recto. Asumimos que $p$ es verdadero y, mediante álgebra y lógica paso a paso, llegamos a $q$.<br>
-            <em>Ejemplo:</em> Demostrar que "Si $x$ es un número par, entonces $x^2$ es par". Asumes que $x = 2k$, lo elevas al cuadrado ($4k^2$) y factorizas un 2 para probarlo: $2(2k^2)$.</li>
+            <li>Una derivada muy positiva (pendiente empinada) significa que los costos se están disparando rápidamente.</li>
+            <li>Una derivada igual a cero (recta plana) significa que los costos se han estabilizado (has tocado fondo o llegado a un techo).</li>
         </ul>
-        <p>Pero a veces, el camino directo es muy complicado. Para eso existen las estrategias indirectas.</p>
+        <p>La denotamos comúnmente como $f'(x)$ (la "prima" de x) o $\frac{dy}{dx}$.</p>
     </div>
 </div>
 
+<!-- ── DIAPOSITIVA 8 (Con Gráfica) ── -->
+<div class="slide">
+    <h2>5.7 Visualizando la Tangente</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>Una recta secante corta la curva en dos puntos y nos da un "promedio". La magia del límite permite acercar esos dos puntos hasta que se vuelven uno solo: la <strong>recta tangente</strong>.</p>
+        
+        <!-- INICIO DE GRÁFICA SVG: SECANTE A TANGENTE -->
+        <div style="text-align: center; margin: 10px 0;">
+            <svg viewBox="0 0 400 200" width="100%" max-width="400px" style="background-color: #fafafa; border: 1px solid #ddd; border-radius: 8px;">
+                <!-- Ejes -->
+                <line x1="30" y1="170" x2="350" y2="170" stroke="#888" stroke-width="2" />
+                <line x1="30" y1="170" x2="30" y2="20" stroke="#888" stroke-width="2" />
+                
+                <!-- Curva -->
+                <path d="M 30 150 Q 200 150 350 20" fill="none" stroke="#2a4939" stroke-width="3" />
+                
+                <!-- Tangente -->
+                <line x1="120" y1="140" x2="320" y2="30" stroke="#f0ad4e" stroke-width="2" />
+                <circle cx="220" cy="85" r="5" fill="#d9534f" />
+                
+                <text x="170" y="70" fill="#d9534f" font-size="12" font-weight="bold">Pendiente = f'(x)</text>
+                <text x="325" y="25" fill="#f0ad4e" font-size="12">Tangente</text>
+            </svg>
+        </div>
+        
+        <p>La fórmula formal (la definición por límite) de la derivada es la base matemática de este acercamiento:</p>
+        <p style="text-align: center; font-size: 1.2rem;">
+            $$ f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h} $$
+        </p>
+    </div>
+</div>
+
+<!-- ── TEMA 4: REGLAS DE DERIVACIÓN ── -->
 <!-- ── DIAPOSITIVA 9 ── -->
 <div class="slide">
-    <h2>1.6 Demostración por Contrapositiva y Contradicción</h2>
+    <h2>5.8 Reglas de Derivación: Las Vías Rápidas</h2>
     <div class="contenido-texto">
-        <p>Cuando probar $p \implies q$ es difícil, usamos trucos lógicos:</p>
+        <p>Nadie usa la fórmula del límite en la vida diaria. Usamos teoremas comprobados que funcionan como atajos directos.</p>
         <ul>
-            <li><strong>Por Contrapositiva:</strong> Lógicamente, decir "Si llueve, el piso se moja" es exactamente igual a decir "Si el piso NO está mojado, entonces NO llovió". <br>
-            En lugar de probar $p \implies q$, probamos su equivalente: $\neg q \implies \neg p$. A veces, trabajar con las negaciones hace el álgebra mucho más fácil.</li>
-            <br>
-            <li><strong>Por Contradicción (Reducción al absurdo):</strong> Es el método del investigador. Asumimos que lo que queremos probar es falso y seguimos las reglas matemáticas hasta llegar a algo imposible (como $1 = 0$). Como la matemática no se equivoca, nuestro supuesto inicial debió ser el error, probando así que la afirmación original era cierta.</li>
+            <li><strong>Regla de la Constante:</strong> La derivada de un número fijo es $0$. <br>
+            Si $f(x) = 500$, entonces $f'(x) = 0$. (Si el costo fijo no depende de $x$, no cambia).</li>
+            <li><strong>Regla de la Potencia:</strong> Baja el exponente a multiplicar y réstale uno.<br>
+            Si $f(x) = x^n$, entonces $f'(x) = n \cdot x^{n-1}$.</li>
+            <li><strong>Regla de la Suma y Resta:</strong> Puedes derivar cada pedazo del polinomio por separado.<br>
+            Si $f(x) = 3x^2 + 5x$, derivas el primero y luego el segundo.</li>
         </ul>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 10 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Métodos de Demostración</h2>
+    <h2>Ejemplos Resueltos: Reglas Básicas</h2>
     <div class="contenido-texto">
-        <p>Aplica la lógica de demostración en los siguientes casos:</p>
-        <ol>
-            <li><strong>Directa:</strong> Demuestra que la suma de dos números impares siempre da como resultado un número par. <em>(Pista: Un número impar se escribe como $2k + 1$).</em></li>
-            <li><strong>Contrapositiva:</strong> Queremos demostrar la frase: "Si $3x + 2$ es impar, entonces $x$ es impar". ¿Cuál sería la afirmación contrapositiva que tendrías que demostrar? Escríbela en lenguaje natural.</li>
-            <li><strong>Contradicción (Análisis de argumento):</strong> Un abogado dice: "Asumamos que mi cliente robó el banco. Si lo hizo, debió estar en la ciudad a las 3 PM. Pero las cámaras lo ubican en otro país a esa hora". ¿Por qué esto demuestra la inocencia del cliente usando reducción al absurdo?</li>
-        </ol>
+        <p><strong>Ejemplo 3: Derivando polinomios</strong><br>
+        Encuentra la derivada de la función de Costos: $C(Q) = 2Q^3 - 5Q^2 + 10Q + 1500$</p>
+        <p><em>Paso 1 (Término $2Q^3$):</em> El 3 baja a multiplicar al 2 ($3 \cdot 2 = 6$) y el exponente queda en 2. Resultado: $6Q^2$.</p>
+        <p><em>Paso 2 (Término $-5Q^2$):</em> El 2 baja a multiplicar al -5 ($-10$) y el exponente queda en 1. Resultado: $-10Q$.</p>
+        <p><em>Paso 3 (Término $10Q$):</em> El exponente imaginario 1 baja a multiplicar al 10 y el exponente queda en 0 (recuerda que $Q^0 = 1$). Resultado: $10$.</p>
+        <p><em>Paso 4 (Término $1500$):</em> Es constante. Resultado: $0$.</p>
+        <p><strong>El Costo Marginal es: $C'(Q) = 6Q^2 - 10Q + 10$</strong></p>
     </div>
 </div>
 
-<!-- ── TEMA 4: TEORÍA DE CONJUNTOS ── -->
 <!-- ── DIAPOSITIVA 11 ── -->
 <div class="slide">
-    <h2>1.7 Teoría de Conjuntos: El alfabeto de las matemáticas</h2>
+    <h2>5.9 Regla del Producto y del Cociente</h2>
     <div class="contenido-texto">
-        <p>Un <strong>conjunto</strong> es simplemente una colección bien definida de objetos o números, a los que llamamos <strong>elementos</strong>. Casi toda la matemática moderna está escrita en lenguaje de conjuntos.</p>
-        <ul>
-            <li><strong>Pertenencia ($\in$):</strong> Indica que un elemento vive dentro del conjunto. Si $A = \{1, 2, 3\}$, entonces $2 \in A$ (2 pertenece a A), pero $5 \notin A$ (5 no pertenece a A).</li>
-            <li><strong>Subconjunto ($\subseteq$):</strong> Decimos que $B$ es subconjunto de $A$ si <em>todos</em> los elementos de $B$ también están dentro de $A$.</li>
-            <li><strong>Conjunto Vacío ($\emptyset$):</strong> Es el conjunto que no tiene ningún elemento. Es un concepto filosófico poderoso: la nada también es un conjunto y es subconjunto de todos los demás.</li>
-        </ul>
+        <p>Cuando dos funciones con $x$ se están multiplicando o dividiendo, las reglas cambian drásticamente.</p>
+        <p><strong>Regla del Producto (Multiplicación):</strong> $\frac{d}{dx}[u \cdot v] = u'v + uv'$<br>
+        <em>En palabras:</em> "La derivada del primero por el segundo normal, más el primero normal por la derivada del segundo".</p>
+        <br>
+        <p><strong>Regla del Cociente (División):</strong> $\frac{d}{dx}\left[\frac{u}{v}\right] = \frac{u'v - uv'}{v^2}$<br>
+        <em>En palabras:</em> "Derivada del de arriba por el de abajo normal, menos el de arriba normal por la derivada del de abajo, todo sobre el de abajo al cuadrado".</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 12 ── -->
 <div class="slide">
-    <h2>1.8 Operaciones con Conjuntos</h2>
+    <h2>Ejemplos Resueltos: Regla del Producto</h2>
     <div class="contenido-texto">
-        <p>Podemos combinar conjuntos de la misma forma que sumamos o restamos números. Estas operaciones están directamente conectadas con los conectivos lógicos que ya aprendimos :</p>
-        <ul>
-            <li><strong>Unión ($A \cup B$):</strong> Junta todos los elementos de $A$ con los de $B$. Está conectada con la disyunción lógica "O" ($p \lor q$).</li>
-            <li><strong>Intersección ($A \cap B$):</strong> Toma <em>únicamente</em> los elementos que tienen en común. Está conectada con la conjunción lógica "Y" ($p \land q$).</li>
-            <li><strong>Diferencia ($A \setminus B$):</strong> A los elementos del conjunto $A$, le quitamos cualquiera que también esté en $B$.</li>
-            <li><strong>Complemento ($A^c$):</strong> Son todos los elementos del universo que NO están en $A$. Está conectado con la negación lógica ($\neg p$).</li>
-        </ul>
+        <p><strong>Ejemplo 4: Aplicando el Producto</strong><br>
+        Deriva $f(x) = (x^2)(3x + 5)$</p>
+        <p><em>Paso 1:</em> Identificamos las partes.<br>
+        $u = x^2 \implies u' = 2x$<br>
+        $v = 3x + 5 \implies v' = 3$</p>
+        <p><em>Paso 2:</em> Aplicamos la fórmula: $u'v + uv'$<br>
+        $f'(x) = (2x)(3x + 5) + (x^2)(3)$</p>
+        <p><em>Paso 3:</em> Multiplicamos y simplificamos álgebra.<br>
+        $f'(x) = 6x^2 + 10x + 3x^2$<br>
+        <strong>$f'(x) = 9x^2 + 10x$</strong></p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 13 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Teoría de Conjuntos</h2>
+    <h2>5.10 La Regla de la Cadena</h2>
     <div class="contenido-texto">
-        <p>Sean los siguientes conjuntos. Universo $U = \{1, 2, 3, 4, 5, 6, 7, 8, 9\}$, $A = \{2, 4, 6, 8\}$ y $B = \{3, 4, 5, 6\}$.</p>
-        <ol>
-            <li>Encuentra los elementos que forman la intersección: $A \cap B$.</li>
-            <li>Encuentra los elementos que forman la diferencia: $A \setminus B$. ¿Es el mismo resultado que $B \setminus A$?</li>
-            <li>Calcula el complemento de $A$ ($A^c$) y luego encuentra la intersección de ese resultado con el conjunto $B$. Es decir, resuelve: $A^c \cap B$.</li>
-            <li>Analiza lógicamente: Si sabes que la intersección de dos conjuntos está vacía ($X \cap Y = \emptyset$), ¿qué puedes concluir sobre los elementos de $X$ y $Y$?</li>
-        </ol>
+        <p>Es posiblemente la regla más utilizada. Se aplica cuando tenemos "una función metida dentro de otra" (funciones compuestas), como $(2x + 1)^5$ o $\ln(x^2)$.</p>
+        <p>La fórmula formal es: $\frac{d}{dx} f(g(x)) = f'(g(x)) \cdot g'(x)$</p>
+        <p><strong>El Método Práctico (Cebolla):</strong><br>
+        Derivamos desde la "capa" más externa hacia la más interna, multiplicando los resultados. Primero derivas el exponente grande (dejando lo de adentro intacto) y luego lo multiplicas por la derivada de lo de adentro.</p>
     </div>
 </div>
-<!-- ── TEMA 5: RELACIONES ── -->
+
 <!-- ── DIAPOSITIVA 14 ── -->
 <div class="slide">
-    <h2>1.9 Producto Cartesiano y Relaciones</h2>
+    <h2>Ejemplos Resueltos: Regla de la Cadena</h2>
     <div class="contenido-texto">
-        <p>Antes de hablar de funciones, necesitamos entender cómo interactúan los elementos de dos conjuntos distintos.</p>
-        <ul>
-            <li><strong>Producto Cartesiano ($A \times B$):</strong> Es el conjunto de <em>todos</em> los pares ordenados $(a, b)$ que se pueden formar tomando el primer elemento del conjunto $A$ y el segundo del conjunto $B$. Es la base matemática de cualquier sistema de coordenadas.</li>
-            <li><strong>Relación:</strong> Una relación matemática de $A$ en $B$ es, formalmente, cualquier subconjunto del producto cartesiano. Es decir, es una regla que asocia <em>algunos</em> elementos de un conjunto con los de otro, sin restricciones estrictas.</li>
-        </ul>
+        <p><strong>Ejemplo 5: Derivar una potencia compleja</strong><br>
+        Encuentra la derivada de $f(x) = (3x^2 - 4x)^5$</p>
+        <p><em>Paso 1 (Capa Externa):</em> Trata el paréntesis como si fuera una simple $X^5$. Bajamos el 5 y le restamos 1 al exponente, manteniendo el interior intacto.<br>
+        $5(3x^2 - 4x)^4$</p>
+        <p><em>Paso 2 (Capa Interna):</em> Ahora derivamos lo que estaba adentro del paréntesis: la derivada de $3x^2 - 4x$ es $6x - 4$.</p>
+        <p><em>Paso 3:</em> Multiplicamos el Paso 1 por el Paso 2.<br>
+        <strong>$f'(x) = 5(3x^2 - 4x)^4 \cdot (6x - 4)$</strong><br>
+        <em>(Se puede reordenar pasando el último paréntesis al inicio, pero esto ya es correcto).</em></p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 15 ── -->
 <div class="slide">
-    <h2>1.10 Propiedades de las Relaciones</h2>
+    <h2>5.11 Análisis Marginal y Elasticidad</h2>
     <div class="contenido-texto">
-        <p>Si analizamos una relación dentro de un mismo conjunto (elementos relacionándose entre sí mismos), esta puede tener ciertas propiedades lógicas:</p>
-        <ul>
-            <li><strong>Reflexiva:</strong> Todo elemento está relacionado consigo mismo. ($x$ se relaciona con $x$). Ejemplo clásico: El signo de igualdad ($=$).</li>
-            <li><strong>Simétrica:</strong> Si $x$ está relacionado con $y$, entonces $y$ está forzosamente relacionado con $x$. Ejemplo: "Ser hermano de".</li>
-            <li><strong>Transitiva:</strong> Si $x$ se relaciona con $y$, y a su vez $y$ se relaciona con $z$, entonces $x$ se relaciona con $z$. Ejemplo: "Ser mayor que" ($>$).</li>
-        </ul>
-        <p>Si una relación matemática cumple estas tres propiedades al mismo tiempo, se le llama <strong>Relación de Equivalencia</strong>.</p>
+        <p>Como mencionamos en la introducción, evaluar la derivada en un punto específico ($Q$) nos da el valor Marginal.</p>
+        <p>Si la función de Ingreso Total de una empresa es $I(Q) = 100Q - Q^2$, la función de <strong>Ingreso Marginal (IMg)</strong> es su primera derivada: $IMg = 100 - 2Q$.</p>
+        <p>El cálculo diferencial también es la base matemática de la <strong>Elasticidad Precio de la Demanda</strong>. Mientras la elasticidad básica de Microeconomía usa deltas ($\Delta$), la elasticidad puntual exacta usa derivadas:</p>
+        <p style="text-align: center; font-size: 1.2rem;">
+            $$ E = \frac{dQ}{dP} \cdot \frac{P}{Q} $$
+        </p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 16 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Relaciones</h2>
+    <h2>Ejemplos Resueltos: Análisis Marginal</h2>
     <div class="contenido-texto">
-        <p>Analiza las siguientes relaciones y determina sus propiedades lógicas:</p>
-        <ol>
-            <li>Si $A = \{1, 2\}$ y $B = \{x, y\}$, escribe todos los pares ordenados que conforman el producto cartesiano $A \times B$.</li>
-            <li>Considera la relación "ser amigo de" en una red social como Facebook. Analiza lógicamente: ¿Es reflexiva? ¿Es simétrica? ¿Es transitiva? Justifica cada respuesta.</li>
-            <li>En el conjunto de los números naturales, analiza la relación "es múltiplo de" (ej. 4 es múltiplo de 2). Determina si esta relación cumple con las propiedades reflexiva, simétrica y transitiva.</li>
-        </ol>
+        <p><strong>Ejemplo 6: Calculando el costo real vs el marginal</strong><br>
+        El Costo Total es $C(Q) = Q^2 + 20Q + 500$. <br>Calcula el Costo Marginal al producir 10 unidades e interpreta el resultado.</p>
+        <p><em>Paso 1:</em> Obtenemos la derivada (Costo Marginal).<br>
+        $C'(Q) = 2Q + 20$</p>
+        <p><em>Paso 2:</em> Evaluamos en $Q = 10$.<br>
+        $C'(10) = 2(10) + 20 = 20 + 20 = 40$</p>
+        <p><strong>Interpretación:</strong> Si la empresa ya está produciendo 10 unidades, fabricar la unidad número 11 le costará aproximadamente $40.</p>
     </div>
 </div>
 
-<!-- ── TEMA 6: FUNCIONES ── -->
+<!-- ── TEMA 5: SEGUNDA DERIVADA Y CONCAVIDAD ── -->
 <!-- ── DIAPOSITIVA 17 ── -->
 <div class="slide">
-    <h2>1.11 Funciones: La máquina matemática</h2>
+    <h2>5.12 La Segunda Derivada ($f''(x)$)</h2>
     <div class="contenido-texto">
-        <p>Una <strong>función</strong> es un tipo muy especial y estricto de relación. Es una regla de correspondencia que asigna a <em>cada</em> elemento de un conjunto inicial <strong>exactamente un</strong> elemento de un conjunto final.</p>
+        <p>Si tomas la primera derivada y la vuelves a derivar, obtienes la <strong>Segunda Derivada</strong>. Si la primera derivada nos dice si estamos creciendo o bajando (la velocidad), la segunda nos dice si estamos <em>acelerando</em> o <em>frenando</em>.</p>
+        <p>En geometría, determina la <strong>Concavidad</strong> de la curva:</p>
         <ul>
-            <li><strong>Dominio:</strong> Todos los valores de entrada permitidos (las $x$).</li>
-            <li><strong>Codominio y Rango:</strong> El codominio es el conjunto de llegada posible. El <strong>rango</strong> (o imagen) son los valores que <em>realmente</em> escupe la función (las $y$).</li>
+            <li><strong>$f''(x) > 0$ (Positiva):</strong> Cóncava hacia arriba (Forma de copa $\cup$).</li>
+            <li><strong>$f''(x) < 0$ (Negativa):</strong> Cóncava hacia abajo (Forma de paraguas $\cap$).</li>
+            <li><strong>$f''(x) = 0$:</strong> Punto de Inflexión (el lugar exacto donde la curva cambia de copa a paraguas).</li>
         </ul>
-        <p><em>Regla de oro:</em> De un elemento del dominio solo puede salir una flecha. Una función es como una máquina predecible: no puedes meter un $2$ y que a veces te devuelva un $4$ y a veces un $5$.</p>
     </div>
 </div>
 
-<!-- ── DIAPOSITIVA 18 ── -->
+<!-- ── DIAPOSITIVA 18 (Con Gráfica) ── -->
 <div class="slide">
-    <h2>1.12 Inyectividad, Suprayectividad y Biyectividad</h2>
-    <div class="contenido-texto">
+    <h2>5.13 Rendimientos Marginales Decrecientes</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>Este concepto de concavidad es la prueba matemática de la famosa "Ley de Rendimientos Decrecientes".</p>
         
-        <p>Clasificamos las funciones según cómo interactúan con el conjunto de llegada:</p>
-        <ul>
-            <li><strong>Inyectiva (Uno a uno):</strong> Nunca dos elementos diferentes del dominio ($x$) dan el mismo resultado en el rango ($y$). <br>
-            <em>Formalmente:</em> Si $f(x_1) = f(x_2) \implies x_1 = x_2$.</li>
-            <li><strong>Suprayectiva (Sobre):</strong> El rango cubre la totalidad del codominio. Ningún elemento del conjunto de llegada se queda "solo" sin ser apuntado por la regla de la función.</li>
-            <li><strong>Biyectiva:</strong> Es inyectiva y suprayectiva al mismo tiempo. Es una correspondencia perfecta, sin que sobre ni falte nada. <em>Solo las funciones biyectivas tienen función inversa ($f^{-1}$).</em></li>
-        </ul>
+        <!-- INICIO DE GRÁFICA SVG: CONCAVIDAD -->
+        <div style="text-align: center; margin: 10px 0;">
+            <svg viewBox="0 0 400 200" width="100%" max-width="400px" style="background-color: #fafafa; border: 1px solid #ddd; border-radius: 8px;">
+                <!-- Ejes -->
+                <line x1="30" y1="180" x2="380" y2="180" stroke="#888" stroke-width="2" />
+                <line x1="30" y1="180" x2="30" y2="20" stroke="#888" stroke-width="2" />
+                
+                <!-- Curva (Rendimientos) -->
+                <!-- Primera parte: convexa/cup, segunda parte: concava/umbrella -->
+                <path d="M 30 180 C 150 180, 150 50, 350 30" fill="none" stroke="#2a4939" stroke-width="3" />
+                
+                <!-- Punto de Inflexión -->
+                <circle cx="150" cy="115" r="5" fill="#d9534f" />
+                
+                <!-- Textos -->
+                <text x="30" y="100" font-size="11" fill="#0275d8">Acelerando (f'' > 0)</text>
+                <text x="210" y="60" font-size="11" fill="#d9534f">Frenando (f'' < 0)</text>
+                <text x="160" y="130" font-size="11" font-weight="bold">Punto de Inflexión</text>
+                <text x="340" y="195" font-size="12">Trabajadores</text>
+                <text x="5" y="15" font-size="12">Producción</text>
+            </svg>
+        </div>
+        
+        <p>Al principio, agregar un trabajador acelera la producción (la curva apunta al cielo). Pero tras el <strong>Punto de Inflexión</strong>, los trabajadores se estorban. La producción sigue subiendo (la primera derivada sigue siendo positiva), pero cada vez más lento (la segunda derivada se vuelve negativa).</p>
     </div>
 </div>
 
+<!-- ── TEMA 6: OPTIMIZACIÓN ── -->
 <!-- ── DIAPOSITIVA 19 ── -->
 <div class="slide">
-    <h2>1.13 Composición de Funciones</h2>
+    <h2>5.14 Optimización: Maximizando y Minimizando</h2>
     <div class="contenido-texto">
-        <p>A menudo necesitamos evaluar el resultado de una función directamente dentro de otra. Esto se llama <strong>composición</strong> y se denota como $(g \circ f)(x)$, que significa evaluar $g(f(x))$.</p>
-        <p>Funciona como una línea de ensamblaje en una fábrica:</p>
-        <ol>
-            <li>Tomas un valor $x$ y lo procesas en la máquina $f$.</li>
-            <li>La máquina $f$ te devuelve un resultado intermedio.</li>
-            <li>Tomas ese resultado intermedio y lo metes inmediatamente en la máquina $g$ para obtener el valor final.</li>
-        </ol>
-        <p><em>Ojo matemático:</em> En general, el orden de las operaciones altera el producto. Evaluar $g(f(x))$ casi nunca es igual a evaluar $f(g(x))$.</p>
+        <p>Llegamos a la herramienta principal. Si quieres encontrar la ganancia máxima o el costo mínimo de cualquier modelo, solo tienes que buscar el punto donde la curva se vuelve totalmente plana en la cima o en el fondo.</p>
+        <p><strong>Criterio de la Primera Derivada:</strong></p>
+        <p>En el pico de una montaña o en el fondo de un valle, la pendiente es cero. Por lo tanto, para encontrar los "Puntos Críticos", tomamos la primera derivada y la igualamos a cero.</p>
+        <p style="text-align: center; font-size: 1.2rem; font-weight: bold;">
+            $$ f'(x) = 0 $$
+        </p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 20 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Funciones</h2>
+    <h2>5.15 ¿Es un Máximo o un Mínimo?</h2>
     <div class="contenido-texto">
-        <p>Aplica los conceptos estrictos de funciones en estos ejercicios:</p>
+        <p>Una vez que igualamos $f'(x)=0$ y encontramos el valor de $x$ (el punto crítico), debemos confirmar si encontramos una montaña o un valle.</p>
+        <p><strong>Criterio de la Segunda Derivada:</strong> Evaluamos el punto crítico $x$ en $f''(x)$.</p>
+        <ul>
+            <li>Si el resultado es <strong>negativo</strong>: Estás en una forma de paraguas $\cap$. ¡Es un <strong>Máximo</strong> local!</li>
+            <li>Si el resultado es <strong>positivo</strong>: Estás en una forma de copa $\cup$. ¡Es un <strong>Mínimo</strong> local!</li>
+        </ul>
+        <p><em>(Recuerda: ¡La regla parece al revés! Positivo es Mínimo y Negativo es Máximo).</em></p>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 21 (Con Gráfica) ── -->
+<div class="slide">
+    <h2>5.16 El Óptimo Económico (IMg = CMg)</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>El punto donde se maximiza el Beneficio $\pi(Q)$ ocurre mágicamente cuando el Ingreso Marginal iguala al Costo Marginal.</p>
+        
+        <!-- INICIO DE GRÁFICA SVG: OPTIMIZACIÓN -->
+        <div style="text-align: center; margin: 10px 0;">
+            <svg viewBox="0 0 400 200" width="100%" max-width="400px" style="background-color: #fafafa; border: 1px solid #ddd; border-radius: 8px;">
+                <!-- Ejes -->
+                <line x1="40" y1="160" x2="360" y2="160" stroke="#888" stroke-width="2" />
+                <line x1="40" y1="160" x2="40" y2="20" stroke="#888" stroke-width="2" />
+                
+                <!-- Parábola de Beneficios -->
+                <path d="M 40 160 Q 200 -40 360 160" fill="none" stroke="#2a4939" stroke-width="3" />
+                
+                <!-- Tangente Plana en el Máximo -->
+                <line x1="150" y1="10" x2="250" y2="10" stroke="#f0ad4e" stroke-width="3" />
+                <circle cx="200" cy="10" r="5" fill="#d9534f" />
+                
+                <!-- Línea punteada hacia el eje X -->
+                <line x1="200" y1="10" x2="200" y2="160" stroke="#666" stroke-dasharray="4,4" />
+                
+                <!-- Etiquetas -->
+                <text x="220" y="25" font-size="12" font-weight="bold">π'(Q) = 0</text>
+                <text x="180" y="175" font-size="12" font-weight="bold">Q óptima</text>
+                <text x="5" y="50" font-size="12" transform="rotate(-90 20,90)">Beneficio (π)</text>
+            </svg>
+        </div>
+        
+        <p>Matemáticamente: Si $\pi = Ingreso - Costo$, al derivar y aplicar el criterio ($\pi' = 0$), obtenemos que $Ingreso' - Costo' = 0$, lo que implica $IMg = CMg$.</p>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 22 ── -->
+<div class="slide">
+    <h2>Ejemplos Resueltos: Optimización Parte 1</h2>
+    <div class="contenido-texto">
+        <p><strong>Ejemplo 7: Maximizando Ganancias</strong><br>
+        La función de beneficios de una empresa es $\pi(Q) = -2Q^2 + 800Q - 5000$. ¿Cuánto debe producir para maximizar la ganancia?</p>
+        <p><em>Paso 1: Primera Derivada.</em><br>
+        $\pi'(Q) = -4Q + 800$</p>
+        <p><em>Paso 2: Igualar a Cero (Puntos Críticos).</em><br>
+        $-4Q + 800 = 0 \implies 4Q = 800 \implies Q = 200$</p>
+        <p><em>Paso 3: Segunda Derivada (Comprobación).</em><br>
+        Volvemos a derivar $\pi'(Q)$. $\pi''(Q) = -4$.<br>
+        Como es negativo ($-4 < 0$), confirmamos que $Q = 200$ es un Máximo.</p>
+        <p><strong>Debe producir 200 unidades.</strong></p>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 23 ── -->
+<div class="slide">
+    <h2>Ejemplos Resueltos: Optimización Parte 2</h2>
+    <div class="contenido-texto">
+        <p><strong>Ejemplo 8: Minimizando Costos Medios</strong><br>
+        El Costo Total es $C(Q) = Q^2 + 50Q + 100$. El Costo Medio ($CMe$) es dividir el Costo Total entre $Q$. Encuentra el punto que minimiza el $CMe$.</p>
+        <p><em>Paso 1: Construir la función CMe.</em><br>
+        $CMe(Q) = \frac{Q^2}{Q} + \frac{50Q}{Q} + \frac{100}{Q} = Q + 50 + 100Q^{-1}$</p>
+        <p><em>Paso 2: Primera Derivada e igualar a cero.</em><br>
+        $CMe'(Q) = 1 + 0 - 100Q^{-2} = 1 - \frac{100}{Q^2}$<br>
+        $1 - \frac{100}{Q^2} = 0 \implies 1 = \frac{100}{Q^2} \implies Q^2 = 100 \implies Q = 10$</p>
+        <p><em>Paso 3: Segunda Derivada (Comprobación).</em><br>
+        $CMe''(Q) = 200Q^{-3} = \frac{200}{Q^3}$. Si $Q=10$, es positivo. Confirmamos que es un Mínimo.</p>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 24 ── -->
+<div class="slide">
+    <h2>Práctica Autónoma: Límites y Reglas (1-8)</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>Resuelve en tu cuaderno aplicando las reglas vistas:</p>
         <ol>
-            <li>Identifica si la siguiente relación es una función: "A cada persona en un país se le asigna su número de teléfono celular". <em>(Pista: Analiza qué pasa si alguien tiene dos líneas a su nombre bajo la regla de "exactamente un" elemento).</em></li>
-            <li>Determina si la función $f(x) = x^2$ (definida para todos los números reales) es inyectiva. Justifica usando la definición formal matemática.</li>
-            <li>Sean $f(x) = 2x + 1$ y $g(x) = x^2$. Calcula:
-                <ul>
-                    <li>La composición $(g \circ f)(x)$</li>
-                    <li>La composición $(f \circ g)(x)$</li>
-                </ul>
-                ¿Los resultados son equivalentes?
-            </li>
+            <li>Calcula $\lim_{x \to 3} (x^2 + 4x - 5)$</li>
+            <li>Calcula $\lim_{x \to 5} \frac{x^2 - 25}{x - 5}$</li>
+            <li>Deriva $f(x) = 4x^3 - 7x^2 + x - 12$</li>
+            <li>Deriva la función de ingreso $I(Q) = 250Q - 0.5Q^2$ y calcula el Ingreso Marginal para $Q=10$.</li>
+            <li>Usa la regla del producto para derivar: $f(x) = (2x)(x^2 + 3)$</li>
+            <li>Usa la regla del cociente para derivar el Costo Medio: $CMe(Q) = \frac{3Q^2 + 50}{Q}$</li>
+            <li>Usa la regla de la cadena para derivar: $f(x) = (5x^2 - 2)^4$</li>
+            <li>Calcula la segunda derivada de la función del ejercicio 3.</li>
         </ol>
     </div>
 </div>
 
-<!-- ── DIAPOSITIVA 21: CIERRE DEL MÓDULO ── -->
+<!-- ── DIAPOSITIVA 25 ── -->
 <div class="slide">
-    <h2 style="color: #2a4939; text-align: center; margin-bottom: 20px;">¡Felicidades! Has completado el Módulo 1</h2>
-    <div class="contenido-texto" style="text-align: center;">
-        <div style="font-size: 3rem; margin-bottom: 15px;">🎓</div>
-        <p>Has construido los cimientos analíticos necesarios para adentrarte en las matemáticas superiores sin temor al rigor formal.</p>
-        <p style="margin-top: 15px;">Ahora dominas:</p>
-        <ul style="text-align: left; display: inline-block; margin-top: 10px;">
-            <li>La estructura lógica para construir argumentos irrebatibles ($p \implies q$).</li>
-            <li>El uso correcto de los cuantificadores ($\forall, \exists$) y su negación.</li>
-            <li>Las estrategias matemáticas para demostrar la veracidad de una afirmación.</li>
-            <li>El lenguaje de los conjuntos, las relaciones y la definición estricta de una función.</li>
-        </ul>
-        <p style="margin-top: 25px; font-weight: bold;">Estás listo para iniciar el <strong>Módulo 2: Álgebra</strong>.</p>
-        <div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
-    <button id="btnCompletarM1" style="background-color: #2a4939; color: #fff1da; padding: 14px 28px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.05rem; transition: background 0.3s;">
-        Marcar Módulo 1 como Completado
-    </button>
+    <h2>Práctica Autónoma: Optimización (9-15)</h2>
+    <div class="contenido-texto" style="font-size: 0.85rem;">
+        <ol start="9">
+            <li>Sea la función de Producción $P(L) = -L^3 + 12L^2$. Encuentra la primera y segunda derivada.</li>
+            <li>Usa la segunda derivada del ejercicio anterior para encontrar el Punto de Inflexión (iguala $P''(L)$ a cero). Interpreta qué pasa con los trabajadores en ese punto.</li>
+            <li>Maximiza la función de beneficios: $\pi(Q) = -3Q^2 + 60Q - 100$. Demuestra con el criterio de la segunda derivada que es un máximo.</li>
+            <li>Encuentra el nivel de producción $Q$ que minimiza el Costo Marginal si $C(Q) = 0.5Q^3 - 6Q^2 + 50Q + 200$. <em>(Pista: Saca el CMg, y luego derívalo de nuevo para optimizarlo).</em></li>
+            <li>Una empresa vende a precio constante de $P=100$. Su costo es $C(Q) = 2Q^2 + 20Q$. Construye la función de Beneficio ($\pi = P \cdot Q - C$) y optimízala.</li>
+            <li>Analiza lógicamente: Si la primera derivada del Costo Total siempre es positiva ($C' > 0$), ¿qué significa económicamente?</li>
+            <li>Reto: Si el Ingreso Marginal se vuelve negativo, ¿qué le está pasando a la gráfica del Ingreso Total?</li>
+        </ol>
+    </div>
 </div>
+
+<!-- ── DIAPOSITIVA 26: CIERRE DEL MÓDULO ── -->
+<div class="slide">
+    <h2 style="color: #2a4939; text-align: center; margin-bottom: 20px;">¡Felicidades! Has completado el Módulo 5</h2>
+    <div class="contenido-texto" style="text-align: center;">
+        <div style="font-size: 3rem; margin-bottom: 15px;">📈</div>
+        <p>Acabas de dominar el lenguaje del cambio instantáneo y el análisis marginal, el pilar central de la microeconomía moderna.</p>
+        <p style="margin-top: 15px;">Tus nuevas habilidades incluyen:</p>
+        <ul style="text-align: left; display: inline-block; margin-top: 10px;">
+            <li>Entender tendencias a través de Límites y Continuidad.</li>
+            <li>Aplicar rápidamente las reglas de derivación (cadena, producto, cociente).</li>
+            <li>Extraer información valiosa (Ingresos, Costos y Utilidades Marginales) de funciones estáticas.</li>
+            <li>Optimizar modelos matemáticos completos usando el Criterio de la Primera y Segunda Derivada.</li>
+        </ul>
+        <p style="margin-top: 25px; font-weight: bold;">Estás listo para aprender a sumar infinitos cambios diminutos en el <strong>Módulo 6: Cálculo Integral</strong>.</p>
+        
+        <!-- BOTÓN DE COMPLETADO M5 -->
+        <div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
+            <button id="btnCompletarM5" style="background-color: #2a4939; color: #fff1da; padding: 14px 28px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.05rem; transition: background 0.3s;">
+                Marcar Módulo 5 como Completado
+            </button>
+        </div>
     </div>
 </div>
             <!-- ── NAVEGACIÓN ── -->

@@ -587,321 +587,456 @@ footer {
         <!-- Tarjeta de diapositivas -->
         <div class="slide-container">
 
-            <!-- ── DIAPOSITIVA 1 ── -->
-            <div class="slide active">
-                <h2>¿Para qué sirven las matemáticas en economía?</h2>
-                <div class="contenido-texto">
-                    <p>En el análisis económico, las matemáticas cumplen funciones críticas que van más allá del simple cálculo:</p>
-                    <ul>
-                        <li>Nos permiten expresar suposiciones y conclusiones mediante símbolos y ecuaciones, evitando caer en ambigüedades.</li>
-                        <li>Al utilizar teoremas matemáticos, el analista se ve forzado a explicar todos los supuestos o condiciones necesarias para no perder el sentido económico.</li>
-                        <li>Las matemáticas nos permiten trabajar con <em>n</em> variables, permitiéndonos hacer modelos que reflejen la realidad.</li>
-                        <li>Herramientas como el cálculo sirven para optimizar (maximizar ganancias o minimizar costos) y el álgebra lineal para analizar la interdependencia entre los distintos sectores de una economía.</li>
-                    </ul>
-                </div>
-            </div>
+<!-- ── DIAPOSITIVA 1: INTRODUCCIÓN ── -->
+<div class="slide active">
+    <h2>6.1 La Integral: De lo Marginal a lo Total</h2>
+    <div class="contenido-texto">
+        <p>El Cálculo Integral es la operación matemática inversa a la derivación. Si la derivada "destruye" un grado de la función para mostrarnos el cambio marginal, la integral "construye" y acumula esos pequeños cambios para darnos el total.</p>
+        <p><strong>En el mundo económico:</strong></p>
+        <ul>
+            <li>Si integramos el <em>Costo Marginal ($CMg$)</em>, recuperamos la función de <em>Costo Total ($CT$)</em>.</li>
+            <li>Si integramos el <em>Ingreso Marginal ($IMg$)</em>, obtenemos el <em>Ingreso Total ($IT$)</em>.</li>
+            <li>Si integramos la <em>Propensión Marginal a Consumir ($PMgC$)</em>, encontramos la <em>Función de Consumo ($C$)</em>.</li>
+        </ul>
+    </div>
+</div>
 
-            <!-- ── TEMA 1: LÓGICA PROPOSICIONAL (Sin tablas de verdad) ── -->
+<!-- ── TEMA 1: INTEGRALES INDEFINIDAS ── -->
 <!-- ── DIAPOSITIVA 2 ── -->
 <div class="slide">
-    <h2>1.1 Lógica Proposicional: Conceptos Básicos</h2>
+    <h2>6.2 La Integral Indefinida y la Constante "$C$"</h2>
     <div class="contenido-texto">
-        <p>Iniciamos con la <strong>proposición</strong>: una afirmación que solo puede ser verdadera ($V$) o falsa ($F$). Los <strong>conectivos lógicos</strong> nos permiten crear argumentos complejos a partir de ideas simples:</p>
-        <ul>
-            <li><strong>Negación ($\neg p$):</strong> Afirma exactamente lo contrario a $p$.</li>
-            <li><strong>Conjunción ($p \land q$):</strong> "Y". Exige que ambas condiciones se cumplan estrictamente al mismo tiempo.</li>
-            <li><strong>Disyunción ($p \lor q$):</strong> "O". Es flexible; basta con que al menos una condición sea cierta para que todo el enunciado lo sea.</li>
-            <li><strong>Implicación ($p \implies q$):</strong> "Si $p$, entonces $q$". Establece una relación causa-efecto o de condición suficiente. Es la base de cualquier teorema matemático.</li>
-            <li><strong>Bicondicional ($p \iff q$):</strong> "Si y solo si". Significa que $p$ y $q$ son equivalentes; no puede ocurrir una sin la otra.</li>
-        </ul>
+        <p>Llamamos <strong>antiderivada</strong> o <strong>integral indefinida</strong> al proceso de encontrar la función original $F(x)$ cuya derivada es $f(x)$. Su notación usa el símbolo de integración $\int$ (una "S" alargada de suma):</p>
+        <p style="text-align: center; font-size: 1.2rem;">
+            $$ \int f(x) dx = F(x) + C $$
+        </p>
+        <p><strong>¿Qué es la misteriosa "$C$"?</strong><br>
+        Al derivar una constante (como el Costo Fijo), el resultado es $0$. Al integrar y regresar atrás, la matemática no sabe cuál era ese número original. Por eso siempre agregamos una <strong>Constante de Integración ($C$)</strong> para representar cualquier número fijo que se haya perdido.</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 3 ── -->
 <div class="slide">
-    <h2>1.2 Tautologías y Equivalencias</h2>
+    <h2>6.3 Reglas Básicas de Integración</h2>
     <div class="contenido-texto">
-        <p>En lugar de memorizar escenarios mecánicos, en matemáticas buscamos identificar estructuras lógicas que siempre funcionan:</p>
+        <p>Así como hay reglas para derivar rápido, existen reglas para integrar. Son literalmente los pasos inversos:</p>
         <ul>
-            <li><strong>Tautología:</strong> Un argumento que siempre es verdadero por su pura estructura lógica, sin importar de qué estemos hablando. Por ejemplo, la frase "Llueve o no llueve" ($p \lor \neg p$) es una verdad absoluta indiscutible.</li>
-            <li><strong>Contradicción:</strong> Algo que es imposible por definición. Por ejemplo, "Subió y no subió" ($p \land \neg p$).</li>
-            <li><strong>Leyes de De Morgan:</strong> Son trucos de oro para negar ideas agrupadas.
-                <ul style="margin-top: 5px;">
-                    <li>Negar que pasaron <em>ambas</em> cosas ($\neg(p \land q)$), es lo mismo que decir que falló la primera <em>o</em> falló la segunda ($\neg p \lor \neg q$).</li>
-                    <li>Negar que pasó <em>al menos una</em> de las dos ($\neg(p \lor q)$), es lo mismo que decir que no pasó la primera <em>y</em> tampoco la segunda ($\neg p \land \neg q$).</li>
-                </ul>
-            </li>
+            <li><strong>Regla de la Potencia:</strong> En lugar de bajar y restar, le <em>sumas 1</em> al exponente y <em>divides</em> todo entre ese nuevo exponente.<br>
+            $$ \int x^n dx = \frac{x^{n+1}}{n+1} + C \quad (\text{para } n \neq -1) $$</li>
+            <li><strong>Regla de la Constante:</strong> La integral de un número $k$ es ese número multiplicado por $x$.<br>
+            $$ \int k dx = kx + C $$</li>
+            <li><strong>El caso especial $x^{-1}$:</strong> Si el exponente es $-1$, la regla de la potencia falla (dividirías entre $0$). Su integral es el logaritmo natural.<br>
+            $$ \int \frac{1}{x} dx = \ln|x| + C $$</li>
         </ul>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 4 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Lógica Proposicional</h2>
+    <h2>Ejemplos Resueltos: Integrales Indefinidas</h2>
     <div class="contenido-texto">
-        <p>Realiza los siguientes ejercicios analíticos en tu cuaderno:</p>
-        <ol>
-            <li><strong>Traducción:</strong> Sean $p$: "Hay inflación" y $q$: "El banco central interviene". Escribe en lenguaje natural las siguientes expresiones formales: 
-                <ul>
-                    <li>$p \implies q$</li>
-                    <li>$\neg q \implies \neg p$</li>
-                </ul>
-                ¿Tienen el mismo significado en la vida real?
-            </li>
-            <li><strong>Aplicación de De Morgan:</strong> Un reglamento dice: "Para aprobar necesitas entregar la tesis ($t$) Y pasar el examen ($e$)". Si un estudiante reprueba, ¿cómo expresas lógicamente lo que le faltó usando la Ley de De Morgan?</li>
-        </ol>
+        <p><strong>Ejemplo 1: Aplicando la regla de la potencia</strong><br>
+        Calcula: $\int (3x^2 + 4x - 5) dx$</p>
+        <p><em>Paso 1 (Término $3x^2$):</em> Sumamos 1 al exponente (queda 3) y dividimos entre 3. $\frac{3x^3}{3} = x^3$.</p>
+        <p><em>Paso 2 (Término $4x$):</em> El exponente imaginario 1 sube a 2. Dividimos entre 2. $\frac{4x^2}{2} = 2x^2$.</p>
+        <p><em>Paso 3 (Término $-5$):</em> Como es constante, le agregamos la $x$. Resulta $-5x$.</p>
+        <p><em>Paso 4:</em> Juntamos todo y sumamos $C$.<br>
+        <strong>Resultado: $x^3 + 2x^2 - 5x + C$</strong></p>
     </div>
 </div>
 
-<!-- ── TEMA 2: LÓGICA DE PREDICADOS (Simplificada) ── -->
 <!-- ── DIAPOSITIVA 5 ── -->
 <div class="slide">
-    <h2>1.3 Lógica de Predicados: De lo particular a lo general</h2>
+    <h2>Ejemplos Resueltos: Encontrando "C" (Costos Fijos)</h2>
     <div class="contenido-texto">
-        <p>Una proposición normal dice: <em>"Juan es estudiante"</em>. Es fácil saber si es verdad. Pero un <strong>predicado</strong> usa variables: <em>"$x$ es estudiante"</em>. No podemos saber si es verdad hasta saber quién es $x$ o a cuántos nos referimos.</p>
-        <p>Para eso usamos los <strong>cuantificadores</strong>, que nos dicen de cuántos elementos estamos hablando:</p>
-        <ul>
-            <li><strong>Cuantificador Universal ($\forall$):</strong> Significa "Para todos". <br>
-            <em>Ejemplo: $\forall x$, $x$ necesita comer. (Todos necesitan comer).</em></li>
-            <li><strong>Cuantificador Existencial ($\exists$):</strong> Significa "Existe al menos uno" (puede haber más, pero mínimo hay uno). <br>
-            <em>Ejemplo: $\exists x$ tal que $x$ tiene un millón de dólares. (Alguien es millonario).</em></li>
-        </ul>
+        <p><strong>Ejemplo 2: Recuperando el Costo Total</strong><br>
+        El Costo Marginal de una fábrica es $CMg(Q) = 6Q + 20$. Sabemos que sus Costos Fijos ascienden a $\$500$ (es decir, $CT(0) = 500$). Encuentra la función de Costo Total $CT(Q)$.</p>
+        <p><em>Paso 1:</em> Integramos el Costo Marginal.<br>
+        $CT(Q) = \int (6Q + 20) dQ$<br>
+        $CT(Q) = \frac{6Q^2}{2} + 20Q + C = 3Q^2 + 20Q + C$</p>
+        <p><em>Paso 2:</em> Usamos la condición inicial ($Q=0, CT=500$) para encontrar $C$.<br>
+        $500 = 3(0)^2 + 20(0) + C \implies C = 500$</p>
+        <p><strong>La función exacta es: $CT(Q) = 3Q^2 + 20Q + 500$</strong></p>
     </div>
 </div>
 
+<!-- ── TEMA 2: TÉCNICAS DE INTEGRACIÓN ── -->
 <!-- ── DIAPOSITIVA 6 ── -->
 <div class="slide">
-    <h2>1.4 ¿Cómo contradecir a alguien? (Negación de Cuantificadores)</h2>
+    <h2>6.4 Método de Sustitución (Cambio de Variable)</h2>
     <div class="contenido-texto">
-        <p>Negar cuantificadores es simplemente usar el sentido común para ganar un debate:</p>
-        <ul>
-            <li><strong>Para negar un "Todos" ($\forall$):</strong> <br>
-            Si yo afirmo: <em>"Todos los cisnes son blancos"</em>, tú no necesitas revisar cada cisne del mundo para demostrar que miento. Solo necesitas traerme <strong>un</strong> cisne que sea negro. <br>
-            <strong>Regla:</strong> $\neg (\forall x, P(x))$ se convierte en $\exists x, \neg P(x)$.</li>
-            <br>
-            <li><strong>Para negar un "Existe" ($\exists$):</strong> <br>
-            Si yo afirmo: <em>"Existe un monstruo debajo de la cama"</em>, para demostrar que miento, tú tienes que encender la luz y comprobar que <strong>ninguno</strong> de los rincones tiene un monstruo. <br>
-            <strong>Regla:</strong> $\neg (\exists x, P(x))$ se convierte en $\forall x, \neg P(x)$.</li>
-        </ul>
+        <p>Cuando tenemos funciones compuestas (una función dentro de otra) multiplicadas por su derivada, usamos la <strong>Sustitución</strong>. Es la versión inversa de la "Regla de la Cadena".</p>
+        <ol>
+            <li>Eliges una parte complicada de la ecuación y la llamas $u$.</li>
+            <li>Derivas esa $u$ para encontrar $du$.</li>
+            <li>Reemplazas todo en la integral original para que quede en términos de puras $u$ y $du$.</li>
+            <li>Integras usando las reglas básicas.</li>
+            <li>Sustituyes la $u$ de vuelta por la expresión original en $x$.</li>
+        </ol>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 7 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Lógica de Predicados</h2>
+    <h2>Ejemplos Resueltos: Método de Sustitución</h2>
     <div class="contenido-texto">
-        <p>Pon a prueba tu intuición con estos ejercicios:</p>
-        <ol>
-            <li>Escribe usando los símbolos $\forall$ o $\exists$ la siguiente frase matemática: "Existe al menos un número real $x$ que, al multiplicarse por cero, da como resultado uno". ¿Es verdadera o falsa?</li>
-            <li>Un político afirma: "Todos los programas sociales reducen la pobreza" ($\forall x, R(x)$). Si fueras un investigador que quiere demostrar que el político miente, ¿qué tendrías que encontrar en los datos? Escribe tu objetivo usando símbolos lógicos.</li>
-            <li>Traduce la frase "No hay reglas sin excepciones" al lenguaje de cuantificadores usando $\forall$ (Todos) y $\exists$ (Existe).</li>
-        </ol>
+        <p><strong>Ejemplo 3: Integral por sustitución</strong><br>
+        Calcula: $\int 2x(x^2 + 5)^4 dx$</p>
+        <p><em>Paso 1:</em> Escogemos la función interna como $u$.<br>
+        $u = x^2 + 5$</p>
+        <p><em>Paso 2:</em> Derivamos $u$ respecto a $x$.<br>
+        $\frac{du}{dx} = 2x \implies du = 2x \, dx$</p>
+        <p><em>Paso 3:</em> Sustituimos en la integral original. ¡Magia! El $2x dx$ de afuera se convierte en $du$.<br>
+        $\int u^4 du$</p>
+        <p><em>Paso 4:</em> Integramos usando la regla de la potencia.<br>
+        $\frac{u^5}{5} + C$</p>
+        <p><em>Paso 5:</em> Regresamos al valor original de $u$.<br>
+        <strong>Resultado: $\frac{(x^2 + 5)^5}{5} + C$</strong></p>
     </div>
 </div>
-<!-- ── TEMA 3: MÉTODOS DE DEMOSTRACIÓN ── -->
+
 <!-- ── DIAPOSITIVA 8 ── -->
 <div class="slide">
-    <h2>1.5 Métodos de Demostración: El arte de probar</h2>
+    <h2>6.5 Integración por Partes</h2>
     <div class="contenido-texto">
-        <p>En matemáticas, no basta con que algo parezca cierto; hay que <strong>demostrarlo</strong> sin dejar lugar a dudas. Toda demostración parte de supuestos conocidos (hipótesis, $p$) para llegar a una conclusión irrebatible ($q$).</p>
-        <ul>
-            <li><strong>Demostración Directa:</strong> Es el camino recto. Asumimos que $p$ es verdadero y, mediante álgebra y lógica paso a paso, llegamos a $q$.<br>
-            <em>Ejemplo:</em> Demostrar que "Si $x$ es un número par, entonces $x^2$ es par". Asumes que $x = 2k$, lo elevas al cuadrado ($4k^2$) y factorizas un 2 para probarlo: $2(2k^2)$.</li>
-        </ul>
-        <p>Pero a veces, el camino directo es muy complicado. Para eso existen las estrategias indirectas.</p>
+        <p>Cuando tienes dos funciones diferentes multiplicándose (como $x$ y un logaritmo, o $x$ y una exponencial) y la sustitución no funciona, usamos la <strong>Integración por Partes</strong>. Es la inversa de la Regla del Producto de derivadas.</p>
+        <p>La fórmula universal (conocida por la famosa mnemotecnia "Un Día Vi Una Vaca Menos Vestida De Uniforme") es:</p>
+        <p style="text-align: center; font-size: 1.2rem; font-weight: bold;">
+            $$ \int u \, dv = u \cdot v - \int v \, du $$
+        </p>
+        <p>El truco está en elegir una $u$ que sea fácil de derivar (para que desaparezca) y un $dv$ que sea fácil de integrar.</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 9 ── -->
 <div class="slide">
-    <h2>1.6 Demostración por Contrapositiva y Contradicción</h2>
+    <h2>Ejemplos Resueltos: Integración por Partes</h2>
     <div class="contenido-texto">
-        <p>Cuando probar $p \implies q$ es difícil, usamos trucos lógicos:</p>
-        <ul>
-            <li><strong>Por Contrapositiva:</strong> Lógicamente, decir "Si llueve, el piso se moja" es exactamente igual a decir "Si el piso NO está mojado, entonces NO llovió". <br>
-            En lugar de probar $p \implies q$, probamos su equivalente: $\neg q \implies \neg p$. A veces, trabajar con las negaciones hace el álgebra mucho más fácil.</li>
-            <br>
-            <li><strong>Por Contradicción (Reducción al absurdo):</strong> Es el método del investigador. Asumimos que lo que queremos probar es falso y seguimos las reglas matemáticas hasta llegar a algo imposible (como $1 = 0$). Como la matemática no se equivoca, nuestro supuesto inicial debió ser el error, probando así que la afirmación original era cierta.</li>
-        </ul>
+        <p><strong>Ejemplo 4: Usando "Por Partes"</strong><br>
+        Calcula: $\int x e^x dx$</p>
+        <p><em>Paso 1:</em> Asignamos $u$ y $dv$.<br>
+        $u = x$ (es fácil de derivar: $du = 1 dx$)<br>
+        $dv = e^x dx$ (es la integral más fácil del mundo: $v = e^x$)</p>
+        <p><em>Paso 2:</em> Aplicamos la fórmula: $uv - \int v \, du$<br>
+        $= (x)(e^x) - \int e^x dx$</p>
+        <p><em>Paso 3:</em> Resolvemos la nueva integral que nos quedó.<br>
+        $= x e^x - e^x + C$</p>
+        <p><strong>Resultado: $e^x(x - 1) + C$</strong></p>
     </div>
 </div>
 
+<!-- ── TEMA 3: INTEGRALES DEFINIDAS ── -->
 <!-- ── DIAPOSITIVA 10 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Métodos de Demostración</h2>
+    <h2>6.6 La Integral Definida y el Área</h2>
     <div class="contenido-texto">
-        <p>Aplica la lógica de demostración en los siguientes casos:</p>
-        <ol>
-            <li><strong>Directa:</strong> Demuestra que la suma de dos números impares siempre da como resultado un número par. <em>(Pista: Un número impar se escribe como $2k + 1$).</em></li>
-            <li><strong>Contrapositiva:</strong> Queremos demostrar la frase: "Si $3x + 2$ es impar, entonces $x$ es impar". ¿Cuál sería la afirmación contrapositiva que tendrías que demostrar? Escríbela en lenguaje natural.</li>
-            <li><strong>Contradicción (Análisis de argumento):</strong> Un abogado dice: "Asumamos que mi cliente robó el banco. Si lo hizo, debió estar en la ciudad a las 3 PM. Pero las cámaras lo ubican en otro país a esa hora". ¿Por qué esto demuestra la inocencia del cliente usando reducción al absurdo?</li>
-        </ol>
+        <p>Si la integral indefinida nos da una fórmula abstracta, la <strong>Integral Definida</strong> nos da un número exacto. Geométricamente, representa el <strong>Área bajo la curva</strong> entre dos puntos específicos $a$ y $b$ del eje $x$.</p>
+        <p>En lugar de estimar el área usando pequeños rectángulos (Sumas de Riemann), el límite nos permite calcular el área perfecta y sin errores. Se escribe con límites superior e inferior:</p>
+        <p style="text-align: center; font-size: 1.2rem;">
+            $$ \int_{a}^{b} f(x) dx $$
+        </p>
     </div>
 </div>
 
-<!-- ── TEMA 4: TEORÍA DE CONJUNTOS ── -->
-<!-- ── DIAPOSITIVA 11 ── -->
+<!-- ── DIAPOSITIVA 11 (Con Gráfica) ── -->
 <div class="slide">
-    <h2>1.7 Teoría de Conjuntos: El alfabeto de las matemáticas</h2>
-    <div class="contenido-texto">
-        <p>Un <strong>conjunto</strong> es simplemente una colección bien definida de objetos o números, a los que llamamos <strong>elementos</strong>. Casi toda la matemática moderna está escrita en lenguaje de conjuntos.</p>
-        <ul>
-            <li><strong>Pertenencia ($\in$):</strong> Indica que un elemento vive dentro del conjunto. Si $A = \{1, 2, 3\}$, entonces $2 \in A$ (2 pertenece a A), pero $5 \notin A$ (5 no pertenece a A).</li>
-            <li><strong>Subconjunto ($\subseteq$):</strong> Decimos que $B$ es subconjunto de $A$ si <em>todos</em> los elementos de $B$ también están dentro de $A$.</li>
-            <li><strong>Conjunto Vacío ($\emptyset$):</strong> Es el conjunto que no tiene ningún elemento. Es un concepto filosófico poderoso: la nada también es un conjunto y es subconjunto de todos los demás.</li>
-        </ul>
+    <h2>6.7 Visualizando el Área bajo la Curva</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>Si evaluamos una integral desde $x=1$ hasta $x=4$, estamos calculando la cantidad total "acumulada" en ese periodo. Si la curva es tu flujo de ingresos anual, el área es tu dinero total ganado en esos 3 años.</p>
+        
+        <!-- INICIO DE GRÁFICA SVG: ÁREA BAJO LA CURVA -->
+        <div style="text-align: center; margin: 10px 0;">
+            <svg viewBox="0 0 400 200" width="100%" max-width="400px" style="background-color: #fafafa; border: 1px solid #ddd; border-radius: 8px;">
+                <!-- Área sombreada -->
+                <path d="M 100 160 L 100 140 Q 200 40 300 80 L 300 160 Z" fill="rgba(42, 73, 57, 0.4)" stroke="none" />
+                
+                <!-- Ejes -->
+                <line x1="30" y1="160" x2="360" y2="160" stroke="#888" stroke-width="2" />
+                <line x1="30" y1="160" x2="30" y2="20" stroke="#888" stroke-width="2" />
+                
+                <!-- Curva -->
+                <path d="M 30 150 Q 200 -20 360 110" fill="none" stroke="#2a4939" stroke-width="3" />
+                
+                <!-- Límites a y b -->
+                <line x1="100" y1="160" x2="100" y2="140" stroke="#d9534f" stroke-width="2" stroke-dasharray="4,4" />
+                <line x1="300" y1="160" x2="300" y2="80" stroke="#d9534f" stroke-width="2" stroke-dasharray="4,4" />
+                
+                <!-- Textos -->
+                <text x="95" y="180" font-size="14" font-weight="bold">a</text>
+                <text x="295" y="180" font-size="14" font-weight="bold">b</text>
+                <text x="180" y="130" font-size="14" font-weight="bold" fill="#2a4939">ÁREA</text>
+                <text x="320" y="90" font-size="14">f(x)</text>
+            </svg>
+        </div>
+        
+        <p>Para calcular este valor exacto sin usar geometría básica, Newton y Leibniz desarrollaron el teorema más importante de la matemática aplicada.</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 12 ── -->
 <div class="slide">
-    <h2>1.8 Operaciones con Conjuntos</h2>
+    <h2>6.8 El Teorema Fundamental del Cálculo</h2>
     <div class="contenido-texto">
-        <p>Podemos combinar conjuntos de la misma forma que sumamos o restamos números. Estas operaciones están directamente conectadas con los conectivos lógicos que ya aprendimos :</p>
-        <ul>
-            <li><strong>Unión ($A \cup B$):</strong> Junta todos los elementos de $A$ con los de $B$. Está conectada con la disyunción lógica "O" ($p \lor q$).</li>
-            <li><strong>Intersección ($A \cap B$):</strong> Toma <em>únicamente</em> los elementos que tienen en común. Está conectada con la conjunción lógica "Y" ($p \land q$).</li>
-            <li><strong>Diferencia ($A \setminus B$):</strong> A los elementos del conjunto $A$, le quitamos cualquiera que también esté en $B$.</li>
-            <li><strong>Complemento ($A^c$):</strong> Son todos los elementos del universo que NO están en $A$. Está conectado con la negación lógica ($\neg p$).</li>
-        </ul>
+        <p>Este teorema conecta a la derivada con la integral y nos da el método mágico para evaluar integrales definidas. Nos dice que el área exacta es simplemente la Antiderivada $F(x)$ evaluada en el límite superior $b$, menos la misma evaluada en el límite inferior $a$.</p>
+        <p style="text-align: center; font-size: 1.2rem; margin: 15px 0;">
+            $$ \int_{a}^{b} f(x) dx = F(b) - F(a) $$
+        </p>
+        <p><strong>Nota:</strong> En las integrales definidas, ¡la constante $+ C$ desaparece! (Porque se suma al evaluar en $b$ y se resta al evaluar en $a$, cancelándose mutuamente).</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 13 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Teoría de Conjuntos</h2>
+    <h2>Ejemplos Resueltos: Integral Definida</h2>
     <div class="contenido-texto">
-        <p>Sean los siguientes conjuntos. Universo $U = \{1, 2, 3, 4, 5, 6, 7, 8, 9\}$, $A = \{2, 4, 6, 8\}$ y $B = \{3, 4, 5, 6\}$.</p>
-        <ol>
-            <li>Encuentra los elementos que forman la intersección: $A \cap B$.</li>
-            <li>Encuentra los elementos que forman la diferencia: $A \setminus B$. ¿Es el mismo resultado que $B \setminus A$?</li>
-            <li>Calcula el complemento de $A$ ($A^c$) y luego encuentra la intersección de ese resultado con el conjunto $B$. Es decir, resuelve: $A^c \cap B$.</li>
-            <li>Analiza lógicamente: Si sabes que la intersección de dos conjuntos está vacía ($X \cap Y = \emptyset$), ¿qué puedes concluir sobre los elementos de $X$ y $Y$?</li>
-        </ol>
+        <p><strong>Ejemplo 5: Calculando un Área Exacta</strong><br>
+        Evalúa el área bajo la curva $f(x) = 3x^2$ desde $x=1$ hasta $x=4$. Es decir, calcula: $\int_{1}^{4} 3x^2 dx$</p>
+        <p><em>Paso 1:</em> Encontramos la integral indefinida $F(x)$ sin la constante $C$.<br>
+        $\int 3x^2 dx = \frac{3x^3}{3} = x^3$<br>
+        Entonces, $F(x) = x^3$.</p>
+        <p><em>Paso 2:</em> Evaluamos en el límite superior ($b=4$).<br>
+        $F(4) = 4^3 = 64$</p>
+        <p><em>Paso 3:</em> Evaluamos en el límite inferior ($a=1$).<br>
+        $F(1) = 1^3 = 1$</p>
+        <p><em>Paso 4:</em> Aplicamos el Teorema Fundamental ($F(b) - F(a)$).<br>
+        $64 - 1 = 63$<br>
+        <strong>El área exacta bajo la curva es 63 unidades cuadradas.</strong></p>
     </div>
 </div>
-<!-- ── TEMA 5: RELACIONES ── -->
+
+<!-- ── TEMA 4: APLICACIONES DE LA INTEGRAL ── -->
 <!-- ── DIAPOSITIVA 14 ── -->
 <div class="slide">
-    <h2>1.9 Producto Cartesiano y Relaciones</h2>
+    <h2>6.9 Aplicación: Flujo de Ingresos Continuos</h2>
     <div class="contenido-texto">
-        <p>Antes de hablar de funciones, necesitamos entender cómo interactúan los elementos de dos conjuntos distintos.</p>
-        <ul>
-            <li><strong>Producto Cartesiano ($A \times B$):</strong> Es el conjunto de <em>todos</em> los pares ordenados $(a, b)$ que se pueden formar tomando el primer elemento del conjunto $A$ y el segundo del conjunto $B$. Es la base matemática de cualquier sistema de coordenadas.</li>
-            <li><strong>Relación:</strong> Una relación matemática de $A$ en $B$ es, formalmente, cualquier subconjunto del producto cartesiano. Es decir, es una regla que asocia <em>algunos</em> elementos de un conjunto con los de otro, sin restricciones estrictas.</li>
-        </ul>
+        <p>En finanzas, si una inversión genera dinero de manera continua a lo largo del tiempo (no solo a fin de mes), podemos calcular el total acumulado integrando la función del flujo de caja $f(t)$ respecto al tiempo $t$.</p>
+        <p>Aún más importante, si queremos conocer el <strong>Valor Presente (VP)</strong> de un flujo de ingresos futuro continuo con una tasa de interés $r$, utilizamos la siguiente integral exponencial:</p>
+        <p style="text-align: center; font-size: 1.2rem;">
+            $$ VP = \int_{0}^{T} f(t) e^{-rt} dt $$
+        </p>
+        <p>Esto trae todas las ganancias de los próximos $T$ años al valor del dinero del día de hoy.</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 15 ── -->
 <div class="slide">
-    <h2>1.10 Propiedades de las Relaciones</h2>
+    <h2>Ejemplos Resueltos: Valor Presente Continuo</h2>
     <div class="contenido-texto">
-        <p>Si analizamos una relación dentro de un mismo conjunto (elementos relacionándose entre sí mismos), esta puede tener ciertas propiedades lógicas:</p>
-        <ul>
-            <li><strong>Reflexiva:</strong> Todo elemento está relacionado consigo mismo. ($x$ se relaciona con $x$). Ejemplo clásico: El signo de igualdad ($=$).</li>
-            <li><strong>Simétrica:</strong> Si $x$ está relacionado con $y$, entonces $y$ está forzosamente relacionado con $x$. Ejemplo: "Ser hermano de".</li>
-            <li><strong>Transitiva:</strong> Si $x$ se relaciona con $y$, y a su vez $y$ se relaciona con $z$, entonces $x$ se relaciona con $z$. Ejemplo: "Ser mayor que" ($>$).</li>
-        </ul>
-        <p>Si una relación matemática cumple estas tres propiedades al mismo tiempo, se le llama <strong>Relación de Equivalencia</strong>.</p>
+        <p><strong>Ejemplo 6: Valor Presente</strong><br>
+        Una máquina generará ingresos constantes de $\$10,000$ al año durante 5 años. La tasa de interés es del $5\%$ ($0.05$). Calcula el Valor Presente.</p>
+        <p><em>Paso 1:</em> Planteamos la integral. $f(t) = 10000$, $r = 0.05$, $T = 5$.<br>
+        $VP = \int_{0}^{5} 10000 e^{-0.05t} dt$</p>
+        <p><em>Paso 2:</em> Sacamos la constante e integramos la exponencial.<br>
+        $10000 \left[ \frac{e^{-0.05t}}{-0.05} \right]_{0}^{5} = -200,000 \left[ e^{-0.05t} \right]_{0}^{5}$</p>
+        <p><em>Paso 3:</em> Evaluamos límites $F(5) - F(0)$.<br>
+        $-200,000 [e^{-0.25} - e^{0}] = -200,000 [0.7788 - 1]$</p>
+        <p><em>Paso 4:</em> Multiplicamos.<br>
+        $-200,000 [-0.2212] = \$44,240$<br>
+        <strong>El valor de esos 50,000 dólares futuros el día de hoy es de $44,240.</strong></p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 16 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Relaciones</h2>
+    <h2>6.10 Excedente del Consumidor y del Productor</h2>
     <div class="contenido-texto">
-        <p>Analiza las siguientes relaciones y determina sus propiedades lógicas:</p>
-        <ol>
-            <li>Si $A = \{1, 2\}$ y $B = \{x, y\}$, escribe todos los pares ordenados que conforman el producto cartesiano $A \times B$.</li>
-            <li>Considera la relación "ser amigo de" en una red social como Facebook. Analiza lógicamente: ¿Es reflexiva? ¿Es simétrica? ¿Es transitiva? Justifica cada respuesta.</li>
-            <li>En el conjunto de los números naturales, analiza la relación "es múltiplo de" (ej. 4 es múltiplo de 2). Determina si esta relación cumple con las propiedades reflexiva, simétrica y transitiva.</li>
-        </ol>
+        <p>Cuando el mercado encuentra un equilibrio de precio ($P_E$) y cantidad ($Q_E$):</p>
+        <ul>
+            <li><strong>Excedente del Consumidor (EC):</strong> Es el ahorro que obtienen los consumidores que estaban dispuestos a pagar más que $P_E$. Es el área <em>debajo</em> de la curva de demanda y <em>arriba</em> del precio de equilibrio.</li>
+            <li><strong>Excedente del Productor (EP):</strong> Es la ganancia extra que obtienen los productores que estaban dispuestos a vender por menos de $P_E$. Es el área <em>arriba</em> de la curva de oferta y <em>debajo</em> del precio.</li>
+        </ul>
+        <p>Ambos se calculan usando integrales definidas desde $Q=0$ hasta $Q_E$.</p>
     </div>
 </div>
 
-<!-- ── TEMA 6: FUNCIONES ── -->
-<!-- ── DIAPOSITIVA 17 ── -->
+<!-- ── DIAPOSITIVA 17 (Con Gráfica) ── -->
 <div class="slide">
-    <h2>1.11 Funciones: La máquina matemática</h2>
-    <div class="contenido-texto">
-        <p>Una <strong>función</strong> es un tipo muy especial y estricto de relación. Es una regla de correspondencia que asigna a <em>cada</em> elemento de un conjunto inicial <strong>exactamente un</strong> elemento de un conjunto final.</p>
-        <ul>
-            <li><strong>Dominio:</strong> Todos los valores de entrada permitidos (las $x$).</li>
-            <li><strong>Codominio y Rango:</strong> El codominio es el conjunto de llegada posible. El <strong>rango</strong> (o imagen) son los valores que <em>realmente</em> escupe la función (las $y$).</li>
-        </ul>
-        <p><em>Regla de oro:</em> De un elemento del dominio solo puede salir una flecha. Una función es como una máquina predecible: no puedes meter un $2$ y que a veces te devuelva un $4$ y a veces un $5$.</p>
+    <h2>6.11 Visualizando los Excedentes</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>Observa el punto de equilibrio en el centro. Las áreas de bienestar social (excedentes) se calculan restando funciones dentro de una integral.</p>
+        
+        <!-- INICIO DE GRÁFICA SVG: EXCEDENTES -->
+        <div style="text-align: center; margin: 10px 0;">
+            <svg viewBox="0 0 400 220" width="100%" max-width="400px" style="background-color: #fafafa; border: 1px solid #ddd; border-radius: 8px;">
+                <!-- Excedente Consumidor (Arriba, Naranja) -->
+                <polygon points="50,110 50,20 200,110" fill="rgba(240, 173, 78, 0.4)" stroke="none" />
+                
+                <!-- Excedente Productor (Abajo, Verde) -->
+                <polygon points="50,110 200,110 50,170" fill="rgba(42, 73, 57, 0.4)" stroke="none" />
+                
+                <!-- Ejes -->
+                <line x1="50" y1="190" x2="350" y2="190" stroke="#888" stroke-width="2" />
+                <line x1="50" y1="190" x2="50" y2="10" stroke="#888" stroke-width="2" />
+                
+                <!-- Demanda y Oferta -->
+                <line x1="50" y1="20" x2="300" y2="170" stroke="#d9534f" stroke-width="3" /> <!-- Demanda -->
+                <line x1="50" y1="170" x2="300" y2="70" stroke="#0275d8" stroke-width="3" /> <!-- Oferta -->
+                
+                <!-- Precio de Equilibrio (Línea central) -->
+                <line x1="50" y1="110" x2="200" y2="110" stroke="#333" stroke-width="2" stroke-dasharray="4,4" />
+                <line x1="200" y1="190" x2="200" y2="110" stroke="#333" stroke-width="2" stroke-dasharray="4,4" />
+                
+                <!-- Textos -->
+                <text x="80" y="80" font-size="12" font-weight="bold">Excedente Consumidor</text>
+                <text x="65" y="140" font-size="12" font-weight="bold">Excedente Productor</text>
+                <text x="20" y="115" font-size="12" font-weight="bold">Pe</text>
+                <text x="190" y="210" font-size="12" font-weight="bold">Qe</text>
+                <text x="310" y="170" font-size="12" fill="#d9534f">Demanda</text>
+                <text x="310" y="80" font-size="12" fill="#0275d8">Oferta</text>
+            </svg>
+        </div>
+        
+        <p><strong>Fórmulas:</strong><br>
+        $EC = \int_{0}^{Q_E} [\text{Demanda}(Q) - P_E] dQ$<br>
+        $EP = \int_{0}^{Q_E} [P_E - \text{Oferta}(Q)] dQ$</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 18 ── -->
 <div class="slide">
-    <h2>1.12 Inyectividad, Suprayectividad y Biyectividad</h2>
-    <div class="contenido-texto">
-        
-        <p>Clasificamos las funciones según cómo interactúan con el conjunto de llegada:</p>
-        <ul>
-            <li><strong>Inyectiva (Uno a uno):</strong> Nunca dos elementos diferentes del dominio ($x$) dan el mismo resultado en el rango ($y$). <br>
-            <em>Formalmente:</em> Si $f(x_1) = f(x_2) \implies x_1 = x_2$.</li>
-            <li><strong>Suprayectiva (Sobre):</strong> El rango cubre la totalidad del codominio. Ningún elemento del conjunto de llegada se queda "solo" sin ser apuntado por la regla de la función.</li>
-            <li><strong>Biyectiva:</strong> Es inyectiva y suprayectiva al mismo tiempo. Es una correspondencia perfecta, sin que sobre ni falte nada. <em>Solo las funciones biyectivas tienen función inversa ($f^{-1}$).</em></li>
-        </ul>
+    <h2>Ejemplos Resueltos: Calculando el Excedente</h2>
+    <div class="contenido-texto" style="font-size: 0.95rem;">
+        <p><strong>Ejemplo 7: Excedente del Consumidor</strong><br>
+        La curva de Demanda es $P_D(Q) = 100 - 2Q$. El mercado está en equilibrio con $Q_E = 20$.</p>
+        <p><em>Paso 1: Encontrar el Precio de Equilibrio ($P_E$).</em><br>
+        Sustituimos $Q=20$ en la demanda: $P_E = 100 - 2(20) = 60$.</p>
+        <p><em>Paso 2: Plantear la integral.</em><br>
+        $EC = \int_{0}^{20} [(100 - 2Q) - 60] dQ$<br>
+        $EC = \int_{0}^{20} (40 - 2Q) dQ$</p>
+        <p><em>Paso 3: Integrar y Evaluar en $b=20$ y $a=0$.</em><br>
+        $F(Q) = 40Q - Q^2$<br>
+        Límite Sup: $F(20) = 40(20) - 20^2 = 800 - 400 = 400$<br>
+        Límite Inf: $F(0) = 40(0) - 0^2 = 0$</p>
+        <p><strong>El Excedente del Consumidor es de $\$400$.</strong></p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 19 ── -->
 <div class="slide">
-    <h2>1.13 Composición de Funciones</h2>
+    <h2>6.12 Curva de Lorenz y Coeficiente de Gini</h2>
     <div class="contenido-texto">
-        <p>A menudo necesitamos evaluar el resultado de una función directamente dentro de otra. Esto se llama <strong>composición</strong> y se denota como $(g \circ f)(x)$, que significa evaluar $g(f(x))$.</p>
-        <p>Funciona como una línea de ensamblaje en una fábrica:</p>
-        <ol>
-            <li>Tomas un valor $x$ y lo procesas en la máquina $f$.</li>
-            <li>La máquina $f$ te devuelve un resultado intermedio.</li>
-            <li>Tomas ese resultado intermedio y lo metes inmediatamente en la máquina $g$ para obtener el valor final.</li>
-        </ol>
-        <p><em>Ojo matemático:</em> En general, el orden de las operaciones altera el producto. Evaluar $g(f(x))$ casi nunca es igual a evaluar $f(g(x))$.</p>
+        <p>La <strong>Curva de Lorenz ($L(x)$)</strong> muestra gráficamente la distribución de la riqueza en un país. Compara el porcentaje acumulado de población (eje $x$) con el porcentaje acumulado de ingresos (eje $y$).</p>
+        <p>Si todos ganaran exactamente lo mismo (Equidad Perfecta), la curva sería una línea recta diagonal ($y=x$). En la realidad, es una curva cóncava ("pandeada" hacia abajo).</p>
+        <p>El <strong>Coeficiente de Gini</strong> mide el área entre la línea de igualdad perfecta y la curva de Lorenz real, usando una integral. Va de $0$ (Igualdad total) a $1$ (Desigualdad máxima, una persona tiene todo).</p>
     </div>
 </div>
 
-<!-- ── DIAPOSITIVA 20 ── -->
+<!-- ── DIAPOSITIVA 20 (Con Gráfica) ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Funciones</h2>
+    <h2>6.13 Visualizando la Desigualdad (Gini)</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>El Área "A" (entre las líneas) es la medida de la desigualdad. Cuanto más "pandeada" esté la curva de Lorenz, más grande es el área A y mayor es el Índice de Gini.</p>
+        
+        <!-- INICIO DE GRÁFICA SVG: LORENZ Y GINI -->
+        <div style="text-align: center; margin: 10px 0;">
+            <svg viewBox="0 0 400 220" width="100%" max-width="350px" style="background-color: #fafafa; border: 1px solid #ddd; border-radius: 8px;">
+                <!-- Área A (Gini) -->
+                <path d="M 50 190 L 300 40 Q 200 170 50 190 Z" fill="rgba(217, 83, 79, 0.4)" stroke="none" />
+                
+                <!-- Área B -->
+                <path d="M 50 190 Q 200 170 300 40 L 300 190 Z" fill="rgba(42, 73, 57, 0.2)" stroke="none" />
+                
+                <!-- Ejes (Box 1x1) -->
+                <line x1="50" y1="190" x2="300" y2="190" stroke="#888" stroke-width="2" />
+                <line x1="50" y1="190" x2="50" y2="40" stroke="#888" stroke-width="2" />
+                <line x1="300" y1="190" x2="300" y2="40" stroke="#888" stroke-width="1" stroke-dasharray="2,2" />
+                <line x1="50" y1="40" x2="300" y2="40" stroke="#888" stroke-width="1" stroke-dasharray="2,2" />
+                
+                <!-- Línea de Igualdad Perfecta (y=x) -->
+                <line x1="50" y1="190" x2="300" y2="40" stroke="#333" stroke-width="2" />
+                
+                <!-- Curva de Lorenz L(x) -->
+                <path d="M 50 190 Q 200 170 300 40" fill="none" stroke="#0275d8" stroke-width="3" />
+                
+                <!-- Textos -->
+                <text x="160" y="140" font-size="14" font-weight="bold">Área A</text>
+                <text x="210" y="170" font-size="14" font-weight="bold" fill="#2a4939">Área B</text>
+                <text x="310" y="45" font-size="12">1 (100%)</text>
+                <text x="15" y="45" font-size="12">1 (100%)</text>
+                <text x="30" y="210" font-size="12" font-weight="bold">Población (x)</text>
+                <text x="20" y="160" font-size="12" font-weight="bold" transform="rotate(-90 20,160)">Ingresos (y)</text>
+            </svg>
+        </div>
+        
+        <p><strong>Fórmula del Gini:</strong> Multiplicamos por 2 el área de la región de desigualdad.<br>
+        $$ \text{Gini} = 2 \int_{0}^{1} [x - L(x)] dx $$</p>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 21 ── -->
+<div class="slide">
+    <h2>Ejemplos Resueltos: Calculando Gini</h2>
     <div class="contenido-texto">
-        <p>Aplica los conceptos estrictos de funciones en estos ejercicios:</p>
+        <p><strong>Ejemplo 8: Medición de desigualdad</strong><br>
+        En un país imaginario, la Curva de Lorenz de los salarios está dada por $L(x) = x^2$. Calcula el Coeficiente de Gini.</p>
+        <p><em>Paso 1:</em> Sustituimos $L(x)$ en la fórmula del Gini.<br>
+        $\text{Gini} = 2 \int_{0}^{1} (x - x^2) dx$</p>
+        <p><em>Paso 2:</em> Integramos usando la regla de la potencia.<br>
+        $F(x) = \frac{x^2}{2} - \frac{x^3}{3}$</p>
+        <p><em>Paso 3:</em> Evaluamos en el límite superior ($1$) e inferior ($0$).<br>
+        Límite Sup: $F(1) = \frac{1}{2} - \frac{1}{3} = \frac{3}{6} - \frac{2}{6} = \frac{1}{6}$<br>
+        Límite Inf: $F(0) = 0$</p>
+        <p><em>Paso 4:</em> Multiplicamos por el 2 de la fórmula.<br>
+        $2 \cdot (\frac{1}{6}) = \frac{2}{6} = 0.333$</p>
+        <p><strong>El Índice de Gini de este país es $0.33$. Una desigualdad moderada.</strong></p>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 22 ── -->
+<div class="slide">
+    <h2>Práctica Autónoma: Integrales Indefinidas (1-7)</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>Resuelve paso a paso en tu cuaderno:</p>
         <ol>
-            <li>Identifica si la siguiente relación es una función: "A cada persona en un país se le asigna su número de teléfono celular". <em>(Pista: Analiza qué pasa si alguien tiene dos líneas a su nombre bajo la regla de "exactamente un" elemento).</em></li>
-            <li>Determina si la función $f(x) = x^2$ (definida para todos los números reales) es inyectiva. Justifica usando la definición formal matemática.</li>
-            <li>Sean $f(x) = 2x + 1$ y $g(x) = x^2$. Calcula:
-                <ul>
-                    <li>La composición $(g \circ f)(x)$</li>
-                    <li>La composición $(f \circ g)(x)$</li>
-                </ul>
-                ¿Los resultados son equivalentes?
-            </li>
+            <li>Calcula: $\int (5x^4 - 2x^2 + 8) dx$</li>
+            <li>Calcula: $\int (\frac{3}{x} + e^x) dx$</li>
+            <li><strong>Condición inicial:</strong> El Costo Marginal es $CMg = 4Q + 50$. Si producir cero unidades cuesta $\$200$, encuentra la función $CT(Q)$.</li>
+            <li><strong>Sustitución:</strong> Usa $u = x^2 + 3$ para resolver: $\int 2x(x^2 + 3)^3 dx$</li>
+            <li><strong>Sustitución:</strong> Resuelve $\int e^{5x} \cdot 5 dx$</li>
+            <li><strong>Por Partes:</strong> Asigna $u=x$ y $dv=e^{2x}dx$ para resolver: $\int x e^{2x} dx$.</li>
+            <li><strong>Por Partes (Economía):</strong> Si el ingreso marginal decae con el tiempo como $IMg(t) = t \cdot \ln(t)$, plantea cómo resolverías la integral para hallar el Ingreso Total. (Usa $u = \ln(t)$).</li>
         </ol>
     </div>
 </div>
 
-<!-- ── DIAPOSITIVA 21: CIERRE DEL MÓDULO ── -->
+<!-- ── DIAPOSITIVA 23 ── -->
 <div class="slide">
-    <h2 style="color: #2a4939; text-align: center; margin-bottom: 20px;">¡Felicidades! Has completado el Módulo 1</h2>
+    <h2>Práctica Autónoma: Integrales Definidas (8-15)</h2>
+    <div class="contenido-texto" style="font-size: 0.85rem;">
+        <ol start="8">
+            <li>Evalúa la integral definida: $\int_{1}^{3} (2x + 4) dx$.</li>
+            <li>Calcula el área exacta bajo la parábola $f(x) = x^2$ entre $x=0$ y $x=3$.</li>
+            <li><strong>Valor Presente:</strong> Una renta produce $\$500$ constantes al año. Calcula su Valor Presente a 10 años con una tasa del $4\%$ ($r=0.04$). $VP = \int_{0}^{10} 500 e^{-0.04t} dt$.</li>
+            <li><strong>Excedente del Consumidor:</strong> La demanda es $P_D = 50 - Q$. El mercado equilibra en $Q=10$ y $P=40$. Plantea y resuelve la integral del EC.</li>
+            <li><strong>Excedente del Productor:</strong> La oferta es $P_S = 10 + 2Q$. Usando el mismo equilibrio ($Q=10, P=40$), calcula el EP.</li>
+            <li><strong>Gini (Curva extrema):</strong> Imagina un país con desigualdad perfecta donde 1 persona tiene todo, entonces su curva sería $L(x) = x^{100}$. Aproxima el Gini evaluando $2 \int_{0}^{1} (x - x^{100}) dx$.</li>
+            <li>Analiza lógicamente: ¿Qué significa geométricamente si la integral definida de una curva da exactamente Cero?</li>
+            <li>Demuestra que derivar el resultado del ejercicio 1 te devuelve exactamente la función original.</li>
+        </ol>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 24: CIERRE DEL MÓDULO ── -->
+<div class="slide">
+    <h2 style="color: #2a4939; text-align: center; margin-bottom: 20px;">¡Felicidades! Has completado el Módulo 6</h2>
     <div class="contenido-texto" style="text-align: center;">
-        <div style="font-size: 3rem; margin-bottom: 15px;">🎓</div>
-        <p>Has construido los cimientos analíticos necesarios para adentrarte en las matemáticas superiores sin temor al rigor formal.</p>
-        <p style="margin-top: 15px;">Ahora dominas:</p>
+        <div style="font-size: 3rem; margin-bottom: 15px;">🧩</div>
+        <p>Acabas de dominar el proceso de reconstruir el panorama económico a partir de cambios microscópicos.</p>
+        <p style="margin-top: 15px;">Con el Cálculo Integral dominado, ahora eres capaz de:</p>
         <ul style="text-align: left; display: inline-block; margin-top: 10px;">
-            <li>La estructura lógica para construir argumentos irrebatibles ($p \implies q$).</li>
-            <li>El uso correcto de los cuantificadores ($\forall, \exists$) y su negación.</li>
-            <li>Las estrategias matemáticas para demostrar la veracidad de una afirmación.</li>
-            <li>El lenguaje de los conjuntos, las relaciones y la definición estricta de una función.</li>
+            <li>Recuperar funciones totales (Costos, Ingresos) a partir de sus versiones marginales.</li>
+            <li>Dominar técnicas avanzadas algebraicas como Sustitución y Por Partes.</li>
+            <li>Calcular con precisión de cirujano el Área bajo la curva usando el Teorema Fundamental.</li>
+            <li>Medir el bienestar social (Excedentes) y la desigualdad de un país (Índice de Gini).</li>
         </ul>
-        <p style="margin-top: 25px; font-weight: bold;">Estás listo para iniciar el <strong>Módulo 2: Álgebra</strong>.</p>
+        <p style="margin-top: 25px; font-weight: bold;">Estás listo para dar el salto tridimensional en el <strong>Módulo 7: Cálculo Multivariable</strong>.</p>
+        
+        <!-- BOTÓN DE COMPLETADO M6 -->
         <div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
-    <button id="btnCompletarM1" style="background-color: #2a4939; color: #fff1da; padding: 14px 28px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.05rem; transition: background 0.3s;">
-        Marcar Módulo 1 como Completado
-    </button>
-</div>
+            <button id="btnCompletarM6" style="background-color: #2a4939; color: #fff1da; padding: 14px 28px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.05rem; transition: background 0.3s;">
+                Marcar Módulo 6 como Completado
+            </button>
+        </div>
     </div>
 </div>
             <!-- ── NAVEGACIÓN ── -->

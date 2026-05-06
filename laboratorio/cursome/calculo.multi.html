@@ -587,321 +587,577 @@ footer {
         <!-- Tarjeta de diapositivas -->
         <div class="slide-container">
 
-            <!-- ── DIAPOSITIVA 1 ── -->
-            <div class="slide active">
-                <h2>¿Para qué sirven las matemáticas en economía?</h2>
-                <div class="contenido-texto">
-                    <p>En el análisis económico, las matemáticas cumplen funciones críticas que van más allá del simple cálculo:</p>
-                    <ul>
-                        <li>Nos permiten expresar suposiciones y conclusiones mediante símbolos y ecuaciones, evitando caer en ambigüedades.</li>
-                        <li>Al utilizar teoremas matemáticos, el analista se ve forzado a explicar todos los supuestos o condiciones necesarias para no perder el sentido económico.</li>
-                        <li>Las matemáticas nos permiten trabajar con <em>n</em> variables, permitiéndonos hacer modelos que reflejen la realidad.</li>
-                        <li>Herramientas como el cálculo sirven para optimizar (maximizar ganancias o minimizar costos) y el álgebra lineal para analizar la interdependencia entre los distintos sectores de una economía.</li>
-                    </ul>
-                </div>
-            </div>
+<!-- ── DIAPOSITIVA 1: INTRODUCCIÓN ── -->
+<div class="slide active">
+    <h2>7.1 Bienvenidos al Multiverso (Multivariable)</h2>
+    <div class="contenido-texto">
+        <p>Hasta ahora estudiábamos curvas en un plano ($y = f(x)$). En el mundo real, los resultados dependen de múltiples factores al mismo tiempo. Ahora estudiaremos superficies tridimensionales y espacios multidimensionales denotados como $z = f(x, y)$.</p>
+        <p><strong>En la economía, este es el estándar:</strong></p>
+        <ul>
+            <li><strong>Función de Producción:</strong> $Q = f(K, L)$ (La cantidad depende del Capital y el Trabajo).</li>
+            <li><strong>Función de Utilidad:</strong> $U = f(X, Y)$ (Tu felicidad depende de cuántos tacos y refrescos consumas).</li>
+            <li><strong>Demanda Multivariable:</strong> $Q_d = f(P_x, P_y, I)$ (Depende de su precio, el precio de otro bien y tu ingreso).</li>
+        </ul>
+    </div>
+</div>
 
-            <!-- ── TEMA 1: LÓGICA PROPOSICIONAL (Sin tablas de verdad) ── -->
+<!-- ── TEMA 1: FUNCIONES DE VARIAS VARIABLES ── -->
 <!-- ── DIAPOSITIVA 2 ── -->
 <div class="slide">
-    <h2>1.1 Lógica Proposicional: Conceptos Básicos</h2>
+    <h2>7.2 Mapas Topológicos de la Economía</h2>
     <div class="contenido-texto">
-        <p>Iniciamos con la <strong>proposición</strong>: una afirmación que solo puede ser verdadera ($V$) o falsa ($F$). Los <strong>conectivos lógicos</strong> nos permiten crear argumentos complejos a partir de ideas simples:</p>
+        <p>Dibujar en 3D en un papel es difícil. Para visualizar funciones de varias variables ($z = f(x,y)$), los economistas usamos una técnica tomada de la cartografía: las <strong>Curvas de Nivel</strong>.</p>
+        <p>Una curva de nivel es una "rebanada" horizontal de nuestra montaña 3D. Nos muestra todas las combinaciones posibles de $x$ e $y$ que nos dan exactamente el <em>mismo resultado $z$</em>.</p>
         <ul>
-            <li><strong>Negación ($\neg p$):</strong> Afirma exactamente lo contrario a $p$.</li>
-            <li><strong>Conjunción ($p \land q$):</strong> "Y". Exige que ambas condiciones se cumplan estrictamente al mismo tiempo.</li>
-            <li><strong>Disyunción ($p \lor q$):</strong> "O". Es flexible; basta con que al menos una condición sea cierta para que todo el enunciado lo sea.</li>
-            <li><strong>Implicación ($p \implies q$):</strong> "Si $p$, entonces $q$". Establece una relación causa-efecto o de condición suficiente. Es la base de cualquier teorema matemático.</li>
-            <li><strong>Bicondicional ($p \iff q$):</strong> "Si y solo si". Significa que $p$ y $q$ son equivalentes; no puede ocurrir una sin la otra.</li>
+            <li>En Teoría del Consumidor, se llaman <strong>Curvas de Indiferencia</strong> (mismo nivel de utilidad).</li>
+            <li>En Teoría del Productor, se llaman <strong>Isocuantas</strong> (mismo nivel de producción).</li>
         </ul>
     </div>
 </div>
 
-<!-- ── DIAPOSITIVA 3 ── -->
+<!-- ── DIAPOSITIVA 3 (Con Gráfica) ── -->
 <div class="slide">
-    <h2>1.2 Tautologías y Equivalencias</h2>
-    <div class="contenido-texto">
-        <p>En lugar de memorizar escenarios mecánicos, en matemáticas buscamos identificar estructuras lógicas que siempre funcionan:</p>
-        <ul>
-            <li><strong>Tautología:</strong> Un argumento que siempre es verdadero por su pura estructura lógica, sin importar de qué estemos hablando. Por ejemplo, la frase "Llueve o no llueve" ($p \lor \neg p$) es una verdad absoluta indiscutible.</li>
-            <li><strong>Contradicción:</strong> Algo que es imposible por definición. Por ejemplo, "Subió y no subió" ($p \land \neg p$).</li>
-            <li><strong>Leyes de De Morgan:</strong> Son trucos de oro para negar ideas agrupadas.
-                <ul style="margin-top: 5px;">
-                    <li>Negar que pasaron <em>ambas</em> cosas ($\neg(p \land q)$), es lo mismo que decir que falló la primera <em>o</em> falló la segunda ($\neg p \lor \neg q$).</li>
-                    <li>Negar que pasó <em>al menos una</em> de las dos ($\neg(p \lor q)$), es lo mismo que decir que no pasó la primera <em>y</em> tampoco la segunda ($\neg p \land \neg q$).</li>
-                </ul>
-            </li>
-        </ul>
+    <h2>7.3 Visualizando Curvas de Nivel</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>Observa cómo la montaña 3D se aplasta en un mapa 2D. Cada línea representa una altura diferente. En economía, queremos saltar a la curva más alta posible.</p>
+        
+        <!-- INICIO DE GRÁFICA SVG: CURVAS DE NIVEL -->
+        <div style="text-align: center; margin: 10px 0;">
+            <svg viewBox="0 0 400 220" width="100%" max-width="350px" style="background-color: #fafafa; border: 1px solid #ddd; border-radius: 8px;">
+                <!-- Ejes -->
+                <line x1="40" y1="180" x2="360" y2="180" stroke="#888" stroke-width="2" />
+                <line x1="40" y1="180" x2="40" y2="20" stroke="#888" stroke-width="2" />
+                
+                <!-- Curvas de Indiferencia (Convexas al origen) -->
+                <path d="M 60 160 Q 100 100 160 60" fill="none" stroke="#2a4939" stroke-width="2" />
+                <path d="M 80 170 Q 140 120 220 80" fill="none" stroke="#2a4939" stroke-width="2" />
+                <path d="M 110 180 Q 180 140 280 100" fill="none" stroke="#2a4939" stroke-width="2" />
+                
+                <!-- Textos -->
+                <text x="170" y="65" font-size="12" font-weight="bold">U = 10</text>
+                <text x="230" y="85" font-size="12" font-weight="bold">U = 20</text>
+                <text x="290" y="105" font-size="12" font-weight="bold">U = 30</text>
+                
+                <text x="340" y="200" font-size="12" font-weight="bold">Bien X</text>
+                <text x="5" y="40" font-size="12" font-weight="bold">Bien Y</text>
+            </svg>
+        </div>
+        
+        <p>Cualquier punto sobre la curva $U=20$ te da exactamente 20 unidades de felicidad, ya sea que tengas mucha $X$ y poca $Y$, o viceversa.</p>
     </div>
 </div>
 
+<!-- ── TEMA 2: DERIVADAS PARCIALES ── -->
 <!-- ── DIAPOSITIVA 4 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Lógica Proposicional</h2>
+    <h2>7.4 Derivadas Parciales: La Magia del <em>Ceteris Paribus</em></h2>
     <div class="contenido-texto">
-        <p>Realiza los siguientes ejercicios analíticos en tu cuaderno:</p>
-        <ol>
-            <li><strong>Traducción:</strong> Sean $p$: "Hay inflación" y $q$: "El banco central interviene". Escribe en lenguaje natural las siguientes expresiones formales: 
-                <ul>
-                    <li>$p \implies q$</li>
-                    <li>$\neg q \implies \neg p$</li>
-                </ul>
-                ¿Tienen el mismo significado en la vida real?
-            </li>
-            <li><strong>Aplicación de De Morgan:</strong> Un reglamento dice: "Para aprobar necesitas entregar la tesis ($t$) Y pasar el examen ($e$)". Si un estudiante reprueba, ¿cómo expresas lógicamente lo que le faltó usando la Ley de De Morgan?</li>
-        </ol>
+        <p>En el Módulo 5 derivábamos asumiendo que solo $x$ cambiaba. ¿Qué hacemos si tenemos $x$ e $y$?</p>
+        <p>Usamos las <strong>Derivadas Parciales</strong>. La regla de oro es brutalmente sencilla: <strong>Derivas una variable y tratas a todas las demás como si fueran simples números constantes (Ceteris Paribus).</strong></p>
+        <ul>
+            <li>Derivada parcial respecto a $x$ ($\frac{\partial f}{\partial x}$ o $f_x$): La $y$ es un simple número.</li>
+            <li>Derivada parcial respecto a $y$ ($\frac{\partial f}{\partial y}$ o $f_y$): La $x$ es un simple número.</li>
+        </ul>
+        <p><em>Nota: Usamos el símbolo $\partial$ (d de Jacobi) en lugar de la $d$ normal para avisar que es parcial.</em></p>
     </div>
 </div>
 
-<!-- ── TEMA 2: LÓGICA DE PREDICADOS (Simplificada) ── -->
 <!-- ── DIAPOSITIVA 5 ── -->
 <div class="slide">
-    <h2>1.3 Lógica de Predicados: De lo particular a lo general</h2>
+    <h2>7.5 Interpretación Económica (Productividad Marginal)</h2>
     <div class="contenido-texto">
-        <p>Una proposición normal dice: <em>"Juan es estudiante"</em>. Es fácil saber si es verdad. Pero un <strong>predicado</strong> usa variables: <em>"$x$ es estudiante"</em>. No podemos saber si es verdad hasta saber quién es $x$ o a cuántos nos referimos.</p>
-        <p>Para eso usamos los <strong>cuantificadores</strong>, que nos dicen de cuántos elementos estamos hablando:</p>
+        <p>Las derivadas parciales son el corazón de la microeconomía marginalista.</p>
+        <p>Dada una función de producción $Q = f(K, L)$:</p>
         <ul>
-            <li><strong>Cuantificador Universal ($\forall$):</strong> Significa "Para todos". <br>
-            <em>Ejemplo: $\forall x$, $x$ necesita comer. (Todos necesitan comer).</em></li>
-            <li><strong>Cuantificador Existencial ($\exists$):</strong> Significa "Existe al menos uno" (puede haber más, pero mínimo hay uno). <br>
-            <em>Ejemplo: $\exists x$ tal que $x$ tiene un millón de dólares. (Alguien es millonario).</em></li>
+            <li>$\frac{\partial Q}{\partial L} = PMg_L$: <strong>Producto Marginal del Trabajo.</strong> Cuánto aumenta la producción si contrato a un trabajador extra, <em>manteniendo las máquinas (Capital) fijas</em>.</li>
+            <li>$\frac{\partial Q}{\partial K} = PMg_K$: <strong>Producto Marginal del Capital.</strong> Cuánto aumenta la producción si compro una máquina extra, <em>manteniendo la plantilla laboral fija</em>.</li>
         </ul>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 6 ── -->
 <div class="slide">
-    <h2>1.4 ¿Cómo contradecir a alguien? (Negación de Cuantificadores)</h2>
+    <h2>Ejemplos Resueltos: Derivada Parcial (Cobb-Douglas)</h2>
     <div class="contenido-texto">
-        <p>Negar cuantificadores es simplemente usar el sentido común para ganar un debate:</p>
-        <ul>
-            <li><strong>Para negar un "Todos" ($\forall$):</strong> <br>
-            Si yo afirmo: <em>"Todos los cisnes son blancos"</em>, tú no necesitas revisar cada cisne del mundo para demostrar que miento. Solo necesitas traerme <strong>un</strong> cisne que sea negro. <br>
-            <strong>Regla:</strong> $\neg (\forall x, P(x))$ se convierte en $\exists x, \neg P(x)$.</li>
-            <br>
-            <li><strong>Para negar un "Existe" ($\exists$):</strong> <br>
-            Si yo afirmo: <em>"Existe un monstruo debajo de la cama"</em>, para demostrar que miento, tú tienes que encender la luz y comprobar que <strong>ninguno</strong> de los rincones tiene un monstruo. <br>
-            <strong>Regla:</strong> $\neg (\exists x, P(x))$ se convierte en $\forall x, \neg P(x)$.</li>
-        </ul>
+        <p><strong>Ejemplo 1: Calculando el PMg</strong><br>
+        Dada la famosa función Cobb-Douglas $Q(K, L) = 10 K^{0.5} L^{0.5}$. Calcula la derivada parcial respecto a $L$ ($PMg_L$).</p>
+        <p><em>Paso 1:</em> Identificamos la variable a derivar ($L$). Todo lo demás ($10 K^{0.5}$) se considera un coeficiente constante "pegado" a la $L$.</p>
+        <p><em>Paso 2:</em> Aplicamos la regla de la potencia a $L^{0.5}$. Bajamos el $0.5$ y le restamos $1$ al exponente ($0.5 - 1 = -0.5$).</p>
+        <p><em>Paso 3:</em> Multiplicamos.<br>
+        $\frac{\partial Q}{\partial L} = 10 K^{0.5} \cdot (0.5 L^{-0.5})$</p>
+        <p><em>Paso 4:</em> Simplificamos ($10 \cdot 0.5 = 5$).<br>
+        <strong>$PMg_L = 5 K^{0.5} L^{-0.5}$</strong></p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 7 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Lógica de Predicados</h2>
+    <h2>Ejemplos Resueltos: Evaluación Parcial</h2>
     <div class="contenido-texto">
-        <p>Pon a prueba tu intuición con estos ejercicios:</p>
-        <ol>
-            <li>Escribe usando los símbolos $\forall$ o $\exists$ la siguiente frase matemática: "Existe al menos un número real $x$ que, al multiplicarse por cero, da como resultado uno". ¿Es verdadera o falsa?</li>
-            <li>Un político afirma: "Todos los programas sociales reducen la pobreza" ($\forall x, R(x)$). Si fueras un investigador que quiere demostrar que el político miente, ¿qué tendrías que encontrar en los datos? Escribe tu objetivo usando símbolos lógicos.</li>
-            <li>Traduce la frase "No hay reglas sin excepciones" al lenguaje de cuantificadores usando $\forall$ (Todos) y $\exists$ (Existe).</li>
-        </ol>
+        <p><strong>Ejemplo 2: ¿Cuánto aporta el nuevo trabajador?</strong><br>
+        Continuando el ejemplo anterior, si la fábrica actualmente tiene $K = 100$ máquinas y $L = 25$ trabajadores, ¿cuánto producto extra generará contratar al trabajador número 26?</p>
+        <p><em>Paso 1:</em> Tomamos la derivada parcial que ya calculamos: $PMg_L = 5 K^{0.5} L^{-0.5}$</p>
+        <p><em>Paso 2:</em> Sustituimos los valores actuales ($K=100, L=25$).<br>
+        $PMg_L = 5 (100)^{0.5} (25)^{-0.5}$</p>
+        <p><em>Paso 3:</em> Calculamos las raíces cuadradas.<br>
+        $100^{0.5} = 10$<br>
+        $25^{-0.5} = \frac{1}{\sqrt{25}} = \frac{1}{5}$</p>
+        <p><em>Paso 4:</em> Multiplicamos.<br>
+        $PMg_L = 5 \cdot 10 \cdot \frac{1}{5} = 10$</p>
+        <p><strong>El trabajador número 26 aportará exactamente 10 unidades de producción.</strong></p>
     </div>
 </div>
-<!-- ── TEMA 3: MÉTODOS DE DEMOSTRACIÓN ── -->
+
+<!-- ── TEMA 3: DERIVADAS CRUZADAS Y TEOREMA DE YOUNG ── -->
 <!-- ── DIAPOSITIVA 8 ── -->
 <div class="slide">
-    <h2>1.5 Métodos de Demostración: El arte de probar</h2>
+    <h2>7.6 Derivadas Parciales de Segundo Orden</h2>
     <div class="contenido-texto">
-        <p>En matemáticas, no basta con que algo parezca cierto; hay que <strong>demostrarlo</strong> sin dejar lugar a dudas. Toda demostración parte de supuestos conocidos (hipótesis, $p$) para llegar a una conclusión irrebatible ($q$).</p>
+        <p>Al igual que en 2D, podemos volver a derivar. Si tenemos $f(x,y)$, sus primeras derivadas son $f_x$ y $f_y$. Al derivar de nuevo, tenemos 4 combinaciones posibles:</p>
         <ul>
-            <li><strong>Demostración Directa:</strong> Es el camino recto. Asumimos que $p$ es verdadero y, mediante álgebra y lógica paso a paso, llegamos a $q$.<br>
-            <em>Ejemplo:</em> Demostrar que "Si $x$ es un número par, entonces $x^2$ es par". Asumes que $x = 2k$, lo elevas al cuadrado ($4k^2$) y factorizas un 2 para probarlo: $2(2k^2)$.</li>
+            <li>$f_{xx}$: Derivar $x$, y volver a derivar respecto a $x$.</li>
+            <li>$f_{yy}$: Derivar $y$, y volver a derivar respecto a $y$.</li>
+            <li>$f_{xy}$: Derivar respecto a $x$, y luego derivar el resultado respecto a $y$. (Derivada Cruzada).</li>
+            <li>$f_{yx}$: Derivar respecto a $y$, y luego derivar el resultado respecto a $x$. (Derivada Cruzada).</li>
         </ul>
-        <p>Pero a veces, el camino directo es muy complicado. Para eso existen las estrategias indirectas.</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 9 ── -->
 <div class="slide">
-    <h2>1.6 Demostración por Contrapositiva y Contradicción</h2>
+    <h2>7.7 El Teorema de Young</h2>
     <div class="contenido-texto">
-        <p>Cuando probar $p \implies q$ es difícil, usamos trucos lógicos:</p>
-        <ul>
-            <li><strong>Por Contrapositiva:</strong> Lógicamente, decir "Si llueve, el piso se moja" es exactamente igual a decir "Si el piso NO está mojado, entonces NO llovió". <br>
-            En lugar de probar $p \implies q$, probamos su equivalente: $\neg q \implies \neg p$. A veces, trabajar con las negaciones hace el álgebra mucho más fácil.</li>
-            <br>
-            <li><strong>Por Contradicción (Reducción al absurdo):</strong> Es el método del investigador. Asumimos que lo que queremos probar es falso y seguimos las reglas matemáticas hasta llegar a algo imposible (como $1 = 0$). Como la matemática no se equivoca, nuestro supuesto inicial debió ser el error, probando así que la afirmación original era cierta.</li>
-        </ul>
+        <p>Existe un teorema mágico en el cálculo multivariable llamado el <strong>Teorema de Young (o de Schwarz)</strong>.</p>
+        <p>Nos garantiza que para casi cualquier función económica "suave", el orden de las derivadas cruzadas no altera el producto. Es decir:</p>
+        <p style="text-align: center; font-size: 1.5rem; font-weight: bold; margin: 15px 0;">
+            $$ f_{xy} = f_{yx} $$
+        </p>
+        <p><em>Aplicación:</em> Si derivas primero Capital y luego Trabajo, obtendrás el mismo resultado que si derivas primero Trabajo y luego Capital. ¡Esto te ahorra hacer cálculos dobles!</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 10 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Métodos de Demostración</h2>
+    <h2>Ejemplos Resueltos: Derivadas Cruzadas</h2>
     <div class="contenido-texto">
-        <p>Aplica la lógica de demostración en los siguientes casos:</p>
-        <ol>
-            <li><strong>Directa:</strong> Demuestra que la suma de dos números impares siempre da como resultado un número par. <em>(Pista: Un número impar se escribe como $2k + 1$).</em></li>
-            <li><strong>Contrapositiva:</strong> Queremos demostrar la frase: "Si $3x + 2$ es impar, entonces $x$ es impar". ¿Cuál sería la afirmación contrapositiva que tendrías que demostrar? Escríbela en lenguaje natural.</li>
-            <li><strong>Contradicción (Análisis de argumento):</strong> Un abogado dice: "Asumamos que mi cliente robó el banco. Si lo hizo, debió estar en la ciudad a las 3 PM. Pero las cámaras lo ubican en otro país a esa hora". ¿Por qué esto demuestra la inocencia del cliente usando reducción al absurdo?</li>
-        </ol>
+        <p><strong>Ejemplo 3: Comprobando a Young</strong><br>
+        Sea $f(x,y) = 3x^2y^3 - 5x$. Calcula $f_{xy}$ y $f_{yx}$.</p>
+        <p><em>Ruta 1 (Primero x, luego y):</em><br>
+        $f_x = 6xy^3 - 5$<br>
+        Ahora derivamos eso respecto a $y$ (la $x$ es constante):<br>
+        $f_{xy} = 6x(3y^2) - 0 = 18xy^2$</p>
+        <p><em>Ruta 2 (Primero y, luego x):</em><br>
+        $f_y = 3x^2(3y^2) - 0 = 9x^2y^2$<br>
+        Ahora derivamos eso respecto a $x$ (la $y$ es constante):<br>
+        $f_{yx} = 9(2x)y^2 = 18xy^2$</p>
+        <p><strong>¡Ambas rutas dan $18xy^2$! Young tenía razón.</strong></p>
     </div>
 </div>
 
-<!-- ── TEMA 4: TEORÍA DE CONJUNTOS ── -->
+<!-- ── TEMA 4: EL GRADIENTE ── -->
 <!-- ── DIAPOSITIVA 11 ── -->
 <div class="slide">
-    <h2>1.7 Teoría de Conjuntos: El alfabeto de las matemáticas</h2>
+    <h2>7.8 El Vector Gradiente ($\nabla f$)</h2>
     <div class="contenido-texto">
-        <p>Un <strong>conjunto</strong> es simplemente una colección bien definida de objetos o números, a los que llamamos <strong>elementos</strong>. Casi toda la matemática moderna está escrita en lenguaje de conjuntos.</p>
-        <ul>
-            <li><strong>Pertenencia ($\in$):</strong> Indica que un elemento vive dentro del conjunto. Si $A = \{1, 2, 3\}$, entonces $2 \in A$ (2 pertenece a A), pero $5 \notin A$ (5 no pertenece a A).</li>
-            <li><strong>Subconjunto ($\subseteq$):</strong> Decimos que $B$ es subconjunto de $A$ si <em>todos</em> los elementos de $B$ también están dentro de $A$.</li>
-            <li><strong>Conjunto Vacío ($\emptyset$):</strong> Es el conjunto que no tiene ningún elemento. Es un concepto filosófico poderoso: la nada también es un conjunto y es subconjunto de todos los demás.</li>
-        </ul>
+        <p>Si empaquetamos todas las primeras derivadas parciales de una función en un solo vector, obtenemos el <strong>Gradiente</strong>. Se denota con el símbolo "Nabla" ($\nabla$).</p>
+        <p style="text-align: center; font-size: 1.2rem;">
+            $$ \nabla f(x,y) = \begin{bmatrix} f_x \\ f_y \end{bmatrix} $$
+        </p>
+        <p><strong>Propiedad geométrica suprema:</strong> El vector gradiente siempre apunta hacia la dirección de <em>máximo crecimiento</em> de la función. Si estás en una montaña, el gradiente te dice hacia dónde dar el siguiente paso para subir lo más rápido posible.</p>
     </div>
 </div>
 
-<!-- ── DIAPOSITIVA 12 ── -->
+<!-- ── DIAPOSITIVA 12 (Con Gráfica) ── -->
 <div class="slide">
-    <h2>1.8 Operaciones con Conjuntos</h2>
-    <div class="contenido-texto">
-        <p>Podemos combinar conjuntos de la misma forma que sumamos o restamos números. Estas operaciones están directamente conectadas con los conectivos lógicos que ya aprendimos :</p>
-        <ul>
-            <li><strong>Unión ($A \cup B$):</strong> Junta todos los elementos de $A$ con los de $B$. Está conectada con la disyunción lógica "O" ($p \lor q$).</li>
-            <li><strong>Intersección ($A \cap B$):</strong> Toma <em>únicamente</em> los elementos que tienen en común. Está conectada con la conjunción lógica "Y" ($p \land q$).</li>
-            <li><strong>Diferencia ($A \setminus B$):</strong> A los elementos del conjunto $A$, le quitamos cualquiera que también esté en $B$.</li>
-            <li><strong>Complemento ($A^c$):</strong> Son todos los elementos del universo que NO están en $A$. Está conectado con la negación lógica ($\neg p$).</li>
-        </ul>
+    <h2>7.9 Visualizando el Gradiente</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>Observa cómo los vectores del gradiente (flechas rojas) son siempre <strong>perpendiculares (ortogonales)</strong> a las curvas de nivel. Siempre apuntan hacia la curva de mayor valor.</p>
+        
+        <!-- INICIO DE GRÁFICA SVG: GRADIENTE -->
+        <div style="text-align: center; margin: 10px 0;">
+            <svg viewBox="0 0 400 220" width="100%" max-width="350px" style="background-color: #fafafa; border: 1px solid #ddd; border-radius: 8px;">
+                <!-- Curvas de Nivel (Círculos concéntricos simulando una montaña) -->
+                <circle cx="200" cy="110" r="80" fill="none" stroke="#2a4939" stroke-width="2" />
+                <circle cx="200" cy="110" r="50" fill="none" stroke="#2a4939" stroke-width="2" />
+                <circle cx="200" cy="110" r="20" fill="none" stroke="#2a4939" stroke-width="2" />
+                
+                <!-- Vectores Gradiente (Flechas hacia el centro = cima) -->
+                <!-- Flecha 1 -->
+                <line x1="280" y1="110" x2="255" y2="110" stroke="#d9534f" stroke-width="2" />
+                <polygon points="250,110 258,105 258,115" fill="#d9534f" />
+                <!-- Flecha 2 -->
+                <line x1="120" y1="110" x2="145" y2="110" stroke="#d9534f" stroke-width="2" />
+                <polygon points="150,110 142,105 142,115" fill="#d9534f" />
+                <!-- Flecha 3 -->
+                <line x1="200" y1="30" x2="200" y2="55" stroke="#d9534f" stroke-width="2" />
+                <polygon points="200,60 195,52 205,52" fill="#d9534f" />
+                
+                <!-- Textos -->
+                <text x="290" y="115" font-size="12">z = 10</text>
+                <text x="250" y="80" font-size="12">z = 50</text>
+                <text x="210" y="115" font-size="12" font-weight="bold">Cima</text>
+                <text x="260" y="130" font-size="12" fill="#d9534f" font-weight="bold">∇f</text>
+            </svg>
+        </div>
+        
+        <p>En optimización computacional (como el entrenamiento de Redes Neuronales o Machine Learning), las computadoras usan el "Descenso del Gradiente" (moverse en dirección $-\nabla f$) para encontrar los costos mínimos.</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 13 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Teoría de Conjuntos</h2>
+    <h2>Ejemplos Resueltos: Vector Gradiente</h2>
     <div class="contenido-texto">
-        <p>Sean los siguientes conjuntos. Universo $U = \{1, 2, 3, 4, 5, 6, 7, 8, 9\}$, $A = \{2, 4, 6, 8\}$ y $B = \{3, 4, 5, 6\}$.</p>
-        <ol>
-            <li>Encuentra los elementos que forman la intersección: $A \cap B$.</li>
-            <li>Encuentra los elementos que forman la diferencia: $A \setminus B$. ¿Es el mismo resultado que $B \setminus A$?</li>
-            <li>Calcula el complemento de $A$ ($A^c$) y luego encuentra la intersección de ese resultado con el conjunto $B$. Es decir, resuelve: $A^c \cap B$.</li>
-            <li>Analiza lógicamente: Si sabes que la intersección de dos conjuntos está vacía ($X \cap Y = \emptyset$), ¿qué puedes concluir sobre los elementos de $X$ y $Y$?</li>
-        </ol>
+        <p><strong>Ejemplo 4: Calculando la dirección óptima</strong><br>
+        Dada $f(x,y) = x^2 y + 5y^2$, encuentra el vector Gradiente evaluado en el punto $(2, 1)$.</p>
+        <p><em>Paso 1:</em> Calculamos $f_x$.<br>
+        $f_x = 2xy + 0 = 2xy$</p>
+        <p><em>Paso 2:</em> Calculamos $f_y$.<br>
+        $f_y = x^2 + 10y$</p>
+        <p><em>Paso 3:</em> Evaluamos ambas en $x=2, y=1$.<br>
+        $f_x(2,1) = 2(2)(1) = 4$<br>
+        $f_y(2,1) = (2)^2 + 10(1) = 4 + 10 = 14$</p>
+        <p><em>Paso 4:</em> Armamos el vector.<br>
+        <strong>$\nabla f(2,1) = \begin{bmatrix} 4 \\ 14 \end{bmatrix}$</strong> (Para subir más rápido desde ese punto, debes avanzar 4 pasos en $x$ por cada 14 en $y$).</p>
     </div>
 </div>
-<!-- ── TEMA 5: RELACIONES ── -->
+
+<!-- ── TEMA 5: LA MATRIZ HESSIANA ── -->
 <!-- ── DIAPOSITIVA 14 ── -->
 <div class="slide">
-    <h2>1.9 Producto Cartesiano y Relaciones</h2>
+    <h2>7.10 La Matriz Hessiana ($H$)</h2>
     <div class="contenido-texto">
-        <p>Antes de hablar de funciones, necesitamos entender cómo interactúan los elementos de dos conjuntos distintos.</p>
-        <ul>
-            <li><strong>Producto Cartesiano ($A \times B$):</strong> Es el conjunto de <em>todos</em> los pares ordenados $(a, b)$ que se pueden formar tomando el primer elemento del conjunto $A$ y el segundo del conjunto $B$. Es la base matemática de cualquier sistema de coordenadas.</li>
-            <li><strong>Relación:</strong> Una relación matemática de $A$ en $B$ es, formalmente, cualquier subconjunto del producto cartesiano. Es decir, es una regla que asocia <em>algunos</em> elementos de un conjunto con los de otro, sin restricciones estrictas.</li>
-        </ul>
+        <p>Así como el Gradiente empaqueta las primeras derivadas (la velocidad), la <strong>Matriz Hessiana</strong> empaqueta todas las segundas derivadas (la aceleración y la concavidad).</p>
+        <p style="text-align: center; font-size: 1.2rem;">
+            $$ H = \begin{bmatrix} f_{xx} & f_{xy} \\ f_{yx} & f_{yy} \end{bmatrix} $$
+        </p>
+        <p>Gracias al Teorema de Young, sabemos que $f_{xy} = f_{yx}$, lo que significa que el Hessiano es siempre una matriz <strong>simétrica</strong> (su diagonal secundaria es idéntica). Esta matriz será el juez supremo para decidir si encontramos un Máximo o un Mínimo.</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 15 ── -->
 <div class="slide">
-    <h2>1.10 Propiedades de las Relaciones</h2>
+    <h2>Ejemplos Resueltos: Construyendo el Hessiano</h2>
     <div class="contenido-texto">
-        <p>Si analizamos una relación dentro de un mismo conjunto (elementos relacionándose entre sí mismos), esta puede tener ciertas propiedades lógicas:</p>
-        <ul>
-            <li><strong>Reflexiva:</strong> Todo elemento está relacionado consigo mismo. ($x$ se relaciona con $x$). Ejemplo clásico: El signo de igualdad ($=$).</li>
-            <li><strong>Simétrica:</strong> Si $x$ está relacionado con $y$, entonces $y$ está forzosamente relacionado con $x$. Ejemplo: "Ser hermano de".</li>
-            <li><strong>Transitiva:</strong> Si $x$ se relaciona con $y$, y a su vez $y$ se relaciona con $z$, entonces $x$ se relaciona con $z$. Ejemplo: "Ser mayor que" ($>$).</li>
-        </ul>
-        <p>Si una relación matemática cumple estas tres propiedades al mismo tiempo, se le llama <strong>Relación de Equivalencia</strong>.</p>
+        <p><strong>Ejemplo 5: El Hessiano</strong><br>
+        Dada $f(x,y) = 2x^3 - 3x^2y + y^2$, construye su Matriz Hessiana.</p>
+        <p><em>Paso 1:</em> Primeras derivadas.<br>
+        $f_x = 6x^2 - 6xy$<br>
+        $f_y = -3x^2 + 2y$</p>
+        <p><em>Paso 2:</em> Segundas derivadas.<br>
+        $f_{xx} = \frac{\partial}{\partial x} (6x^2 - 6xy) = 12x - 6y$<br>
+        $f_{yy} = \frac{\partial}{\partial y} (-3x^2 + 2y) = 2$<br>
+        $f_{xy} = \frac{\partial}{\partial y} (6x^2 - 6xy) = -6x$</p>
+        <p><em>Paso 3:</em> Armar la matriz.<br>
+        $$ H = \begin{bmatrix} 12x - 6y & -6x \\ -6x & 2 \end{bmatrix} $$</p>
     </div>
 </div>
 
+<!-- ── TEMA 6: OPTIMIZACIÓN SIN RESTRICCIONES ── -->
 <!-- ── DIAPOSITIVA 16 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Relaciones</h2>
+    <h2>7.11 Optimización: Condiciones de Primer Orden (CPO)</h2>
     <div class="contenido-texto">
-        <p>Analiza las siguientes relaciones y determina sus propiedades lógicas:</p>
-        <ol>
-            <li>Si $A = \{1, 2\}$ y $B = \{x, y\}$, escribe todos los pares ordenados que conforman el producto cartesiano $A \times B$.</li>
-            <li>Considera la relación "ser amigo de" en una red social como Facebook. Analiza lógicamente: ¿Es reflexiva? ¿Es simétrica? ¿Es transitiva? Justifica cada respuesta.</li>
-            <li>En el conjunto de los números naturales, analiza la relación "es múltiplo de" (ej. 4 es múltiplo de 2). Determina si esta relación cumple con las propiedades reflexiva, simétrica y transitiva.</li>
-        </ol>
+        <p>Para encontrar los picos o valles de una montaña 3D, buscamos el lugar donde el piso es totalmente plano. En ese lugar, la pendiente en $x$ y la pendiente en $y$ deben ser cero al mismo tiempo.</p>
+        <p><strong>Condición de Primer Orden (CPO):</strong> El vector Gradiente debe ser igual al vector Cero.</p>
+        <p style="text-align: center; font-size: 1.2rem;">
+            $$ f_x = 0 \quad \text{y} \quad f_y = 0 $$
+        </p>
+        <p>Resolver este sistema de ecuaciones simultáneas nos dará los <strong>Puntos Críticos</strong> $(x^*, y^*)$.</p>
     </div>
 </div>
 
-<!-- ── TEMA 6: FUNCIONES ── -->
 <!-- ── DIAPOSITIVA 17 ── -->
 <div class="slide">
-    <h2>1.11 Funciones: La máquina matemática</h2>
+    <h2>7.12 Condiciones de Segundo Orden (CSO)</h2>
     <div class="contenido-texto">
-        <p>Una <strong>función</strong> es un tipo muy especial y estricto de relación. Es una regla de correspondencia que asigna a <em>cada</em> elemento de un conjunto inicial <strong>exactamente un</strong> elemento de un conjunto final.</p>
-        <ul>
-            <li><strong>Dominio:</strong> Todos los valores de entrada permitidos (las $x$).</li>
-            <li><strong>Codominio y Rango:</strong> El codominio es el conjunto de llegada posible. El <strong>rango</strong> (o imagen) son los valores que <em>realmente</em> escupe la función (las $y$).</li>
-        </ul>
-        <p><em>Regla de oro:</em> De un elemento del dominio solo puede salir una flecha. Una función es como una máquina predecible: no puedes meter un $2$ y que a veces te devuelva un $4$ y a veces un $5$.</p>
+        <p>Una vez que tienes el Punto Crítico, debes preguntar: "¿Es una cima, un valle, o un puerto de montaña?". Usamos el <strong>Determinante del Hessiano ($|H|$).</strong></p>
+        <p>Calculamos el determinante de nuestra matriz $2 \times 2$ evaluada en el punto crítico:</p>
+        <p style="text-align: center; font-size: 1.2rem; font-weight: bold;">
+            $$ |H| = (f_{xx} \cdot f_{yy}) - (f_{xy})^2 $$
+        </p>
+        <p>Este número, combinado con el signo de $f_{xx}$, nos dirá exactamente la forma topológica del punto.</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 18 ── -->
 <div class="slide">
-    <h2>1.12 Inyectividad, Suprayectividad y Biyectividad</h2>
+    <h2>7.13 Criterios de Decisión del Hessiano</h2>
     <div class="contenido-texto">
-        
-        <p>Clasificamos las funciones según cómo interactúan con el conjunto de llegada:</p>
+        <p>La regla de oro para el análisis topológico:</p>
         <ul>
-            <li><strong>Inyectiva (Uno a uno):</strong> Nunca dos elementos diferentes del dominio ($x$) dan el mismo resultado en el rango ($y$). <br>
-            <em>Formalmente:</em> Si $f(x_1) = f(x_2) \implies x_1 = x_2$.</li>
-            <li><strong>Suprayectiva (Sobre):</strong> El rango cubre la totalidad del codominio. Ningún elemento del conjunto de llegada se queda "solo" sin ser apuntado por la regla de la función.</li>
-            <li><strong>Biyectiva:</strong> Es inyectiva y suprayectiva al mismo tiempo. Es una correspondencia perfecta, sin que sobre ni falte nada. <em>Solo las funciones biyectivas tienen función inversa ($f^{-1}$).</em></li>
+            <li><strong>Si $|H| > 0$ y $f_{xx} < 0$:</strong> Es un <strong>MÁXIMO Local</strong>. (La superficie tiene forma de campana o cúpula).</li>
+            <li><strong>Si $|H| > 0$ y $f_{xx} > 0$:</strong> Es un <strong>MÍNIMO Local</strong>. (La superficie tiene forma de tazón o copa).</li>
+            <li><strong>Si $|H| < 0$:</strong> Es un <strong>PUNTO DE SILLA</strong>. (Es un mínimo desde una dirección y un máximo desde otra. ¡Es una trampa, no es un óptimo real!).</li>
+            <li><strong>Si $|H| = 0$:</strong> La prueba es no concluyente. (Requiere matemáticas más avanzadas).</li>
         </ul>
     </div>
 </div>
 
-<!-- ── DIAPOSITIVA 19 ── -->
+<!-- ── DIAPOSITIVA 19 (Con Gráfica) ── -->
 <div class="slide">
-    <h2>1.13 Composición de Funciones</h2>
-    <div class="contenido-texto">
-        <p>A menudo necesitamos evaluar el resultado de una función directamente dentro de otra. Esto se llama <strong>composición</strong> y se denota como $(g \circ f)(x)$, que significa evaluar $g(f(x))$.</p>
-        <p>Funciona como una línea de ensamblaje en una fábrica:</p>
-        <ol>
-            <li>Tomas un valor $x$ y lo procesas en la máquina $f$.</li>
-            <li>La máquina $f$ te devuelve un resultado intermedio.</li>
-            <li>Tomas ese resultado intermedio y lo metes inmediatamente en la máquina $g$ para obtener el valor final.</li>
-        </ol>
-        <p><em>Ojo matemático:</em> En general, el orden de las operaciones altera el producto. Evaluar $g(f(x))$ casi nunca es igual a evaluar $f(g(x))$.</p>
+    <h2>7.14 Visualizando la Topología en 3D</h2>
+    <div class="contenido-texto" style="font-size: 0.85rem;">
+        <p>Observa por qué un Punto de Silla ($|H| < 0$) es el peor enemigo de la optimización. Parece plano, pero si das un paso en $x$ subes, y si das un paso en $y$ bajas.</p>
+        
+        <!-- INICIO DE GRÁFICA SVG: TOPOLOGÍAS -->
+        <div style="display: flex; justify-content: space-between; text-align: center; margin: 15px 0;">
+            <!-- MÁXIMO -->
+            <svg viewBox="0 0 100 100" width="30%" style="background-color: #fafafa; border-radius: 8px;">
+                <path d="M 20 80 Q 50 20 80 80" fill="none" stroke="#2a4939" stroke-width="3" />
+                <path d="M 20 60 Q 50 10 80 60" fill="none" stroke="#2a4939" stroke-width="1" stroke-dasharray="2,2"/>
+                <circle cx="50" cy="35" r="4" fill="#d9534f" />
+                <text x="50" y="95" font-size="12" text-anchor="middle" font-weight="bold">Máximo</text>
+            </svg>
+            <!-- MÍNIMO -->
+            <svg viewBox="0 0 100 100" width="30%" style="background-color: #fafafa; border-radius: 8px;">
+                <path d="M 20 20 Q 50 80 80 20" fill="none" stroke="#2a4939" stroke-width="3" />
+                <path d="M 20 40 Q 50 90 80 40" fill="none" stroke="#2a4939" stroke-width="1" stroke-dasharray="2,2"/>
+                <circle cx="50" cy="65" r="4" fill="#0275d8" />
+                <text x="50" y="95" font-size="12" text-anchor="middle" font-weight="bold">Mínimo</text>
+            </svg>
+            <!-- PUNTO DE SILLA -->
+            <svg viewBox="0 0 100 100" width="30%" style="background-color: #fafafa; border-radius: 8px;">
+                <!-- Eje X (Cóncavo) -->
+                <path d="M 20 30 Q 50 70 80 30" fill="none" stroke="#f0ad4e" stroke-width="2" />
+                <!-- Eje Y (Convexo) -->
+                <path d="M 50 20 Q 20 50 50 80" fill="none" stroke="#d9534f" stroke-width="2" />
+                <circle cx="50" cy="50" r="4" fill="#333" />
+                <text x="50" y="95" font-size="12" text-anchor="middle" font-weight="bold">P. Silla</text>
+            </svg>
+        </div>
+        
+        <p>Solo los puntos con $|H| > 0$ son picos reales (Máximos) o pozos reales (Mínimos).</p>
     </div>
 </div>
 
 <!-- ── DIAPOSITIVA 20 ── -->
 <div class="slide">
-    <h2>Práctica Autónoma: Funciones</h2>
+    <h2>Ejemplos Resueltos: Optimización Parte 1</h2>
     <div class="contenido-texto">
-        <p>Aplica los conceptos estrictos de funciones en estos ejercicios:</p>
+        <p><strong>Ejemplo 6: Maximizando Beneficios Conjuntos</strong><br>
+        Una empresa vende dos bienes. Su beneficio está dado por: $\pi(x,y) = 10x + 10y - x^2 - xy - y^2$. Encuentra el punto óptimo.</p>
+        <p><em>Paso 1: CPO (Primeras Derivadas a Cero).</em><br>
+        $\pi_x = 10 - 2x - y = 0$<br>
+        $\pi_y = 10 - x - 2y = 0$</p>
+        <p><em>Paso 2: Resolver el sistema.</em><br>
+        De la primera, $y = 10 - 2x$.<br>
+        Sustituimos en la segunda: $10 - x - 2(10 - 2x) = 0$<br>
+        $10 - x - 20 + 4x = 0 \implies 3x - 10 = 0 \implies x = \frac{10}{3}$</p>
+        <p>Sustituimos $x$: $y = 10 - 2(\frac{10}{3}) = \frac{30}{3} - \frac{20}{3} = \frac{10}{3}$.<br>
+        <strong>Punto Crítico: $(\frac{10}{3}, \frac{10}{3})$</strong></p>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 21 ── -->
+<div class="slide">
+    <h2>Ejemplos Resueltos: Optimización Parte 2</h2>
+    <div class="contenido-texto">
+        <p><strong>Comprobación del Hessiano</strong><br>
+        Continuamos el Ejemplo 6 evaluando el punto $(\frac{10}{3}, \frac{10}{3})$.</p>
+        <p><em>Paso 3: CSO (Segundas Derivadas).</em><br>
+        $\pi_{xx} = \frac{\partial}{\partial x} (10 - 2x - y) = -2$<br>
+        $\pi_{yy} = \frac{\partial}{\partial y} (10 - x - 2y) = -2$<br>
+        $\pi_{xy} = \frac{\partial}{\partial y} (10 - 2x - y) = -1$</p>
+        <p><em>Paso 4: Determinante del Hessiano.</em><br>
+        $|H| = (-2)(-2) - (-1)^2 = 4 - 1 = 3$</p>
+        <p><em>Paso 5: Conclusión.</em><br>
+        Como $|H| = 3$ (Positivo $> 0$) y $\pi_{xx} = -2$ (Negativo $< 0$), confirmamos según nuestros criterios que el punto es un <strong>Máximo Local Absoluto</strong>. La empresa debe producir $3.33$ unidades de cada bien para obtener la ganancia máxima.</p>
+    </div>
+</div>
+
+<!-- ── TEMA 7: OPTIMIZACIÓN CON RESTRICCIONES (LAGRANGE) ── -->
+<!-- ── DIAPOSITIVA 22 ── -->
+<div class="slide">
+    <h2>7.15 Optimización Restringida: La Realidad</h2>
+    <div class="contenido-texto">
+        <p>En el mundo real, no podemos producir al infinito para alcanzar el máximo absoluto. Estamos limitados por la <strong>escasez</strong> (presupuesto, tiempo, materias primas).</p>
+        <p>El problema cambia de "Maximizar $f(x,y)$" a:</p>
+        <p><strong>Maximizar $f(x,y)$ <em>sujeto a</em> una restricción $g(x,y) = M$</strong></p>
+        <ul>
+            <li>En Consumo: Maximizar Utilidad $U(x,y)$ sujeto a tu salario $P_x X + P_y Y = Ingreso$.</li>
+            <li>En Producción: Minimizar Costos $C(K,L)$ sujeto a una cuota de producción $Q(K,L) = Meta$.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 23 ── -->
+<div class="slide">
+    <h2>7.16 El Método de los Multiplicadores de Lagrange</h2>
+    <div class="contenido-texto">
+        <p>El matemático Joseph-Louis Lagrange inventó un truco genial: en lugar de resolver un sistema complejo, combinamos la función original y la restricción en una sola "Súper Función" llamada el <strong>Lagrangiano ($\mathcal{L}$)</strong>.</p>
+        <p style="text-align: center; font-size: 1.2rem; margin: 15px 0;">
+            $$ \mathcal{L}(x, y, \lambda) = f(x, y) + \lambda [M - g(x, y)] $$
+        </p>
+        <p>Introducimos una variable nueva e inventada: <strong>$\lambda$ (Lambda)</strong>, el multiplicador de Lagrange. La magia es que si optimizamos $\mathcal{L}$ sin restricciones, encontraremos automáticamente el óptimo restringido de $f(x,y)$.</p>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 24 (Con Gráfica) ── -->
+<div class="slide">
+    <h2>7.17 Visualizando el Óptimo de Lagrange</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>Geométricamente, Lagrange busca el punto exacto donde la Curva de Nivel (Indiferencia) es perfectamente <strong>tangente</strong> (roza en un solo punto) a la línea de la Restricción Presupuestaria.</p>
+        
+        <!-- INICIO DE GRÁFICA SVG: TANGENCIA LAGRANGE -->
+        <div style="text-align: center; margin: 10px 0;">
+            <svg viewBox="0 0 400 220" width="100%" max-width="350px" style="background-color: #fafafa; border: 1px solid #ddd; border-radius: 8px;">
+                <!-- Curvas de Indiferencia -->
+                <path d="M 60 140 Q 100 80 160 40" fill="none" stroke="#2a4939" stroke-width="1" />
+                <path d="M 70 170 Q 140 100 230 60" fill="none" stroke="#2a4939" stroke-width="3" /> <!-- Óptima -->
+                <path d="M 110 190 Q 180 130 290 80" fill="none" stroke="#2a4939" stroke-width="1" />
+                
+                <!-- Restricción Presupuestaria (Línea Recta Diagonal) -->
+                <line x1="280" y1="180" x2="40" y2="20" stroke="#d9534f" stroke-width="2" />
+                
+                <!-- Punto Óptimo (Tangencia) -->
+                <circle cx="140" cy="87" r="5" fill="#f0ad4e" stroke="#333" stroke-width="1" />
+                <line x1="140" y1="87" x2="140" y2="180" stroke="#666" stroke-dasharray="3,3" />
+                <line x1="140" y1="87" x2="40" y2="87" stroke="#666" stroke-dasharray="3,3" />
+                
+                <!-- Ejes -->
+                <line x1="40" y1="180" x2="360" y2="180" stroke="#888" stroke-width="2" />
+                <line x1="40" y1="180" x2="40" y2="20" stroke="#888" stroke-width="2" />
+                
+                <!-- Textos -->
+                <text x="145" y="75" font-size="12" font-weight="bold">Óptimo (Tangencia)</text>
+                <text x="290" y="170" font-size="11" fill="#d9534f">Restricción g(x,y)=M</text>
+                <text x="135" y="195" font-size="12">x*</text>
+                <text x="20" y="90" font-size="12">y*</text>
+            </svg>
+        </div>
+        
+        <p>En ese punto de tangencia, las pendientes de ambas líneas son idénticas. Matemáticamente, significa que sus gradientes son proporcionales: $\nabla f = \lambda \nabla g$.</p>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 25 ── -->
+<div class="slide">
+    <h2>7.18 CPO de Lagrange</h2>
+    <div class="contenido-texto">
+        <p>Para resolver el problema, aplicamos la Condición de Primer Orden al Lagrangiano, derivando parcialmente respecto a nuestras 3 variables ($x, y, \lambda$) e igualando a cero.</p>
+        <p>Obtenemos un sistema de 3 ecuaciones:</p>
         <ol>
-            <li>Identifica si la siguiente relación es una función: "A cada persona en un país se le asigna su número de teléfono celular". <em>(Pista: Analiza qué pasa si alguien tiene dos líneas a su nombre bajo la regla de "exactamente un" elemento).</em></li>
-            <li>Determina si la función $f(x) = x^2$ (definida para todos los números reales) es inyectiva. Justifica usando la definición formal matemática.</li>
-            <li>Sean $f(x) = 2x + 1$ y $g(x) = x^2$. Calcula:
-                <ul>
-                    <li>La composición $(g \circ f)(x)$</li>
-                    <li>La composición $(f \circ g)(x)$</li>
-                </ul>
-                ¿Los resultados son equivalentes?
-            </li>
+            <li>$\mathcal{L}_x = f_x - \lambda g_x = 0$</li>
+            <li>$\mathcal{L}_y = f_y - \lambda g_y = 0$</li>
+            <li>$\mathcal{L}_\lambda = M - g(x,y) = 0$ (¡Nota que la tercera ecuación te devuelve la restricción original intacta!).</li>
+        </ol>
+        <p>Resolviendo este sistema obtenemos el óptimo $(x^*, y^*)$ y el valor de $\lambda^*$.</p>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 26 ── -->
+<div class="slide">
+    <h2>Ejemplos Resueltos: Optimizando con Lagrange 1</h2>
+    <div class="contenido-texto">
+        <p><strong>Ejemplo 7: Maximización de Utilidad</strong><br>
+        Un consumidor tiene Utilidad $U(x,y) = xy$. Los precios son $P_x = 2$ y $P_y = 1$. Su presupuesto es $M = 100$. ¿Cuánto debe consumir de cada bien?</p>
+        <p><em>Paso 1: Identificar Función y Restricción.</em><br>
+        Maximizar $f(x,y) = xy$ <br>
+        Sujeto a: $2x + y = 100$</p>
+        <p><em>Paso 2: Armar el Lagrangiano.</em><br>
+        $\mathcal{L}(x,y,\lambda) = xy + \lambda(100 - 2x - y)$</p>
+        <p><em>Paso 3: Primeras Derivadas (CPO).</em><br>
+        (1) $\mathcal{L}_x = y - 2\lambda = 0$<br>
+        (2) $\mathcal{L}_y = x - \lambda = 0$<br>
+        (3) $\mathcal{L}_\lambda = 100 - 2x - y = 0$</p>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 27 ── -->
+<div class="slide">
+    <h2>Ejemplos Resueltos: Optimizando con Lagrange 2</h2>
+    <div class="contenido-texto">
+        <p><strong>Continuación Ejemplo 7: Resolución del sistema</strong></p>
+        <p><em>Paso 4: Despejar $\lambda$ en (1) y (2) e igualar.</em><br>
+        De (1): $\lambda = \frac{y}{2}$<br>
+        De (2): $\lambda = x$<br>
+        Igualando: $x = \frac{y}{2} \implies y = 2x$. (Esta es la "Senda de Expansión").</p>
+        <p><em>Paso 5: Sustituir en la restricción (3).</em><br>
+        $100 - 2x - (2x) = 0$<br>
+        $100 - 4x = 0 \implies 4x = 100 \implies x^* = 25$</p>
+        <p><em>Paso 6: Encontrar $y^*$ y $\lambda^*$.</em><br>
+        $y^* = 2(25) = 50$<br>
+        $\lambda^* = x^* = 25$<br>
+        <strong>El consumidor óptimo compra 25 unidades de X y 50 de Y.</strong></p>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 28 ── -->
+<div class="slide">
+    <h2>7.19 El Significado Económico de Lambda ($\lambda$)</h2>
+    <div class="contenido-texto">
+        <p>En el ejemplo anterior obtuvimos $\lambda = 25$. ¿Es solo un residuo matemático? ¡Para nada!</p>
+        <p>En economía, $\lambda$ representa el <strong>Precio Sombra de la restricción</strong>, o en Teoría del Consumidor, la <strong>Utilidad Marginal del Ingreso</strong>.</p>
+        <p>Nos dice exactamente cuánto aumentaría nuestra función objetivo (Utilidad máxima) si nuestra restricción (Presupuesto) se relajara en $1$ unidad marginal.</p>
+        <p><strong>Interpretación:</strong> Si al consumidor del ejemplo 7 le regalamos 1 dólar extra (Presupuesto = 101), su felicidad máxima subirá exactamente en 25 "útiles" adicionales.</p>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 29 ── -->
+<div class="slide">
+    <h2>Práctica Autónoma: Parciales y Gradiente (1-5)</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <p>Resuelve en tu cuaderno los siguientes problemas:</p>
+        <ol>
+            <li>Dada $f(x,y) = 4x^3y^2 - 2xy^5 + 10x$. Encuentra $f_x$ y $f_y$.</li>
+            <li><strong>Cobb-Douglas:</strong> La producción es $Q(K,L) = 100 K^{0.3} L^{0.7}$. Demuestra que si sumas $\frac{\partial Q}{\partial K} \cdot \frac{K}{Q} + \frac{\partial Q}{\partial L} \cdot \frac{L}{Q}$ el resultado es 1 (Rendimientos Constantes a Escala).</li>
+            <li>Encuentra el vector Gradiente $\nabla f(x,y)$ de la función $f(x,y) = e^x \ln(y)$.</li>
+            <li>Evalúa el gradiente del ejercicio 3 en el punto $(0, 1)$. ¿Qué dirección marca?</li>
+            <li><strong>Teorema de Young:</strong> Dada $f(x,y) = 5x^2y^4$, calcula la derivada cruzada $f_{xy}$, y luego calcula $f_{yx}$. Verifica que son iguales.</li>
         </ol>
     </div>
 </div>
 
-<!-- ── DIAPOSITIVA 21: CIERRE DEL MÓDULO ── -->
+<!-- ── DIAPOSITIVA 30 ── -->
 <div class="slide">
-    <h2 style="color: #2a4939; text-align: center; margin-bottom: 20px;">¡Felicidades! Has completado el Módulo 1</h2>
-    <div class="contenido-texto" style="text-align: center;">
-        <div style="font-size: 3rem; margin-bottom: 15px;">🎓</div>
-        <p>Has construido los cimientos analíticos necesarios para adentrarte en las matemáticas superiores sin temor al rigor formal.</p>
-        <p style="margin-top: 15px;">Ahora dominas:</p>
-        <ul style="text-align: left; display: inline-block; margin-top: 10px;">
-            <li>La estructura lógica para construir argumentos irrebatibles ($p \implies q$).</li>
-            <li>El uso correcto de los cuantificadores ($\forall, \exists$) y su negación.</li>
-            <li>Las estrategias matemáticas para demostrar la veracidad de una afirmación.</li>
-            <li>El lenguaje de los conjuntos, las relaciones y la definición estricta de una función.</li>
-        </ul>
-        <p style="margin-top: 25px; font-weight: bold;">Estás listo para iniciar el <strong>Módulo 2: Álgebra</strong>.</p>
-        <div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
-    <button id="btnCompletarM1" style="background-color: #2a4939; color: #fff1da; padding: 14px 28px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.05rem; transition: background 0.3s;">
-        Marcar Módulo 1 como Completado
-    </button>
+    <h2>Práctica Autónoma: Hessiano (6-10)</h2>
+    <div class="contenido-texto" style="font-size: 0.9rem;">
+        <ol start="6">
+            <li>Dada $f(x,y) = x^2 + y^2$. Construye la Matriz Hessiana $H$.</li>
+            <li>Calcula el determinante $|H|$ del ejercicio 6 e indica, usando los criterios del Hessiano, si el punto $(0,0)$ es un Máximo, Mínimo o Punto de Silla.</li>
+            <li>Dada la función $\pi(x,y) = -x^2 - 2y^2 + 4x + 8y$. Encuentra las primeras derivadas y halla el Punto Crítico resolviendo el sistema $f_x=0, f_y=0$.</li>
+            <li>Construye la Matriz Hessiana para la función del ejercicio 8 y comprueba si el punto que hallaste maximiza los beneficios.</li>
+            <li>Analiza lógicamente: ¿Qué forma geométrica tiene la superficie de producción si el determinante Hessiano es negativo en todos sus puntos?</li>
+        </ol>
+    </div>
 </div>
+
+<!-- ── DIAPOSITIVA 31 ── -->
+<div class="slide">
+    <h2>Práctica Autónoma: Lagrange (11-15)</h2>
+    <div class="contenido-texto" style="font-size: 0.85rem;">
+        <ol start="11">
+            <li><strong>Planteamiento:</strong> Deseas minimizar el Costo $C(K,L) = 10K + 20L$, sujeto a producir una cuota exacta de $K \cdot L = 800$. Escribe la función del Lagrangiano $\mathcal{L}$.</li>
+            <li>Obtén las tres ecuaciones de las Condiciones de Primer Orden ($\mathcal{L}_K=0, \mathcal{L}_L=0, \mathcal{L}_\lambda=0$) del problema 11.</li>
+            <li>Resuelve el sistema del ejercicio 12 para encontrar el óptimo $K^*$, $L^*$.</li>
+            <li>Encuentra el valor del multiplicador $\lambda$ en el problema anterior y da su interpretación económica (¿Qué pasa si la cuota de producción sube a 801?).</li>
+            <li><strong>Reto:</strong> Maximiza $U(X,Y) = X^{0.5} Y^{0.5}$ sujeto al presupuesto $10X + 5Y = 100$. Usa el método de Lagrange y comprueba que en el óptimo el consumidor gasta la mitad de su dinero en $X$ y la mitad en $Y$.</li>
+        </ol>
+    </div>
+</div>
+
+<!-- ── DIAPOSITIVA 32: CIERRE DEL MÓDULO ── -->
+<div class="slide">
+    <h2 style="color: #2a4939; text-align: center; margin-bottom: 20px;">¡Felicidades! Has completado el Módulo 7</h2>
+    <div class="contenido-texto" style="text-align: center;">
+        <div style="font-size: 3rem; margin-bottom: 15px;">🌐</div>
+        <p>Acabas de cruzar la frontera hacia las matemáticas avanzadas. Ahora puedes modelar el mundo real, donde miles de variables interactúan al mismo tiempo.</p>
+        <p style="margin-top: 15px;">Tus herramientas multidimensionales incluyen:</p>
+        <ul style="text-align: left; display: inline-block; margin-top: 10px;">
+            <li>Mantener el control absoluto aislando variables con las Derivadas Parciales ($Ceteris$ $Paribus$).</li>
+            <li>Encontrar rutas de máximo crecimiento usando Vectores Gradientes.</li>
+            <li>Diagnosticar la topología de un mercado con la poderosa Matriz Hessiana.</li>
+            <li>Resolver el problema central de la economía: Optimizar recursos limitados mediante el Multiplicador de Lagrange.</li>
+        </ul>
+        <p style="margin-top: 25px; font-weight: bold;">Estás listo para las teorías más profundas en el <strong>Módulo 8: Optimización Matemática</strong>.</p>
+        
+        <!-- BOTÓN DE COMPLETADO M7 -->
+        <div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
+            <button id="btnCompletarM7" style="background-color: #2a4939; color: #fff1da; padding: 14px 28px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.05rem; transition: background 0.3s;">
+                Marcar Módulo 7 como Completado
+            </button>
+        </div>
     </div>
 </div>
             <!-- ── NAVEGACIÓN ── -->
