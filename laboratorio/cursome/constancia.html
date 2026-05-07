@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-width=1.0">
+    <title>Generar Constancia - CPEE</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --cafe: #2b1b12;
+            --verde: #2a4939;
+            --crema: #fff1da;
+            --naranja: #d35a34;
+            --texto-suave: #4a3f35;
+        }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--crema);
+            color: var(--cafe);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            color: var(--verde);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        p {
+            color: var(--texto-suave);
+            line-height: 1.6;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--cafe);
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--verde);
+            box-shadow: 0 0 0 2px rgba(42, 73, 57, 0.2);
+        }
+        .btn-enviar {
+            width: 100%;
+            padding: 15px;
+            background: var(--verde);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        .btn-enviar:hover {
+            background: #1e3629;
+        }
+        .btn-enviar:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        #mensaje-exito {
+            display: none;
+            padding: 30px;
+            background: #f0f7f4;
+            border: 1px solid var(--verde);
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        /* Pantalla de bloqueo */
+        #pantalla-bloqueo {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--crema);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="pantalla-bloqueo">
+        <h2 style="font-family: 'DM Serif Display', serif; color: var(--cafe); font-size: 2rem;">Verificando autorización...</h2>
+    </div>
+
+    <div class="container" id="contenedor-constancia" style="display: none;">
+        <h1>¡Felicidades, Analista!</h1>
+        <p>Has aprobado satisfactoriamente la evaluación final del <strong>Centro Popular de Estudios Económicos</strong>. Ingresa tus datos tal como quieres que aparezcan en tu constancia oficial.</p>
+
+        <form id="form-constancia">
+            <div class="form-group">
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" id="nombre" placeholder="Ej. León ..." required>
+            </div>
+            <div class="form-group">
+                <label for="correo">Correo Electrónico:</label>
+                <input type="email" id="correo" readonly style="background: #f4f4f4; color: #666; cursor: not-allowed;">
+            </div>
+            
+            <button type="submit" class="btn-enviar" id="btn-solicitar">Solicitar Constancia</button>
+        </form>
+
+        <div id="mensaje-exito">
+            <div style="font-size: 3rem; margin-bottom: 10px;">🎓</div>
+            <h3 style="color: var(--verde); margin-top: 0;">¡Solicitud recibida!</h3>
+            <p style="margin-bottom: 0;"><strong>Te haremos llegar tu constancia por correo electrónico en un máximo de 3 días hábiles.</strong> <br><br>Gracias por ser parte del CPEE.</p>
+            <button onclick="window.location.href='../lab.html'" style="margin-top: 20px; padding: 10px 20px; background: var(--naranja); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Volver al Laboratorio</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA5YZCAHcrMA36PmgpOxmHnTOI6zgZNMgg",
+            authDomain: "cpee-plataforma-a655a.firebaseapp.com",
+            projectId: "cpee-plataforma-a655a",
+            storageBucket: "cpee-plataforma-a655a.firebasestorage.app",
+            messagingSenderId: "684415102099",
+            appId: "1:684415102099:web:3f2b649a34386677a87166"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                window.location.href = "../../login.html";
+                return;
+            }
+
+            const userRef = doc(db, "progreso_usuarios", user.uid);
+            const docSnap = await getDoc(userRef);
+
+            // Verificación implacable: Si no hay documento o no ha aprobado el examen, para afuera.
+            if (!docSnap.exists() || docSnap.data().examen_aprobado !== true) {
+                alert("Acceso denegado. Debes aprobar la evaluación final para solicitar una constancia.");
+                window.location.href = "evaluacion.html";
+                return;
+            }
+
+            // Si es digno, quitamos el bloqueo
+            document.getElementById('pantalla-bloqueo').style.display = "none";
+            document.getElementById('contenedor-constancia').style.display = "block";
+            
+            // Autocompletamos el correo por seguridad
+            document.getElementById('correo').value = user.email;
+        });
+
+        // Lógica de envío
+        document.getElementById('form-constancia').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btn-solicitar');
+            btn.disabled = true;
+            btn.innerText = "Procesando...";
+
+            const nombre = document.getElementById('nombre').value;
+            const correo = document.getElementById('correo').value;
+            const uid = auth.currentUser.uid;
+
+            try {
+                // Guardamos en una NUEVA colección especial para las constancias
+                const constanciaRef = doc(db, "solicitudes_constancias", uid);
+                await setDoc(constanciaRef, {
+                    nombre_completo: nombre,
+                    correo: correo,
+                    fecha_solicitud: new Date(),
+                    estado: "Pendiente" // Puedes cambiar esto a "Enviada" desde Firebase cuando le mandes el correo
+                });
+
+                // Ocultamos formulario, mostramos mensaje de éxito
+                document.getElementById('form-constancia').style.display = "none";
+                document.getElementById('mensaje-exito').style.display = "block";
+
+            } catch (error) {
+                console.error("Error al solicitar constancia:", error);
+                alert("Hubo un error de conexión. Inténtalo de nuevo.");
+                btn.disabled = false;
+                btn.innerText = "Solicitar Constancia";
+            }
+        });
+    </script>
+</body>
+</html>
