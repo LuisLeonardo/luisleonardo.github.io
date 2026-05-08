@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-width=1.0">
+    <title>Evaluación: El Poder en México - CPEE</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --cafe: #2B1B12;
+            --verde: #2a4939;
+            --crema: #fff1da;
+            --naranja: #d35a34;
+            --texto-suave: #4a3828;
+        }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--crema);
+            color: var(--cafe);
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            color: var(--verde);
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .instrucciones {
+            text-align: center;
+            color: var(--texto-suave);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--crema);
+        }
+        .pregunta-card {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #fafafa;
+            border-left: 4px solid var(--naranja);
+            border-radius: 4px;
+        }
+        .pregunta-texto {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .opciones label {
+            display: block;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            line-height: 1.5;
+        }
+        .opciones label:hover {
+            border-color: var(--naranja);
+            background: #fff8f5;
+        }
+        .opciones input[type="radio"] {
+            margin-right: 10px;
+            accent-color: var(--naranja);
+        }
+        .btn-enviar {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: var(--verde);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 40px;
+            transition: background 0.3s;
+        }
+        .btn-enviar:hover {
+            background: #1e3629;
+        }
+        .btn-enviar:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        /* Pantalla de bloqueo */
+        #pantalla-bloqueo {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--crema);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="pantalla-bloqueo">
+        <h2 id="bloqueo-texto" style="font-family: 'DM Serif Display', serif; color: var(--cafe); font-size: 2rem;">Verificando credenciales...</h2>
+        <p id="bloqueo-subtexto">Analizando tu progreso en el curso de Política.</p>
+        <button id="btn-volver" style="display:none; margin-top: 20px; padding: 10px 20px; background: var(--verde); color: white; border: none; border-radius: 5px; cursor: pointer;" onclick="window.location.href='politica_inicio.html'">Volver al Inicio</button>
+    </div>
+
+    <div class="container" id="contenedor-examen" style="display: none;">
+        <h1>Evaluación Final: El Poder en México</h1>
+        <div class="instrucciones">
+            <p>Lee detenidamente cada caso. Tienes un máximo de <strong>3 intentos</strong> para aprobar. <br>Necesitas al menos <strong>16 aciertos (8.0)</strong> para obtener tu constancia.</p>
+            <p style="color: var(--naranja); font-weight: bold;" id="intentos-restantes-texto"></p>
+        </div>
+
+        <form id="formulario-evaluacion">
+            
+            <div class="pregunta-card">
+                <div class="pregunta-texto">1. Un grupo de ciudadanos en una comunidad rural forma un grupo de "autodefensas" fuertemente armado. El gobierno federal envía al ejército para desarmarlos. Según Max Weber, esta acción se justifica porque:</div>
+                <div class="opciones">
+                    <label><input type="radio" name="q1" value="A" required> A) El Estado debe proteger los derechos humanos antes que la seguridad.</label>
+                    <label><input type="radio" name="q1" value="B"> B) El Estado reclama para sí el monopolio del uso legítimo de la fuerza física.</label>
+                    <label><input type="radio" name="q1" value="C"> C) Las autodefensas no están registradas formalmente como partido político.</label>
+                </div>
+            </div>
+
+            <div class="pregunta-card">
+                <div class="pregunta-texto">2. Si existieran recursos económicos infinitos y todos estuvieran de acuerdo siempre, la política (teóricamente) desaparecería. Esto implica que la función esencial de la política es:</div>
+                <div class="opciones">
+                    <label><input type="radio" name="q2" value="A" required> A) Maximizar la riqueza económica de una nación.</label>
+                    <label><input type="radio" name="q2" value="B"> B) Gestionar la escasez y resolver conflictos mediante decisiones vinculantes.</label>
+                    <label><input type="radio" name="q2" value="C"> C) Garantizar que las élites mantengan el control del territorio.</label>
+                </div>
+            </div>
+
+            <div class="pregunta-card">
+                <div class="pregunta-texto">3. El INEGI publica datos que contradicen el discurso del Presidente. El Presidente se molesta, pero legalmente no puede despedir al titular del INEGI. Esto sucede porque el INEGI es:</div>
+                <div class="opciones">
+                    <label><input type="radio" name="q3" value="A" required> A) Una empresa privada con fuero federal.</label>
+                    <label><input type="radio" name="q3" value="B"> B) Un Órgano Constitucional Autónomo, protegido del poder en turno.</label>
+                    <label><input type="radio" name="q3" value="C"> C) Una dependencia directa del Poder Judicial.</label>
+                </div>
+            </div>
+
+            <div class="pregunta-card">
+                <div class="pregunta-texto">4. Cuando los politólogos afirman que el Estado no es lo mismo que el Gobierno, hacen énfasis en que:</div>
+                <div class="opciones">
+                    <label><input type="radio" name="q4" value="A" required> A) El Estado es el territorio, y el Gobierno son las leyes.</label>
+                    <label><input type="radio" name="q4" value="B"> B) El Estado son las instituciones permanentes, y el Gobierno es quien las administra temporalmente.</label>
+                    <label><input type="radio" name="q4" value="C"> C) El Gobierno recauda impuestos, pero el Estado los gasta.</label>
+                </div>
+            </div>
+
+            <div class="pregunta-card">
+                <div class="pregunta-texto">5. El diseño de "pesos y contrapesos" en México NO significa que los tres poderes estén aislados, sino que:</div>
+                <div class="opciones">
+                    <label><input type="radio" name="q5" value="A" required> A) Tienen facultades cruzadas para vigilarse, limitarse y obligarse a negociar.</label>
+                    <label><input type="radio" name="q5" value="B"> B) Comparten el presupuesto para que ninguno tenga ventaja económica.</label>
+                    <label><input type="radio" name="q5" value="C"> C) El Poder Legislativo siempre tiene la última palabra por ser electo directamente.</label>
+                </div>
+            </div>
+
+            <div class="pregunta-card">
+                <div class="pregunta-texto">6. Un gobernador se queja de recortes federales pero se niega a cobrar impuestos locales para no perder popularidad. Esta dinámica ilustra un problema de:</div>
+                <div class="opciones">
+                    <label><input type="radio" name="q6" value="A" required> A) Una separación de poderes defectuosa a nivel municipal.</label>
+                    <label><input type="radio" name="q6" value="B"> B) Federalismo fiscal centralizado y dependencia local.</label>
+                    <label><input type="radio" name="q6" value="C"> C) Exceso de autonomía presupuestaria en los estados.</label>
+                </div>
+            </div>
+
+            <div class="pregunta-card">
+                <div class="pregunta-texto">7. Durante el siglo XX en México se celebraban elecciones constantemente. Sin embargo, se clasificaba como un "Régimen Hegemónico" porque:</div>
+                <div class="opciones">
+                    <label><input type="radio" name="q7" value="A" required> A) La Constitución prohibía que un opositor ganara.</label>
+                    <label><input type="radio" name="q7" value="B"> B) Faltaba incertidumbre real; el aparato de Estado garantizaba la victoria oficialista.</label>
+                    <label><input type="radio" name="q7" value="C"> C) El Presidente era elegido por las Fuerzas Armadas.</label>
+                </div>
+            </div>
+
+            <div class="pregunta-card">
+                <div class="pregunta-texto">8. La Reforma Política de 1977 es considerada el inicio de la transición porque su estrategia clave fue:</div>
+                <div class="opciones">
+                    <label><input type="radio" name="q8" value="A" required> A) Entregar el control electoral a un instituto ciudadano.</label>
+                    <label><input type="radio" name="q8" value="B"> B) Institucionalizar a la oposición en el Congreso mediante plurinominales.</label>
+                    <label><input type="radio" name="q8" value="C"> C) Permitir la reelección inmediata de alcaldes.</label>
+                </div>
+            </div>
+
+            <div class="pregunta-card">
+                <div class="pregunta-texto">9. Una coalición gana el 45% de los votos, pero termina ocupando el 60% de los asientos en la Cámara de Diputados. Este fenómeno se conoce como:</div>
+                <div class="opciones">
+                    <label><input type="radio" name="q9" value="A" required> A) Sobrerrepresentación, y permite a una minoría ejercer poder de mayoría absoluta.</label>
+                    <label><input type="radio" name="q9" value="B"> B) Fraude cibernético, y anula la elección.</label>
+                    <label><input type="radio" name="q9" value="C"> C) Pluralismo proporcional, garantizando equidad.</label>
+                </div>
+            </div>
+
+            <div class="pregunta-card">
+                <div class="pregunta-texto">10. Si el Congreso eliminara a los diputados plurinominales y dejara solo a los de Mayoría Relativa, la consecuencia matemática más probable sería:</div>
+                <div class="opciones">
+                    <label><input type="radio" name="q10" value="A" required> A) La eliminación total de la corrupción en el Legislativo.</label>
+                    <label><input type="radio" name="q10" value="B"> B) Un Congreso donde todos los partidos pesan lo mismo.</label>
+                    <label><input type="radio" name="q10" value="C"> C) Una reducción drástica en la representación de minorías y mayor sobrerrepresentación del partido ganador.</label>
+                </div>
+            </div>
+
+            <div class="pregunta-card">
+                <div class="pregunta-texto">11. Una tragedia minera acapara los medios y obliga a los legisladores a presentar una iniciativa urgente. En el ciclo de políticas públicas, el problema entró en la fase de:</div>
+                <div class="opciones">
+                    <label><input type="radio" name="q11" value="A" required> A) Agenda pública e institucional.</label>
+                    <label><input type="radio" name="q11" value="B"> B) Implementación presupuestal.</label>
+                    <label><input type="radio" name="q11" value="C"> C) Evaluación de resultados.</label>
+                </div>
+            </div>
+
+            <div class="pregunta-card">
+                <div class="pregunta-texto">12. Un gobierno crea un "Sistema Nacional Anticorrupción" impecable, pero le asigna cero pesos de presupuesto. Teóricamente, esto demuestra que:</div>
+                <div class="opciones">
+                    <label><input type="radio" name="q12" value="A" required> A) Es una política altamente eficiente porque ahorra dinero.</label>
+                    <label><input type="radio" name="q12" value="B"> B) El diseño es meramente simbólico si no cuenta con recursos para su implementación real.</label>
+                    <label><input type="radio" name="q12" value="C"> C) El problema se resolvió en la fase de planeación.</label>
+                </div>
+            </div>
+
+            <div class="pregunta-card">
+                <div class="pregunta-texto">13. Una cadena de televisión decide ignorar a un candidato presidencial, volviéndolo invisible. Aunque no viola la ley, la televisora está actuando como un:</div>
+                <div class="opciones">
+                    <label><input type="radio" name="q13" value="A" required> A) Órgano garante de la libertad de expresión.</label>
+                    <label><input type="radio" name="q13" value="B"> B) Poder fáctico ejerciendo influencia asimétrica sobre la democracia.</label>
+                    <label><input type="radio" name="q13" value="C"> C) Partido político de oposición formal.</label>
+                </div>
+            </div>
+
+            <div class="pregunta-card">
+                <div class="pregunta-texto">14. ¿Cuál es la principal diferencia entre un Partido Político y un Grupo de Presión (ej. un sindicato)?</div>
+                <div class="opciones">
+                    <label><input type="radio" name="q14" value="A" required> A) Los partidos buscan ocupar el gobierno; los grupos buscan influir en quien ya gobierna.</label>
+                    <label><input type="radio" name="q14" value="B"> B) Los partidos no tienen dinero y los grupos sí.</label>
+                    <label><input type="radio" name="q14" value="C"> C) Los grupos de presión siempre son ilegales.</label>
+                </div>
+            </div>
+
+            <div class="pregunta-card">
+                <div class="pregunta-texto">15. Un ciudadano vota, pero se niega a informarse o participar en juntas vecinales. Este comportamiento es un ejemplo de:</div>
+                <div class="opciones">
+                    <label><input type="radio" name="q15" value="A" required> A) Participación política sustantiva y deliberativa.</label>
+                    <label><input type="radio" name="q15" value="B"> B) Participación política minimalista o puramente procedimental.</label>
+                    <label><input type="radio" name="q15" value="C"> C) Cultura política totalitaria.</label>
+                </div>
+            </div>
+
+            <div class="pregunta-card">
+                <div class="pregunta-texto">16. Un país tiene elecciones libres, pero el gobierno ataca la independencia de jueces e intenta desmantelar al árbitro electoral. Esto se diagnostica como:</div>
+                <div class="opciones">
+                    <label><input type="radio" name="q16" value="A" required> A) La consolidación de una democracia madura.</label>
+                    <label><input type="radio" name="q16" value="B"> B) Un proceso de erosión o retroceso democrático desde el propio poder.</label>
+                    <label><input type="radio" name="q16" value="C"> C) Una transición exitosa hacia el pluralismo.</label>
+                </div>
+            </div>
+
+            <div class="pregunta-card">
+                <div class="pregunta-texto">17. El Presidente propone el Presupuesto, pero no puede gastarlo hasta que la Cámara de Diputados lo apruebe. Este mecanismo garantiza:</div>
+                <div class="opciones">
+                    <label><input type="radio" name="q17" value="A" required> A) La supremacía absoluta del Poder Judicial sobre la economía.</label>
+                    <label><input type="radio" name="q17" value="B"> B) Que el Ejecutivo rinda cuentas políticas al Legislativo en el uso del dinero público.</label>
+                    <label><input type="radio" name="q17" value="C"> C) Que los impuestos se cobren de forma voluntaria.</label>
+                </div>
+            </div>
+
+            <div class="pregunta-card">
+                <div class="pregunta-texto">18. Un gobierno decide entregar dinero en efectivo eliminando a ONGs y gobiernos estatales. El mayor riesgo técnico en la fase de "Implementación" es:</div>
+                <div class="opciones">
+                    <label><input type="radio" name="q18" value="A" required> A) La pérdida de capacidad técnica local y la dificultad para auditar padrones a gran escala.</label>
+                    <label><input type="radio" name="q18" value="B"> B) Que la sociedad civil adquiera demasiado poder.</label>
+                    <label><input type="radio" name="q18" value="C"> C) Que el Poder Judicial invalide los billetes emitidos.</label>
+                </div>
+            </div>
+
+            <div class="pregunta-card">
+                <div class="pregunta-texto">19. ¿Por qué los "Derechos Humanos" en la Constitución funcionan como límite al principio de que "la mayoría manda"?</div>
+                <div class="opciones">
+                    <label><input type="radio" name="q19" value="A" required> A) Porque obligan a consultar a la mayoría qué derechos respetar.</label>
+                    <label><input type="radio" name="q19" value="B"> B) Porque establecen esferas de protección ciudadana que ninguna mayoría legislativa puede eliminar.</label>
+                    <label><input type="radio" name="q19" value="C"> C) Porque son sugerencias que aplican solo si hay presupuesto.</label>
+                </div>
+            </div>
+
+            <div class="pregunta-card">
+                <div class="pregunta-texto">20. <strong>Caso:</strong> El gobierno aprueba una mina. ONGs protestan y un juez ordena suspender la mina. El Presidente manda una iniciativa al Congreso para cambiar la ley y evadir al juez; su mayoría aprueba la ley. Las ONGs acuden a la Suprema Corte para invalidar la nueva ley.<br><br>¿Qué análisis describe mejor esto?</div>
+                <div class="opciones">
+                    <label><input type="radio" name="q20" value="A" required> A) El Estado demostró ser un bloque monolítico obediente a las élites; la resistencia civil es irrelevante.</label>
+                    <label><input type="radio" name="q20" value="B" required> B) Ilustra tensión institucional. El juez frenó al Ejecutivo, quien evadió el freno usando al Legislativo, llevando el conflicto al contrapeso final: la SCJN.</label>
+                    <label><input type="radio" name="q20" value="C" required> C) El Poder Judicial cometió una violación constitucional al frenar un proyecto económico del Presidente.</label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-enviar" id="btn-enviar">Terminar Examen y Calificar</button>
+        </form>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA5YZCAHcrMA36PmgpOxmHnTOI6zgZNMgg",
+            authDomain: "cpee-plataforma-a655a.firebaseapp.com",
+            projectId: "cpee-plataforma-a655a",
+            storageBucket: "cpee-plataforma-a655a.firebasestorage.app",
+            messagingSenderId: "684415102099",
+            appId: "1:684415102099:web:3f2b649a34386677a87166"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const pantallaBloqueo = document.getElementById('pantalla-bloqueo');
+        const contenedorExamen = document.getElementById('contenedor-examen');
+        const txtBloqueo = document.getElementById('bloqueo-texto');
+        const subTxtBloqueo = document.getElementById('bloqueo-subtexto');
+        const btnVolver = document.getElementById('btn-volver');
+        const txtIntentos = document.getElementById('intentos-restantes-texto');
+        const btnEnviar = document.getElementById('btn-enviar');
+
+        const respuestasCorrectas = {
+            q1: "B", q2: "B", q3: "B", q4: "B", q5: "A",
+            q6: "B", q7: "B", q8: "B", q9: "A", q10: "C",
+            q11: "A", q12: "B", q13: "B", q14: "A", q15: "B",
+            q16: "B", q17: "B", q18: "A", q19: "B", q20: "B"
+        };
+
+        let userRef;
+        let userData;
+
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                window.location.href = "../login.html"; // Ajusta si tu login está más arriba
+                return;
+            }
+
+            userRef = doc(db, "progreso_usuarios", user.uid);
+            const docSnap = await getDoc(userRef);
+
+            if (!docSnap.exists()) {
+                window.location.href = "politica_inicio.html";
+                return;
+            }
+
+            userData = docSnap.data();
+
+            // 1. Ya aprobó antes
+            if (userData.examen_politica_aprobado === true) {
+                txtBloqueo.innerText = "¡Ya aprobaste la evaluación!";
+                txtBloqueo.style.color = "var(--verde)";
+                subTxtBloqueo.innerText = "Tu constancia está lista para ser generada.";
+                btnVolver.innerText = "Ir a solicitar mi Constancia";
+                btnVolver.onclick = () => window.location.href = "constancia_politica.html";
+                btnVolver.style.display = "inline-block";
+                return;
+            }
+
+            // 2. Verificar que los 8 módulos estén completos
+            const modulosRequeridos = [
+                'modulo1_politica_completado', 'modulo2_politica_completado', 
+                'modulo3_politica_completado', 'modulo4_politica_completado', 
+                'modulo5_politica_completado', 'modulo6_politica_completado',
+                'modulo7_politica_completado', 'modulo8_politica_completado'
+            ];
+            
+            let faltaModulo = false;
+            for (let mod of modulosRequeridos) {
+                if (!userData[mod]) {
+                    faltaModulo = true;
+                    break;
+                }
+            }
+
+            if (faltaModulo) {
+                txtBloqueo.innerText = "Acceso Denegado";
+                txtBloqueo.style.color = "var(--naranja)";
+                subTxtBloqueo.innerText = "Aún te faltan módulos por terminar en este curso.";
+                btnVolver.style.display = "inline-block";
+                return;
+            }
+
+            // 3. Verificar intentos
+            let intentos = userData.intentos_examen_politica || 0;
+            if (intentos >= 3) {
+                txtBloqueo.innerText = "Límite de intentos alcanzado";
+                txtBloqueo.style.color = "var(--naranja)";
+                subTxtBloqueo.innerText = "Has agotado tus 3 intentos para este curso.";
+                btnVolver.style.display = "inline-block";
+                return;
+            }
+
+            // Si pasa todo, le damos acceso
+            pantallaBloqueo.style.display = "none";
+            contenedorExamen.style.display = "block";
+            txtIntentos.innerText = `Intento ${intentos + 1} de 3`;
+        });
+
+        // Al calificar
+        document.getElementById('formulario-evaluacion').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            btnEnviar.disabled = true;
+            btnEnviar.innerText = "Calificando...";
+
+            const formData = new FormData(e.target);
+            let aciertos = 0;
+
+            for (let [pregunta, respuesta] of formData.entries()) {
+                if (respuestasCorrectas[pregunta] === respuesta) {
+                    aciertos++;
+                }
+            }
+
+            let calificacion = (aciertos / 20) * 10;
+            let intentosActuales = (userData.intentos_examen_politica || 0) + 1;
+
+            if (calificacion >= 8.0) {
+                await setDoc(userRef, {
+                    examen_politica_aprobado: true,
+                    calificacion_final_politica: calificacion,
+                    intentos_examen_politica: intentosActuales
+                }, { merge: true });
+
+                alert(`¡Felicidades! Obtuviste ${aciertos}/20 (${calificacion}). Has aprobado el curso de Política.`);
+                window.location.href = "constancia_politica.html";
+            } else {
+                await setDoc(userRef, {
+                    intentos_examen_politica: intentosActuales
+                }, { merge: true });
+
+                if (intentosActuales >= 3) {
+                    alert(`Calificación: ${calificacion}. Has agotado tus 3 intentos. Examen bloqueado.`);
+                    window.location.reload();
+                } else {
+                    alert(`Obtuviste ${aciertos}/20 (${calificacion}). Necesitas al menos 16 aciertos (8.0). Te quedan ${3 - intentosActuales} intentos.`);
+                    window.location.reload();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
