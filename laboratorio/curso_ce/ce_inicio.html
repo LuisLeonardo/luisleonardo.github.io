@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estructura y Crisis del Capitalismo — CPEE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Libre+Baskerville:ital@1&display=swap" rel="stylesheet">
+<style>
+/* PALETA CPEE */
+:root {
+    --crema: #fff1da;
+    --verde: #2a4939;
+    --verde-medio: #3d6655;
+    --cafe: #2B1B12;
+    --cafe-claro: #6b4c35;
+    --naranja: #d35a34;
+    --negro: #111111;
+    --texto-suave: #4a3828;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background-color: var(--crema); color: var(--negro); font-family: 'DM Sans', sans-serif; line-height: 1.7; overflow-x: hidden; }
+
+/* BREADCRUMB */
+.breadcrumb { padding: 18px 48px; display: flex; align-items: center; gap: 8px; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--cafe-claro); opacity: 0.7; border-bottom: 1px solid rgba(43,27,18,0.08); }
+.breadcrumb a { color: inherit; text-decoration: none; transition: color 0.2s; }
+.breadcrumb a:hover { color: var(--verde); }
+.breadcrumb .sep { opacity: 0.4; }
+.breadcrumb .actual { color: var(--verde); opacity: 1; }
+
+/* HEADER */
+header { position: relative; padding: 60px 48px; border-bottom: 1px solid rgba(43,27,18,0.15); background: white; text-align: center; }
+.header-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--naranja); margin-bottom: 15px; }
+header h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--cafe); line-height: 1.2; margin-bottom: 20px; }
+header p { max-width: 750px; margin: 0 auto; color: var(--texto-suave); font-size: 1.05rem; }
+
+/* PANTALLA DE BLOQUEO */
+#pantalla-bloqueo { padding: 80px 20px; text-align: center; max-width: 600px; margin: 0 auto; }
+#pantalla-bloqueo h2 { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--cafe); margin-bottom: 15px; }
+#pantalla-bloqueo p { color: var(--texto-suave); margin-bottom: 30px; }
+.btn-solicitar { background: var(--verde); color: white; border: none; padding: 15px 30px; font-size: 1.1rem; font-weight: bold; border-radius: 8px; cursor: pointer; transition: background 0.3s; }
+.btn-solicitar:hover { background: var(--verde-medio); }
+.btn-solicitar:disabled { background: #ccc; cursor: not-allowed; }
+#mensaje-solicitud { margin-top: 15px; font-weight: bold; color: var(--naranja); }
+
+/* GRID DE MÓDULOS */
+#contenido-curso { display: none; max-width: 1100px; margin: 0 auto; padding: 60px 48px; }
+.grid-modulos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+.modulo-card { background: white; border: 1px solid rgba(43,27,18,0.1); border-radius: 12px; padding: 30px; text-decoration: none; color: inherit; transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; }
+.modulo-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-color: var(--naranja); }
+.modulo-num { font-size: 0.8rem; font-weight: 700; color: var(--naranja); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; display: block; }
+.modulo-titulo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--cafe); margin-bottom: 15px; line-height: 1.3; }
+.modulo-desc { font-size: 0.9rem; color: var(--texto-suave); flex-grow: 1; }
+.estado-modulo { margin-top: 20px; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 8px; }
+.estado-pendiente { color: var(--cafe-claro); opacity: 0.6; }
+.estado-completado { color: var(--verde); }
+
+/* SECCIÓN EVALUACIÓN */
+.evaluacion-section { text-align: center; margin-top: 60px; padding: 40px; background: white; border-radius: 12px; border-left: 5px solid var(--naranja); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+.evaluacion-section h2 { font-family: 'DM Serif Display', serif; color: var(--cafe); font-size: 2rem; margin-bottom: 15px; }
+.evaluacion-section p { color: var(--texto-suave); margin-bottom: 25px; }
+.btn-evaluacion { display: inline-block; background: var(--naranja); color: white; padding: 15px 30px; text-decoration: none; font-weight: bold; border-radius: 8px; transition: background 0.3s; }
+.btn-evaluacion:hover { background: #b54726; }
+</style>
+</head>
+<body>
+
+<div class="breadcrumb">
+    <a href="../lab.html">Laboratorio</a><span class="sep">/</span>
+    <span class="actual">Estructura y Crisis del Capitalismo</span>
+</div>
+
+<header>
+    <span class="header-eyebrow">Programa de Alta Exigencia</span>
+    <h1>Estructura y Crisis del Capitalismo</h1>
+    <p>Un análisis profundo del sistema económico. Desde la morfología de la crisis y la teoría marxista de la acumulación, pasando por el enfoque de la demanda efectiva keynesiana, hasta aterrizar en el neoinstitucionalismo económico.</p>
+</header>
+
+<div id="pantalla-bloqueo">
+    <h2>Acceso Restringido</h2>
+    <p>Este es un curso de nivel universitario diseñado exclusivamente para analistas e investigadores autorizados por el Centro Popular de Estudios Económicos.</p>
+    <button class="btn-solicitar" id="btn-solicitar">Solicitar Autorización</button>
+    <div id="mensaje-solicitud"></div>
+</div>
+
+<div id="contenido-curso">
+    <div class="grid-modulos">
+        
+        <a href="ce_m1.html" class="modulo-card">
+            <span class="modulo-num">Módulo I</span>
+            <h2 class="modulo-titulo">Historia y Teorías de la Crisis</h2>
+            <p class="modulo-desc">Análisis histórico del sistema capitalista basado en Guillén Romo. De la Gran Depresión a la crisis de 2008, entendiendo las fallas sistémicas del mercado.</p>
+            <div class="estado-modulo estado-pendiente" id="estado-m1">⏳ Pendiente</div>
+        </a>
+
+        <a href="ce_m2.html" class="modulo-card">
+            <span class="modulo-num">Módulo II</span>
+            <h2 class="modulo-titulo">Marx I: Acumulación y Reproducción</h2>
+            <p class="modulo-desc">Los engranajes del capital. Exploramos los esquemas de reproducción simple y ampliada (Tomo I y II) para entender cómo el sistema crece o se estanca.</p>
+            <div class="estado-modulo estado-pendiente" id="estado-m2">⏳ Pendiente</div>
+        </a>
+
+        <a href="ce_m3.html" class="modulo-card">
+            <span class="modulo-num">Módulo III</span>
+            <h2 class="modulo-titulo">Marx II: Ganancia y Dinero</h2>
+            <p class="modulo-desc">La caída tendencial de la tasa de ganancia y el papel crítico del dinero y el crédito en la detonación de las crisis capitalistas (Tomo III).</p>
+            <div class="estado-modulo estado-pendiente" id="estado-m3">⏳ Pendiente</div>
+        </a>
+
+        <a href="ce_m4.html" class="modulo-card">
+            <span class="modulo-num">Módulo IV</span>
+            <h2 class="modulo-titulo">El Ciclo Keynesiano</h2>
+            <p class="modulo-desc">El principio de la demanda efectiva, la propensión al consumo, los salarios y cómo la incertidumbre desploma el incentivo para invertir.</p>
+            <div class="estado-modulo estado-pendiente" id="estado-m4">⏳ Pendiente</div>
+        </a>
+
+        <a href="ce_m5.html" class="modulo-card">
+            <span class="modulo-num">Módulo V</span>
+            <h2 class="modulo-titulo">Neoinstitucionalismo I</h2>
+            <p class="modulo-desc">Basado en José Ayala. Teoría de las instituciones, los costos de transacción y cómo la información asimétrica distorsiona el mercado.</p>
+            <div class="estado-modulo estado-pendiente" id="estado-m5">⏳ Pendiente</div>
+        </a>
+
+        <a href="ce_m6.html" class="modulo-card">
+            <span class="modulo-num">Módulo VI</span>
+            <h2 class="modulo-titulo">Neoinstitucionalismo II</h2>
+            <p class="modulo-desc">Derechos de propiedad, incentivos y desempeño económico. ¿Por qué el diseño institucional es la barrera entre el subdesarrollo y la prosperidad?</p>
+            <div class="estado-modulo estado-pendiente" id="estado-m6">⏳ Pendiente</div>
+        </a>
+
+    </div>
+
+    <div class="evaluacion-section">
+        <h2>Evaluación y Constancia</h2>
+        <p>Al completar la lectura de los 6 módulos, deberás aprobar la evaluación de comprensión estructural (8.0 mínimo) para obtener tu constancia institucional.</p>
+        <a href="evaluacion_ce.html" class="btn-evaluacion">📝 Iniciar Evaluación Final</a>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyA5YZCAHcrMA36PmgpOxmHnTOI6zgZNMgg",
+        authDomain: "cpee-plataforma-a655a.firebaseapp.com",
+        projectId: "cpee-plataforma-a655a",
+        storageBucket: "cpee-plataforma-a655a.firebasestorage.app",
+        messagingSenderId: "684415102099",
+        appId: "1:684415102099:web:3f2b649a34386677a87166"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const pantallaBloqueo = document.getElementById('pantalla-bloqueo');
+    const contenidoCurso = document.getElementById('contenido-curso');
+    const btnSolicitar = document.getElementById('btn-solicitar');
+    const mensajeSolicitud = document.getElementById('mensaje-solicitud');
+
+    onAuthStateChanged(auth, async (user) => {
+        if (!user) {
+            window.location.href = "../../login.html"; 
+            return;
+        }
+        
+        const docRef = doc(db, "progreso_usuarios", user.uid);
+        const docSnap = await getDoc(docRef);
+
+        let tieneAcceso = false;
+
+        if (docSnap.exists()) {
+            const data = docSnap.data();
+            
+            // LA ÚNICA VARIABLE MAESTRA QUE DETERMINA EL ACCESO
+            tieneAcceso = data.acceso_ce === true;
+
+            if (tieneAcceso) {
+                // Marcar módulos completados
+                for(let i=1; i<=6; i++) {
+                    if (data[`modulo${i}_ce_completado`]) {
+                        let el = document.getElementById(`estado-m${i}`);
+                        if(el) {
+                            el.innerHTML = "✅ Completado";
+                            el.classList.remove('estado-pendiente');
+                            el.classList.add('estado-completado');
+                        }
+                    }
+                }
+            } else if (data.solicitud_ce === true) {
+                // Si no tiene acceso pero ya lo pidió
+                btnSolicitar.style.display = "none";
+                mensajeSolicitud.innerText = "⏳ Tu solicitud ya está en revisión. Espera a que el administrador te otorgue acceso.";
+            }
+        }
+
+        if (tieneAcceso) {
+            pantallaBloqueo.style.display = "none";
+            contenidoCurso.style.display = "block";
+        } else {
+            pantallaBloqueo.style.display = "block";
+            contenidoCurso.style.display = "none";
+
+            btnSolicitar.addEventListener("click", async () => {
+                btnSolicitar.disabled = true;
+                btnSolicitar.innerText = "Enviando...";
+                await setDoc(docRef, {
+                    correo: user.email,
+                    solicitud_ce: true
+                }, { merge: true });
+                btnSolicitar.style.display = "none";
+                mensajeSolicitud.innerText = "✅ Solicitud enviada con éxito.";
+            });
+        }
+    });
+</script>
+</body>
+</html>
