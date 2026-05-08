@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo II: Marx I: Acumulación y Reproducción — CPEE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Libre+Baskerville:ital@1&display=swap" rel="stylesheet">
+<style>
+/* SHARED BASE FOR CURSO CE */
+:root {
+    --crema: #fff1da;
+    --verde: #2a4939;
+    --verde-medio: #3d6655;
+    --cafe: #2B1B12;
+    --cafe-claro: #6b4c35;
+    --naranja: #d35a34;
+    --rojo-marx: #8b261b;
+    --negro: #111111;
+    --texto-suave: #4a3828;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background-color: var(--crema); color: var(--negro); font-family: 'DM Sans', sans-serif; line-height: 1.7; overflow-x: hidden; }
+
+/* MENU */
+.menu-trigger { position: fixed; top: 22px; left: 24px; z-index: 1100; background: var(--cafe); border: none; border-radius: 8px; width: 44px; height: 44px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: background 0.2s; }
+.menu-trigger:hover { background: var(--rojo-marx); }
+.menu-trigger span { display: block; width: 20px; height: 2px; background: var(--crema); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease; transform-origin: center; }
+.menu-trigger.abierto span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-trigger.abierto span:nth-child(2) { opacity: 0; width: 0; }
+.menu-trigger.abierto span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.menu-overlay { position: fixed; inset: 0; background: rgba(43,27,18,0.45); backdrop-filter: blur(3px); opacity: 0; pointer-events: none; z-index: 1050; transition: opacity 0.3s ease; }
+.menu-overlay.visible { opacity: 1; pointer-events: all; }
+.menu-panel { position: fixed; top: 0; left: 0; height: 100%; width: 280px; background: var(--cafe); z-index: 1090; transform: translateX(-100%); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1); display: flex; flex-direction: column; padding: 80px 0 40px; }
+.menu-panel.abierto { transform: translateX(0); }
+.menu-panel-logo { padding: 0 28px 32px; border-bottom: 1px solid rgba(215,196,165,0.2); margin-bottom: 12px; }
+.menu-panel-logo span { font-family: 'DM Serif Display', serif; font-size: 1.05rem; color: #D7C4A5; line-height: 1.3; display: block; }
+.menu-panel-logo em { font-family: 'Libre Baskerville', serif; font-size: 0.78rem; color: rgba(215,196,165,0.55); font-style: italic; }
+.menu-panel nav a { display: flex; align-items: center; gap: 12px; padding: 13px 28px; color: #D7C4A5; text-decoration: none; font-size: 0.95rem; font-weight: 400; border-left: 3px solid transparent; transition: background 0.2s, border-color 0.2s, color 0.2s; }
+.menu-panel nav a:hover { background: rgba(215,196,165,0.07); border-left-color: var(--rojo-marx); color: #f0dfc0; }
+.menu-panel nav a .nav-num { font-size: 0.7rem; opacity: 0.4; font-weight: 500; min-width: 18px; }
+
+/* BREADCRUMB */
+.breadcrumb { padding: 18px 48px 18px 90px; display: flex; align-items: center; gap: 8px; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--cafe-claro); opacity: 0.7; border-bottom: 1px solid rgba(43,27,18,0.08); flex-wrap: wrap; }
+.breadcrumb a { color: inherit; text-decoration: none; transition: color 0.2s; }
+.breadcrumb a:hover { color: var(--rojo-marx); }
+.breadcrumb .sep { opacity: 0.4; }
+.breadcrumb .actual { color: var(--rojo-marx); opacity: 1; }
+
+/* HEADER */
+header { position: relative; padding: 48px 48px 40px; border-bottom: 1px solid rgba(43,27,18,0.15); overflow: hidden; }
+.header-bg-deco { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.header-bg-deco::before { content: ''; position: absolute; top: -40px; right: -60px; width: 260px; height: 260px; border-radius: 50%; border: 1px solid rgba(139,38,27,0.1); }
+.header-bg-deco::after { content: ''; position: absolute; top: 10px; right: 10px; width: 150px; height: 150px; border-radius: 50%; border: 1px solid rgba(139,38,27,0.07); }
+.header-inner { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.header-texto { flex: 1; }
+.header-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rojo-marx); margin-bottom: 12px; opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards; }
+.header-eyebrow::before { content: ''; display: block; width: 28px; height: 2px; background: var(--rojo-marx); }
+header h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.7rem, 3.5vw, 2.5rem); font-weight: 400; line-height: 1.2; color: var(--cafe); opacity: 0; animation: fadeUp 0.7s ease 0.2s forwards; }
+.modulo-badge { flex-shrink: 0; background: rgba(139,38,27,0.08); border: 1px solid rgba(139,38,27,0.15); border-radius: 10px; padding: 14px 20px; text-align: center; opacity: 0; animation: fadeUp 0.6s ease 0.3s forwards; align-self: center; }
+.modulo-badge .num { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--rojo-marx); line-height: 1; display: block; }
+.modulo-badge .etiqueta { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rojo-marx); opacity: 0.8; }
+
+/* MAIN */
+main { max-width: 820px; margin: 0 auto; padding: 48px 48px 80px; }
+
+/* SLIDE WRAPPER */
+.slide-wrapper { opacity: 0; animation: fadeUp 0.6s ease 0.2s forwards; }
+.progress-bar-outer { height: 4px; background: rgba(43,27,18,0.1); border-radius: 4px; margin-bottom: 4px; overflow: hidden; }
+.progress-bar-inner { height: 100%; background: var(--rojo-marx); border-radius: 4px; transition: width 0.4s ease; }
+.progress-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.progress-texto { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cafe-claro); opacity: 0.55; }
+.slide-counter-txt { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; color: var(--rojo-marx); opacity: 0.9; }
+
+/* SLIDE CONTAINER */
+.slide-container { background: rgba(255,255,255,0.65); border: 1px solid rgba(43,27,18,0.1); border-radius: 12px; padding: 36px 40px 28px; min-height: 420px; position: relative; overflow: hidden; box-shadow: 0 4px 20px rgba(43,27,18,0.06); display: flex; flex-direction: column; gap: 20px; }
+.slide-container::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--rojo-marx); border-radius: 4px 0 0 4px; }
+
+/* SLIDES */
+.slide { display: none; animation: fadeSlide 0.4s ease; flex: 1; }
+.slide.active { display: block; }
+@keyframes fadeSlide { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: translateX(0); } }
+
+/* SLIDE TYPE BADGE */
+.slide-tipo { display: inline-flex; align-items: center; gap: 6px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; margin-bottom: 14px; }
+.tipo-objetivo { background: rgba(139,38,27,0.1); color: var(--rojo-marx); }
+.tipo-teoria { background: rgba(43,27,18,0.08); color: var(--cafe); }
+.tipo-analisis { background: rgba(107,76,53,0.1); color: var(--cafe-claro); }
+.tipo-diagrama { background: rgba(139,38,27,0.08); color: var(--rojo-marx); }
+.tipo-recursos { background: rgba(42,73,57,0.06); color: var(--verde-medio); }
+
+/* SLIDE CONTENT */
+.slide h2 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; font-weight: 400; color: var(--cafe); margin-bottom: 18px; line-height: 1.3; padding-bottom: 12px; border-bottom: 1px solid rgba(43,27,18,0.1); }
+.contenido-texto { font-size: 0.95rem; color: var(--texto-suave); line-height: 1.85; }
+.contenido-texto p { margin-bottom: 15px; }
+.contenido-texto ul, .contenido-texto ol { padding-left: 20px; margin: 15px 0; }
+.contenido-texto li { margin-bottom: 8px; }
+.contenido-texto li::marker { color: var(--rojo-marx); }
+.contenido-texto strong { color: var(--cafe); font-weight: 600; }
+.contenido-texto em { font-family: 'Libre Baskerville', serif; font-style: italic; color: var(--cafe-claro); }
+
+/* SPECIAL BOXES */
+.caja-teorica { background: rgba(139,38,27,0.05); border: 1px solid rgba(139,38,27,0.14); border-left: 4px solid var(--rojo-marx); border-radius: 0 8px 8px 0; padding: 18px 22px; margin: 20px 0; font-size: 0.9rem; color: var(--texto-suave); line-height: 1.7; }
+.caja-teorica strong { color: var(--rojo-marx); font-weight: 600; display: block; margin-bottom: 5px; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+.caja-ecuacion { font-family: 'Times New Roman', serif; font-size: 1.3rem; text-align: center; padding: 20px; background: #fff; border: 1px dashed #ccc; border-radius: 8px; margin: 20px 0; color: var(--cafe); box-shadow: inset 0 2px 5px rgba(0,0,0,0.03); }
+
+/* RECURSOS Y VIDEOS */
+.recursos-grid { display: flex; flex-direction: column; gap: 10px; margin: 15px 0; }
+.recurso-item { display: flex; align-items: flex-start; gap: 10px; padding: 12px 16px; background: rgba(255,255,255,0.6); border: 1px solid rgba(43,27,18,0.09); border-radius: 8px; font-size: 0.85rem; color: var(--texto-suave); }
+.recurso-item a { color: var(--rojo-marx); text-decoration: none; font-weight: 600; }
+.recurso-item a:hover { text-decoration: underline; }
+
+.video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: rgba(43,27,18,0.05); margin: 15px 0; border: 1px solid rgba(0,0,0,0.1); }
+.video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+/* NAV BUTTONS */
+.nav-buttons { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-top: 15px; border-top: 1px solid rgba(43,27,18,0.08); }
+.btn-nav { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; background: var(--cafe); color: #D7C4A5; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; border-radius: 8px; transition: background 0.2s, transform 0.2s; }
+.btn-nav:hover:not(:disabled) { background: var(--rojo-marx); transform: translateY(-1px); }
+.btn-nav:disabled { background: rgba(43,27,18,0.1); color: rgba(43,27,18,0.3); cursor: not-allowed; transform: none; }
+.puntos-nav { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: center; }
+.punto { width: 8px; height: 8px; border-radius: 50%; background: rgba(43,27,18,0.15); transition: background 0.3s, transform 0.3s; cursor: pointer; border: none; padding: 0; }
+.punto.activo { background: var(--rojo-marx); transform: scale(1.25); }
+
+/* MODULE NAV */
+.modulo-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 28px; gap: 12px; }
+.btn-modulo { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(255,255,255,0.6); border: 1px solid rgba(43,27,18,0.12); color: var(--texto-suave); text-decoration: none; font-size: 0.82rem; font-weight: 500; border-radius: 8px; transition: background 0.2s, border-color 0.2s, color 0.2s; }
+.btn-modulo:hover { background: rgba(255,255,255,0.9); border-color: var(--rojo-marx); color: var(--rojo-marx); }
+
+/* CIERRE */
+.slide-cierre { text-align:center; padding: 20px 0; }
+.cierre-emoji { font-size:3.5rem; margin-bottom:18px; display:block; }
+.cierre-titulo { font-family:'DM Serif Display',serif; font-size:1.8rem; color: var(--rojo-marx); margin-bottom:14px; }
+.btn-completar { display:inline-flex; align-items:center; justify-content: center; width: 100%; max-width: 350px; margin-top:30px; padding:16px 20px; background:var(--rojo-marx); color:white; border:none; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:1.1rem; font-weight:700; cursor:pointer; transition:background 0.25s,transform 0.2s; }
+.btn-completar:hover:not(:disabled) { background:#6e1b12; transform:translateY(-2px); }
+.btn-completar:disabled { background:var(--cafe-claro); cursor:default; opacity:0.75; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<button class="menu-trigger" id="menuBtn" aria-label="Abrir menú" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+<aside class="menu-panel" id="menuPanel" aria-hidden="true">
+    <div class="menu-panel-logo"><span>Centro Popular de<br>Estudios Económicos</span><em>Ciencia Social aplicada</em></div>
+    <nav>
+        <a href="../../index.html"><span class="nav-num">00</span> Inicio</a>
+        <a href="../lab.html"><span class="nav-num">01</span> Laboratorio</a>
+        <a href="ce_inicio.html"><span class="nav-num">02</span> Índice del Curso</a>
+    </nav>
+</aside>
+
+<div class="breadcrumb">
+    <a href="../lab.html">Laboratorio</a><span class="sep">/</span>
+    <a href="ce_inicio.html">Estructura y Crisis</a><span class="sep">/</span>
+    <span class="actual">Módulo II</span>
+</div>
+
+<header>
+    <div class="header-bg-deco"></div>
+    <div class="header-inner">
+        <div class="header-texto">
+            <p class="header-eyebrow">Macroeconomía Marxista</p>
+            <h1>Marx I: Acumulación y Reproducción</h1>
+        </div>
+        <div class="modulo-badge"><span class="num">II</span><span class="etiqueta">Módulo</span></div>
+    </div>
+</header>
+
+<main>
+<div class="slide-wrapper">
+    <div class="progress-bar-outer"><div class="progress-bar-inner" id="progressBar"></div></div>
+    <div class="progress-label">
+        <span class="progress-texto">Desarrollo Teórico</span>
+        <span class="slide-counter-txt" id="slideCounter"></span>
+    </div>
+    
+    <div class="slide-container">
+
+        <div class="slide active">
+            <span class="slide-tipo tipo-objetivo">🎯 Introducción y Objetivos</span>
+            <h2>El motor de combustión del capital</h2>
+            <div class="contenido-texto">
+                <p>Abordar <em>El Capital</em> requiere abandonar la idea de que es un manifiesto político. Se trata de un <strong>tratado de crítica de la economía política</strong> que busca descubrir la ley económica que rige el movimiento de la sociedad moderna. En este módulo estudiaremos los Tomos I y II, enfocándonos en cómo el capital se acumula y cómo el sistema entero se reproduce (o se paraliza).</p>
+                
+                <div class="caja-teorica">
+                    <strong>Objetivos de Aprendizaje</strong>
+                    <ol>
+                        <li>Comprender la <em>Ley General de la Acumulación Capitalista</em> y por qué el desempleo es una necesidad estructural (Tomo I).</li>
+                        <li>Analizar el cambio en la <em>Composición Orgánica del Capital</em> como motor del desarrollo tecnológico.</li>
+                        <li>Dominar los <em>Esquemas de Reproducción Simple y Ampliada</em> (Tomo II) para entender las condiciones de equilibrio macroeconómico intersectorial.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <span class="slide-tipo tipo-teoria">📖 Tomo I: La Acumulación</span>
+            <h2>La anatomía del valor</h2>
+            <div class="contenido-texto">
+                <p>Para Marx, el valor de cualquier mercancía se compone de tres partes fundamentales:</p>
+                
+                <div class="caja-ecuacion">
+                    Valor (W) = c + v + p
+                </div>
+
+                <ul>
+                    <li><strong>c (Capital Constante):</strong> Medios de producción (máquinas, materias primas). Se llama constante porque solo <em>transfiere</em> su valor al producto final, no crea valor nuevo.</li>
+                    <li><strong>v (Capital Variable):</strong> Fuerza de trabajo (salarios). Se llama variable porque el trabajador produce más valor del que cuesta mantenerlo vivo.</li>
+                    <li><strong>p (Plusvalía):</strong> El trabajo excedente no pagado al obrero y apropiado por el capitalista. Es la única fuente real de ganancia.</li>
+                </ul>
+
+                <p>A medida que los capitalistas compiten, invierten más en máquinas (c) y relativamente menos en salarios (v). A esta relación <strong>c/v</strong> Marx la llamó <em>Composición Orgánica del Capital</em>. Su aumento histórico explica el impresionante desarrollo tecnológico del capitalismo.</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <span class="slide-tipo tipo-teoria">📖 Tomo I: Capítulo XXIII</span>
+            <h2>El Ejército Industrial de Reserva</h2>
+            <div class="contenido-texto">
+                <p>La economía ortodoxa ve el desempleo como un "desajuste" temporal del mercado. Para Marx, en el Capítulo XXIII, el desempleo es el <strong>Ejército Industrial de Reserva</strong>, y es una pieza funcional y absolutamente necesaria del engranaje capitalista.</p>
+                
+                <p>A medida que aumenta la composición orgánica (más máquinas, menos humanos), se expulsa fuerza de trabajo. Este ejército de desempleados cumple dos funciones macroeconómicas vitales:</p>
+                
+                <ol>
+                    <li><strong>Disciplina salarial:</strong> Mantiene una presión a la baja sobre los salarios (la ley de la oferta y la demanda aplicada a los humanos). Si hay pleno empleo, los trabajadores exigen aumentos que aniquilarían la plusvalía.</li>
+                    <li><strong>Flexibilidad de expansión:</strong> Proporciona masa humana disponible inmediatamente para cuando el capital necesita expandirse a nuevos sectores de forma repentina.</li>
+                </ol>
+
+                <p>Por lo tanto, el capitalismo <em>no puede</em> ni quiere llegar a un estado permanente de pleno empleo pleno, porque eso destruiría la rentabilidad.</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <span class="slide-tipo tipo-teoria">📖 Tomo II: La Reproducción</span>
+            <h2>Los Esquemas de Reproducción</h2>
+            <div class="contenido-texto">
+                <p>En el Tomo II (Caps. XVIII-XXI), Marx se pregunta algo que nadie había resuelto: <em>¿Cómo hace el sistema capitalista en su conjunto para que la producción y el consumo encajen de tal forma que el ciclo pueda reiniciarse al año siguiente?</em></p>
+                
+                <p>Para resolverlo, Marx dividió toda la economía en dos grandes Departamentos (o Sectores):</p>
+                <ul>
+                    <li><strong>Sector I:</strong> Produce <em>Medios de Producción</em> (máquinas, acero, energía). Vende a otros capitalistas.</li>
+                    <li><strong>Sector II:</strong> Produce <em>Medios de Consumo</em> (comida, ropa, viviendas). Vende a los trabajadores y a los capitalistas para su consumo personal.</li>
+                </ul>
+
+                <div class="caja-teorica">
+                    <strong>El dilema del intercambio:</strong>
+                    El Sector I necesita comida para sus trabajadores (solo produce máquinas). El Sector II necesita máquinas para sus fábricas (solo produce comida). Tienen que intercambiar entre sí. Marx modeló matemáticamente las condiciones exactas bajo las cuales este intercambio permite que el sistema se reproduzca sin colapsar.
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <span class="slide-tipo tipo-diagrama">📊 Diagrama Macro</span>
+            <h2>La Reproducción Simple</h2>
+            <div class="contenido-texto">
+                <p>La <em>Reproducción Simple</em> ocurre cuando los capitalistas consumen toda su plusvalía (no reinvierten para crecer). El sistema se repite a la misma escala. Observa la condición de equilibrio:</p>
+                
+                <div style="text-align: center; margin: 25px 0; overflow-x: auto;">
+                    <svg viewBox="0 0 600 350" width="100%" min-width="500px" style="background-color: #fafafa; border: 1px solid #ddd; border-radius: 12px; font-family: 'DM Sans', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                        <defs>
+                            <marker id="arrowRojo" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#8b261b" />
+                            </marker>
+                        </defs>
+
+                        <rect x="50" y="50" width="200" height="100" rx="8" fill="rgba(139,38,27,0.05)" stroke="#8b261b" stroke-width="2"/>
+                        <text x="150" y="80" font-size="14" font-weight="bold" fill="#8b261b" text-anchor="middle">Sector I</text>
+                        <text x="150" y="100" font-size="12" fill="#4a3828" text-anchor="middle">(Medios de Producción)</text>
+                        <text x="150" y="130" font-size="14" font-weight="bold" fill="#111" text-anchor="middle">W1 = c1 + v1 + p1</text>
+
+                        <rect x="350" y="50" width="200" height="100" rx="8" fill="rgba(43,27,18,0.05)" stroke="#2B1B12" stroke-width="2"/>
+                        <text x="450" y="80" font-size="14" font-weight="bold" fill="#2B1B12" text-anchor="middle">Sector II</text>
+                        <text x="450" y="100" font-size="12" fill="#4a3828" text-anchor="middle">(Medios de Consumo)</text>
+                        <text x="450" y="130" font-size="14" font-weight="bold" fill="#111" text-anchor="middle">W2 = c2 + v2 + p2</text>
+
+                        <path d="M 150 160 L 150 250 L 450 250 L 450 160" fill="none" stroke="#8b261b" stroke-width="3" stroke-dasharray="6,4"/>
+                        <path d="M 450 250 L 450 240 M 450 250 L 440 250" fill="none" stroke="#8b261b" stroke-width="3"/> <circle cx="178" cy="125" r="30" fill="none" stroke="#d35a34" stroke-width="2" stroke-dasharray="4,2"/>
+                        <circle cx="395" cy="125" r="18" fill="none" stroke="#d35a34" stroke-width="2" stroke-dasharray="4,2"/>
+
+                        <rect x="225" y="225" width="150" height="50" rx="5" fill="#fff" stroke="#d35a34" stroke-width="2"/>
+                        <text x="300" y="255" font-size="16" font-weight="bold" fill="#d35a34" text-anchor="middle">I(v + p) = II(c)</text>
+
+                        <text x="300" y="320" font-size="12" fill="#666" font-style="italic" text-anchor="middle">El nuevo valor creado en I debe ser exactamente igual al capital constante repuesto en II.</text>
+                    </svg>
+                </div>
+                <p>Para que no haya crisis, los salarios y plusvalía del Sector I <strong>(v1 + p1)</strong>, que se gastan en comida, deben equivaler exactamente a la demanda de máquinas del Sector II para reponer su desgaste <strong>(c2)</strong>. Si esta ecuación no cuadra, habrá sobreproducción en un sector y escasez en el otro.</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <span class="slide-tipo tipo-teoria">📖 Tomo II: El Crecimiento</span>
+            <h2>Reproducción Ampliada y Desproporción</h2>
+            <div class="contenido-texto">
+                <p>Pero el capitalismo no es estático; su imperativo es crecer. Esto requiere <strong>Reproducción Ampliada</strong>: los capitalistas no consumen toda su plusvalía (p), sino que reinvierten una parte en comprar más máquinas (c) y contratar más obreros (v).</p>
+                
+                <p>Aquí es donde Marx demuestra que el capitalismo camina sobre la cuerda floja. Al reinvertir, el Sector I (máquinas) debe crecer a un ritmo mucho más acelerado que el Sector II (consumo). La condición de equilibrio se vuelve una ecuación extremadamente delicada de sincronización entre sectores.</p>
+                
+                <div class="caja-teorica">
+                    <strong>La Crisis de Desproporcionalidad:</strong>
+                    Si los capitalistas compiten a ciegas, es imposible que las decisiones individuales de inversión encajen mágicamente en la ecuación de equilibrio sectorial. Eventualmente, un sector producirá de más. A esto se le conoce como la teoría de la crisis por <em>anarquía de la producción o desproporcionalidad</em>.
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <span class="slide-tipo tipo-analisis">✍️ Taller de Análisis</span>
+            <h2>Aplicación: La Inteligencia Artificial</h2>
+            <div class="contenido-texto">
+                <p>Utilicemos las categorías de Marx (Composición Orgánica y Ejército de Reserva) para analizar el problema económico más urgente de la actualidad.</p>
+                
+                <div class="caja-analisis">
+                    <strong>El Caso: La Automatización y la IA</strong>
+                    Las empresas tecnológicas están invirtiendo miles de millones de dólares en servidores y algoritmos de IA (Capital Constante - <em>c</em>) para sustituir a programadores, redactores y analistas (Capital Variable - <em>v</em>).<br><br>
+                    <strong>Análisis Crítico:</strong><br>
+                    1. Esta es la demostración empírica de la elevación de la Composición Orgánica del Capital (c/v sube drásticamente).<br>
+                    2. Los trabajadores intelectuales desplazados pasarán a engrosar las filas del <em>Ejército Industrial de Reserva</em>, deprimiendo los salarios de quienes conserven sus empleos.<br>
+                    3. <strong>La paradoja (El problema de realización):</strong> Si los algoritmos (c) producen el código, pero no cobran salario, ¿quién tendrá la capacidad de demanda efectiva (dinero) para comprar las mercancías que las corporaciones producen?
+                </div>
+
+                <details style="background: #f0f7f4; padding: 15px; border-radius: 6px; border: 1px solid var(--rojo-marx); cursor: pointer;">
+                    <summary style="font-weight: bold; color: var(--rojo-marx);">Ver Implicación Sistémica</summary>
+                    <p style="margin-top: 10px; font-size: 0.95rem;">La automatización total es el sueño de la eficiencia neoclásica, pero la pesadilla del modelo marxista. Al expulsar al trabajo vivo (único creador de plusvalía y principal fuente de demanda de consumo), el capital socava sus propias bases de valorización, preparando el terreno para una crisis de sobreacumulación monumental.</p>
+                </details>
+            </div>
+        </div>
+
+        <div class="slide">
+            <span class="slide-tipo tipo-recursos">📚 Recursos y Glosario</span>
+            <h2>Bibliografía, Glosario y Audiovisuales</h2>
+            <div class="contenido-texto">
+                <p><strong>Lecturas Obligatorias:</strong></p>
+                <div class="recursos-grid">
+                    <div class="recurso-item">Marx, K. (1867). <em>El Capital. Crítica de la economía política. Tomo I.</em> FCE. (Capítulos III y XXIII).</div>
+                    <div class="recurso-item">Marx, K. (1885). <em>El Capital. Crítica de la economía política. Tomo II.</em> FCE. (Capítulos XVIII, XX y XXI).</div>
+                </div>
+
+                <p><strong>Glosario Técnico:</strong></p>
+                <ul>
+                    <li><strong>Plusvalía (p):</strong> Valor creado por el trabajador más allá de la reproducción de su propia fuerza de trabajo, apropiado por el capitalista.</li>
+                    <li><strong>Composición Orgánica del Capital (c/v):</strong> Relación técnica y de valor entre los medios de producción y la fuerza de trabajo.</li>
+                    <li><strong>Reproducción Ampliada:</strong> Proceso de acumulación donde la plusvalía se reinvierte para expandir la escala de la producción.</li>
+                </ul>
+
+                <p><strong>Cátedra en Video:</strong></p>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube-nocookie.com/embed/z4BtafKxR3o" title="David Harvey - Ley General de la Acumulación" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--cafe-claro); font-style: italic;">Conferencia: "Reading Marx's Capital" por el Profesor David Harvey (CUNY). Uno de los cursos universitarios más prestigiosos a nivel global sobre la lectura estructural de El Capital.</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-cierre">
+                <span class="cierre-emoji">⚙️</span>
+                <h2 class="cierre-titulo">¡Módulo II Completado!</h2>
+                <p style="color: var(--texto-suave); font-size: 1.05rem; max-width: 600px; margin: 0 auto;">
+                    Has diseccionado el "motor" del capitalismo. Ahora entiendes que el desempleo no es un error, sino una herramienta de disciplina, y que el crecimiento requiere una sincronía matemática entre sectores productivos casi imposible de lograr. En el siguiente módulo abordaremos la consecuencia fatal de este proceso: la caída de la tasa de ganancia.
+                </p>
+                <button class="btn-completar" id="btnCompletarM2">Guardar Progreso del Módulo II</button>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="btn-nav" id="prevBtn" onclick="changeSlide(-1)">← Anterior</button>
+            <div class="puntos-nav" id="puntos"></div>
+            <button class="btn-nav" id="nextBtn" onclick="changeSlide(1)">Siguiente →</button>
+        </div>
+    </div>
+    
+    <div class="modulo-nav">
+        <a href="ce_m1.html" class="btn-modulo">← Módulo I</a>
+        <a href="ce_inicio.html" class="btn-modulo">↑ Índice</a>
+        <a href="ce_m3.html" class="btn-modulo">Siguiente: Módulo III →</a>
+    </div>
+</div>
+</main>
+
+<script>
+// Menú
+function toggleMenu() {
+    const btn=document.getElementById('menuBtn'),panel=document.getElementById('menuPanel'),overlay=document.getElementById('menuOverlay'),abierto=panel.classList.contains('abierto');
+    btn.classList.toggle('abierto',!abierto); panel.classList.toggle('abierto',!abierto); overlay.classList.toggle('visible',!abierto);
+    panel.setAttribute('aria-hidden',abierto?'true':'false'); document.body.style.overflow=abierto?'':'hidden';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){const p=document.getElementById('menuPanel');if(p.classList.contains('abierto'))toggleMenu();}});
+
+// Slides
+let currentSlide=0;
+const slides=document.querySelectorAll('.slide'),counter=document.getElementById('slideCounter'),prevBtn=document.getElementById('prevBtn'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progressBar'),puntosContainer=document.getElementById('puntos');
+slides.forEach((_,i)=>{const btn=document.createElement('button');btn.classList.add('punto');if(i===0)btn.classList.add('activo');btn.addEventListener('click',()=>goToSlide(i));puntosContainer.appendChild(btn);});
+function updateUI(){const t=slides.length;counter.innerText=`${currentSlide+1} / ${t}`;prevBtn.disabled=currentSlide===0;nextBtn.disabled=currentSlide===t-1;progress.style.width=`${((currentSlide+1)/t)*100}%`;document.querySelectorAll('.punto').forEach((p,i)=>p.classList.toggle('activo',i===currentSlide));}
+function goToSlide(n){slides[currentSlide].classList.remove('active');currentSlide=n;slides[currentSlide].classList.add('active');updateUI();}
+function changeSlide(n){goToSlide(currentSlide+n);}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'&&currentSlide<slides.length-1)changeSlide(1);if(e.key==='ArrowLeft'&&currentSlide>0)changeSlide(-1);});
+updateUI();
+</script>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyA5YZCAHcrMA36PmgpOxmHnTOI6zgZNMgg",
+        authDomain: "cpee-plataforma-a655a.firebaseapp.com",
+        projectId: "cpee-plataforma-a655a",
+        storageBucket: "cpee-plataforma-a655a.firebasestorage.app",
+        messagingSenderId: "684415102099",
+        appId: "1:684415102099:web:3f2b649a34386677a87166"
+    };
+
+    const app  = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db   = getFirestore(app);
+    const btnCompletar = document.getElementById("btnCompletarM2");
+
+    function marcarCompletado() {
+        if (btnCompletar) {
+            btnCompletar.innerHTML = "✅ Progreso Guardado";
+            btnCompletar.style.background = "var(--cafe-claro)";
+            btnCompletar.disabled = true;
+            btnCompletar.style.cursor = "default";
+        }
+    }
+
+    onAuthStateChanged(auth, async (user) => {
+        if (!user) {
+            window.location.href = "../../login.html";
+            return;
+        }
+        const docRef  = doc(db, "progreso_usuarios", user.uid);
+        const docSnap = await getDoc(docRef);
+
+        if (!docSnap.exists() || docSnap.data().acceso_ce !== true) {
+            window.location.href = "ce_inicio.html";
+            return;
+        }
+
+        if (docSnap.data().modulo2_ce_completado === true) {
+            marcarCompletado();
+        }
+
+        if (btnCompletar) {
+            btnCompletar.addEventListener("click", async () => {
+                btnCompletar.innerText = "Registrando...";
+                try {
+                    await setDoc(docRef, {
+                        modulo2_ce_completado: true,
+                        fecha_completado_ce_m2: new Date()
+                    }, { merge: true });
+                    marcarCompletado();
+                } catch (error) {
+                    console.error("Error al guardar: ", error);
+                    alert("Error de red. Intenta de nuevo.");
+                    btnCompletar.innerText = "Guardar Progreso del Módulo II";
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>
