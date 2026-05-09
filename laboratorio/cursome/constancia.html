@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-width=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generar Constancia - CPEE</title>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
     
@@ -196,13 +196,14 @@
             const uid = auth.currentUser.uid;
 
             try {
-                // Guardamos en una NUEVA colección especial para las constancias
-                const constanciaRef = doc(db, "solicitudes_constancias_cursome", uid);
+                // Guardamos en la colección exacta que lee el administrador
+                const constanciaRef = doc(db, "solicitud_constancias_cursomate", uid);
                 await setDoc(constanciaRef, {
                     nombre_completo: nombre,
                     correo: correo,
+                    curso: "Matemáticas para la Economía",
                     fecha_solicitud: new Date(),
-                    estado: "Pendiente" // Puedes cambiar esto a "Enviada" desde Firebase cuando le mandes el correo
+                    estado: "Pendiente" 
                 });
 
                 // Ocultamos formulario, mostramos mensaje de éxito

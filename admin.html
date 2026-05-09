@@ -48,7 +48,6 @@
         
         .btn-accion { background: var(--verde); color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 0.8rem; transition: 0.3s; }
         .btn-accion:hover { background: #1e3629; }
-        .btn-accion.disabled { background: #ccc; cursor: not-allowed; }
 
         .loading { text-align: center; padding: 50px; font-size: 1.2rem; color: #666; }
 
@@ -90,15 +89,14 @@
                         <th>Org. Com.</th>
                     </tr>
                 </thead>
-                <tbody id="body-accesos">
-                    </tbody>
+                <tbody id="body-accesos"></tbody>
             </table>
         </div>
 
         <div id="constancias" class="tab-content">
             <h2>Constancias Pendientes de Envío</h2>
-            <p style="color: #666; margin-bottom: 20px;">Alumnos que ya aprobaron y solicitaron su diploma. Una vez que les envíes el PDF por correo, haz clic en "Marcar Enviada".</p>
-            <div id="loading-constancias" class="loading">Buscando solicitudes...</div>
+            <p style="color: #666; margin-bottom: 20px;">Alumnos que ya aprobaron y solicitaron su diploma. Una vez que les envíes el PDF, haz clic en "Marcar Enviada".</p>
+            <div id="loading-constancias" class="loading">Buscando solicitudes en todas las colecciones...</div>
             <table id="tabla-constancias" style="display:none;">
                 <thead>
                     <tr>
@@ -109,8 +107,7 @@
                         <th>Acción</th>
                     </tr>
                 </thead>
-                <tbody id="body-constancias">
-                    </tbody>
+                <tbody id="body-constancias"></tbody>
             </table>
         </div>
 
@@ -134,21 +131,23 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // ==========================================
-        // 🔴 IMPORTANTE: PON TU CORREO AQUÍ
-        // ==========================================
+        // Tu correo oficial
         const CORREO_ADMIN = "cpee.contact@gmail.com"; 
 
         const cursos = [
             { id: "mate", nombre: "Matemáticas" },
-            { id: "cp", nombre: "Ciencia Política" },
+            { id: "cp", nombre: "C. Política" },
             { id: "crisis", nombre: "Crisis Cap." },
             { id: "pc", nombre: "P. Crítico" },
             { id: "inv", nombre: "Investigación" },
-            { id: "oc", nombre: "Org. Comunitaria" }
+            { id: "oc", nombre: "Org. Com." }
         ];
 
+        // 🔥 AQUÍ ESTÁ LA MAGIA: Todas las colecciones reales de tus capturas
         const coleccionesConstancias = [
+            "solicitudes_constancias",
+            "solicitud_constancias_cursofp",
+            "solicitud_constancias_cursoce",
             "solicitud_constancias_cursomate",
             "solicitud_constancias_cursocp",
             "solicitud_constancias_cursocrisis",
@@ -157,7 +156,6 @@
             "solicitud_constancias_cursooc"
         ];
 
-        // Autenticación
         onAuthStateChanged(auth, async (user) => {
             if (!user) {
                 window.location.href = "login.html";
@@ -173,7 +171,6 @@
                 return;
             }
 
-            // Si es admin, mostrar panel
             document.getElementById('pantalla-bloqueo').style.display = "none";
             document.getElementById('admin-nav').style.display = "flex";
             document.getElementById('admin-tabs').style.display = "flex";
@@ -183,7 +180,6 @@
             cargarConstancias();
         });
 
-        // Cargar Tabla de Accesos
         async function cargarAccesos() {
             const body = document.getElementById('body-accesos');
             body.innerHTML = "";
@@ -199,12 +195,10 @@
                 tdCorreo.innerText = correo;
                 tr.appendChild(tdCorreo);
 
-                // Generar los 6 checkboxes dinámicamente
                 cursos.forEach(curso => {
                     let td = document.createElement('td');
                     let statusHtml = "";
                     
-                    // Si lo solicitó pero no tiene acceso
                     if (data[`solicitud_${curso.id}`] && !data[`acceso_${curso.id}`]) {
                         statusHtml = `<span class="badge solicitado">Solicitado</span><br>`;
                     }
@@ -215,14 +209,12 @@
                     td.innerHTML = statusHtml;
                     tr.appendChild(td);
                 });
-
                 body.appendChild(tr);
             });
 
             document.getElementById('loading-accesos').style.display = "none";
             document.getElementById('tabla-accesos').style.display = "table";
 
-            // Asignar eventos a los checkboxes
             document.querySelectorAll('.checkbox-acceso').forEach(checkbox => {
                 checkbox.addEventListener('change', async (e) => {
                     const uid = e.target.getAttribute('data-uid');
@@ -233,61 +225,61 @@
                         await updateDoc(doc(db, "progreso_usuarios", uid), {
                             [`acceso_${curso}`]: tieneAcceso
                         });
-                        console.log(`Acceso actualizado para ${uid} en ${curso}`);
                     } catch (error) {
-                        alert("Error al actualizar. Revisa los permisos de Firebase.");
-                        e.target.checked = !tieneAcceso; // Revertir visualmente
+                        alert("Error al actualizar. Revisa los permisos.");
+                        e.target.checked = !tieneAcceso; 
                     }
                 });
             });
         }
 
-        // Cargar Tabla de Constancias
         async function cargarConstancias() {
             const body = document.getElementById('body-constancias');
             body.innerHTML = "";
             let hayConstancias = false;
 
             for (const coleccion of coleccionesConstancias) {
-                const querySnapshot = await getDocs(collection(db, coleccion));
-                
-                querySnapshot.forEach((docSolicitud) => {
-                    const data = docSolicitud.data();
-                    const uid = docSolicitud.id;
+                try {
+                    const querySnapshot = await getDocs(collection(db, coleccion));
+                    
+                    querySnapshot.forEach((docSolicitud) => {
+                        const data = docSolicitud.data();
+                        const uid = docSolicitud.id;
 
-                    // Solo mostrar las que están "Pendiente"
-                    if (data.estado === "Pendiente") {
-                        hayConstancias = true;
-                        let tr = document.createElement('tr');
-                        
-                        let fechaStr = "Desconocida";
-                        if(data.fecha_solicitud) {
-                            fechaStr = data.fecha_solicitud.toDate().toLocaleDateString();
+                        if (data.estado === "Pendiente") {
+                            hayConstancias = true;
+                            let tr = document.createElement('tr');
+                            
+                            let fechaStr = "Desconocida";
+                            if(data.fecha_solicitud) {
+                                fechaStr = data.fecha_solicitud.toDate ? data.fecha_solicitud.toDate().toLocaleDateString() : data.fecha_solicitud;
+                            }
+
+                            tr.innerHTML = `
+                                <td><strong>${data.nombre_completo || 'Sin nombre'}</strong></td>
+                                <td>${data.correo || 'Sin correo'}</td>
+                                <td><span class="badge aprobado">${data.curso || 'Curso no especificado'}</span></td>
+                                <td>${fechaStr}</td>
+                                <td>
+                                    <button class="btn-accion btn-marcar" data-col="${coleccion}" data-uid="${uid}">
+                                        Marcar Enviada ✔️
+                                    </button>
+                                </td>
+                            `;
+                            body.appendChild(tr);
                         }
-
-                        tr.innerHTML = `
-                            <td><strong>${data.nombre_completo}</strong></td>
-                            <td>${data.correo}</td>
-                            <td><span class="badge aprobado">${data.curso}</span></td>
-                            <td>${fechaStr}</td>
-                            <td>
-                                <button class="btn-accion btn-marcar" data-col="${coleccion}" data-uid="${uid}">
-                                    Marcar Enviada ✔️
-                                </button>
-                            </td>
-                        `;
-                        body.appendChild(tr);
-                    }
-                });
+                    });
+                } catch (error) {
+                    console.warn("Ignorando la colección (no existe o no hay permisos):", coleccion);
+                }
             }
 
             document.getElementById('loading-constancias').style.display = "none";
             document.getElementById('tabla-constancias').style.display = "table";
 
             if (!hayConstancias) {
-                body.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 30px; color:#888;">No hay solicitudes de constancias pendientes. ¡Todo al día! 🎉</td></tr>`;
+                body.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 30px; color:#888;">No hay solicitudes pendientes. ¡Todo al día! 🎉</td></tr>`;
             } else {
-                // Eventos de botones "Marcar Enviada"
                 document.querySelectorAll('.btn-marcar').forEach(btn => {
                     btn.addEventListener('click', async (e) => {
                         const coleccion = e.target.getAttribute('data-col');
@@ -301,7 +293,7 @@
                                 estado: "Enviada",
                                 fecha_envio: new Date()
                             });
-                            e.target.parentElement.parentElement.remove(); // Quitar la fila
+                            e.target.parentElement.parentElement.remove();
                         } catch (error) {
                             alert("Error al actualizar estado.");
                             e.target.innerText = "Marcar Enviada ✔️";
@@ -312,7 +304,6 @@
             }
         }
 
-        // Funciones Globales para UI
         window.switchTab = function(tabId) {
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
