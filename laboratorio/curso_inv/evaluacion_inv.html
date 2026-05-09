@@ -326,7 +326,10 @@
                 txtBloqueo.style.color = "var(--azul-inv)";
                 subTxtBloqueo.innerText = "Tu constancia está lista para ser generada.";
                 btnVolver.innerText = "Ir a solicitar mi Constancia";
+                
+                // AQUÍ ESTABA EL ERROR: Ahora apunta correctamente a constancia_inv.html
                 btnVolver.onclick = () => window.location.href = "constancia_inv.html";
+                
                 btnVolver.style.display = "inline-block";
                 return;
             }
@@ -397,7 +400,10 @@
                 }, { merge: true });
 
                 alert(`¡Felicidades! Obtuviste ${aciertos}/15 (${calificacion.toFixed(1)}). Has aprobado el curso.`);
-                window.location.href = "solicitud_constancias_cursoinv.html";
+                
+                // AQUÍ TAMBIÉN ESTABA EL ERROR: Ahora apunta a constancia_inv.html
+                window.location.href = "constancia_inv.html";
+                
             } else {
                 await setDoc(userRef, {
                     intentos_examen_inv: intentosActuales
