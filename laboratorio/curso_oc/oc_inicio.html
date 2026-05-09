@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Organización Comunitaria y Acción Colectiva — CPEE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Libre+Baskerville:ital@1&display=swap" rel="stylesheet">
+<style>
+/* PALETA CPEE - ORGANIZACIÓN COMUNITARIA */
+:root {
+    --crema: #fff1da;
+    --verde: #2a4939;
+    --cafe: #2B1B12;
+    --cafe-claro: #6b4c35;
+    --naranja: #d35a34;
+    --ocre-comunidad: #b85b3f; /* Color temático: Acción y Tierra */
+    --ocre-oscuro: #8b3e28;
+    --negro: #111111;
+    --texto-suave: #4a3828;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background-color: var(--crema); color: var(--negro); font-family: 'DM Sans', sans-serif; line-height: 1.7; overflow-x: hidden; }
+
+/* BREADCRUMB */
+.breadcrumb { padding: 18px 48px; display: flex; align-items: center; gap: 8px; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--cafe-claro); opacity: 0.7; border-bottom: 1px solid rgba(43,27,18,0.08); }
+.breadcrumb a { color: inherit; text-decoration: none; transition: color 0.2s; }
+.breadcrumb a:hover { color: var(--ocre-comunidad); }
+.breadcrumb .sep { opacity: 0.4; }
+.breadcrumb .actual { color: var(--ocre-comunidad); opacity: 1; }
+
+/* HEADER */
+header { position: relative; padding: 60px 48px; border-bottom: 1px solid rgba(43,27,18,0.15); background: white; text-align: center; }
+.header-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ocre-comunidad); margin-bottom: 15px; }
+header h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--cafe); line-height: 1.2; margin-bottom: 10px; }
+header h2 { font-family: 'DM Sans', sans-serif; font-size: 1.2rem; color: var(--naranja); font-weight: 500; margin-bottom: 20px; }
+header p { max-width: 750px; margin: 0 auto; color: var(--texto-suave); font-size: 1.05rem; }
+
+/* PANTALLA DE BLOQUEO */
+#pantalla-bloqueo { padding: 80px 20px; text-align: center; max-width: 600px; margin: 0 auto; }
+#pantalla-bloqueo h2 { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--cafe); margin-bottom: 15px; }
+#pantalla-bloqueo p { color: var(--texto-suave); margin-bottom: 30px; }
+.btn-solicitar { background: var(--ocre-comunidad); color: white; border: none; padding: 15px 30px; font-size: 1.1rem; font-weight: bold; border-radius: 8px; cursor: pointer; transition: background 0.3s; }
+.btn-solicitar:hover { background: var(--ocre-oscuro); }
+.btn-solicitar:disabled { background: #ccc; cursor: not-allowed; }
+#mensaje-solicitud { margin-top: 15px; font-weight: bold; color: var(--ocre-comunidad); }
+
+/* GRID DE MÓDULOS */
+#contenido-curso { display: none; max-width: 1100px; margin: 0 auto; padding: 60px 48px; }
+.grid-modulos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+.modulo-card { background: white; border: 1px solid rgba(43,27,18,0.1); border-radius: 12px; padding: 30px; text-decoration: none; color: inherit; transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; }
+.modulo-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-color: var(--ocre-comunidad); }
+.modulo-num { font-size: 0.8rem; font-weight: 700; color: var(--ocre-comunidad); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; display: block; }
+.modulo-titulo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--cafe); margin-bottom: 15px; line-height: 1.3; }
+.modulo-desc { font-size: 0.9rem; color: var(--texto-suave); flex-grow: 1; }
+.estado-modulo { margin-top: 20px; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 8px; }
+.estado-pendiente { color: var(--cafe-claro); opacity: 0.6; }
+.estado-completado { color: var(--verde); }
+
+/* SECCIÓN EVALUACIÓN */
+.evaluacion-section { text-align: center; margin-top: 60px; padding: 40px; background: white; border-radius: 12px; border-left: 5px solid var(--ocre-comunidad); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+.evaluacion-section h2 { font-family: 'DM Serif Display', serif; color: var(--cafe); font-size: 2rem; margin-bottom: 15px; }
+.evaluacion-section p { color: var(--texto-suave); margin-bottom: 25px; }
+.btn-evaluacion { display: inline-block; background: var(--ocre-comunidad); color: white; padding: 15px 30px; text-decoration: none; font-weight: bold; border-radius: 8px; transition: background 0.3s; }
+.btn-evaluacion:hover { background: var(--ocre-oscuro); }
+</style>
+</head>
+<body>
+
+<div class="breadcrumb">
+    <a href="../lab.html">Laboratorio</a><span class="sep">/</span>
+    <span class="actual">Organización Comunitaria</span>
+</div>
+
+<header>
+    <span class="header-eyebrow">Construcción y Territorio</span>
+    <h1>Organización Comunitaria y Acción Colectiva</h1>
+    <h2>Cómo construir iniciativas sociales útiles y sostenibles</h2>
+    <p>Pasa de la buena intención a la acción estructurada. Aprende a diagnosticar necesidades reales, coordinar equipos y desarrollar proyectos que no dependan del asistencialismo ni del voluntarismo improvisado.</p>
+</header>
+
+<div id="pantalla-bloqueo">
+    <h2>Acceso Restringido</h2>
+    <p>Este curso está diseñado para miembros de la comunidad CPEE interesados en la intervención y organización social seria.</p>
+    <button class="btn-solicitar" id="btn-solicitar">Solicitar Autorización</button>
+    <div id="mensaje-solicitud"></div>
+</div>
+
+<div id="contenido-curso">
+    <div class="grid-modulos">
+        
+        <a href="oc_m1.html" class="modulo-card">
+            <span class="modulo-num">Módulo I</span>
+            <h2 class="modulo-titulo">Comunidad y acción colectiva</h2>
+            <p class="modulo-desc">Desromantizar el concepto de "comunidad". Qué significa realmente organizar personas y por qué el activismo superficial fracasa a largo plazo.</p>
+            <div class="estado-modulo estado-pendiente" id="estado-m1">⏳ Pendiente</div>
+        </a>
+
+        <a href="oc_m2.html" class="modulo-card">
+            <span class="modulo-num">Módulo II</span>
+            <h2 class="modulo-titulo">Diagnóstico y análisis comunitario</h2>
+            <p class="modulo-desc">Diferenciar las necesidades reales (estructurales) de las percepciones (síntomas). Cómo hacer un mapeo inicial antes de proponer cualquier solución.</p>
+            <div class="estado-modulo estado-pendiente" id="estado-m2">⏳ Pendiente</div>
+        </a>
+
+        <a href="oc_m3.html" class="modulo-card">
+            <span class="modulo-num">Módulo III</span>
+            <h2 class="modulo-titulo">Planeación y logística</h2>
+            <p class="modulo-desc">Cómo dejar de improvisar. Diseño de actividades útiles, gestión básica de los recursos disponibles y coordinación efectiva de equipos de trabajo.</p>
+            <div class="estado-modulo estado-pendiente" id="estado-m3">⏳ Pendiente</div>
+        </a>
+
+        <a href="oc_m4.html" class="modulo-card">
+            <span class="modulo-num">Módulo IV</span>
+            <h2 class="modulo-titulo">Comunicación y participación</h2>
+            <p class="modulo-desc">El arte de la convocatoria. Cómo construir confianza en entornos precarios, delegar responsabilidades y manejar conflictos inevitables.</p>
+            <div class="estado-modulo estado-pendiente" id="estado-m4">⏳ Pendiente</div>
+        </a>
+
+        <a href="oc_m5.html" class="modulo-card">
+            <span class="modulo-num">Módulo V</span>
+            <h2 class="modulo-titulo">Sostenibilidad y continuidad</h2>
+            <p class="modulo-desc">El peligro de "ir a salvar personas". Cómo evitar el asistencialismo, fomentar el liderazgo local y construir iniciativas que sobrevivan cuando tú te vayas.</p>
+            <div class="estado-modulo estado-pendiente" id="estado-m5">⏳ Pendiente</div>
+        </a>
+
+    </div>
+
+    <div class="evaluacion-section">
+        <h2>Evaluación y Constancia</h2>
+        <p>Al completar el análisis de los 5 módulos, deberás aprobar la evaluación de comprensión y diseño de proyectos para obtener tu constancia oficial.</p>
+        <a href="evaluacion_oc.html" class="btn-evaluacion">📝 Iniciar Evaluación Final</a>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyA5YZCAHcrMA36PmgpOxmHnTOI6zgZNMgg",
+        authDomain: "cpee-plataforma-a655a.firebaseapp.com",
+        projectId: "cpee-plataforma-a655a",
+        storageBucket: "cpee-plataforma-a655a.firebasestorage.app",
+        messagingSenderId: "684415102099",
+        appId: "1:684415102099:web:3f2b649a34386677a87166"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const pantallaBloqueo = document.getElementById('pantalla-bloqueo');
+    const contenidoCurso = document.getElementById('contenido-curso');
+    const btnSolicitar = document.getElementById('btn-solicitar');
+    const mensajeSolicitud = document.getElementById('mensaje-solicitud');
+
+    onAuthStateChanged(auth, async (user) => {
+        if (!user) {
+            window.location.href = "../../login.html"; 
+            return;
+        }
+        
+        const docRef = doc(db, "progreso_usuarios", user.uid);
+        const docSnap = await getDoc(docRef);
+
+        let tieneAcceso = false;
+
+        if (docSnap.exists()) {
+            const data = docSnap.data();
+            
+            // VARIABLE MAESTRA PARA ESTE CURSO
+            tieneAcceso = data.acceso_oc === true;
+
+            if (tieneAcceso) {
+                // Marcar módulos completados
+                for(let i=1; i<=5; i++) {
+                    if (data[`modulo${i}_oc_completado`]) {
+                        let el = document.getElementById(`estado-m${i}`);
+                        if(el) {
+                            el.innerHTML = "✅ Completado";
+                            el.classList.remove('estado-pendiente');
+                            el.classList.add('estado-completado');
+                        }
+                    }
+                }
+            } else if (data.solicitud_oc === true) {
+                btnSolicitar.style.display = "none";
+                mensajeSolicitud.innerText = "⏳ Tu solicitud está en revisión. Espera autorización.";
+            }
+        }
+
+        if (tieneAcceso) {
+            pantallaBloqueo.style.display = "none";
+            contenidoCurso.style.display = "block";
+        } else {
+            pantallaBloqueo.style.display = "block";
+            contenidoCurso.style.display = "none";
+
+            btnSolicitar.addEventListener("click", async () => {
+                btnSolicitar.disabled = true;
+                btnSolicitar.innerText = "Enviando...";
+                await setDoc(docRef, {
+                    correo: user.email,
+                    solicitud_oc: true
+                }, { merge: true });
+                btnSolicitar.style.display = "none";
+                mensajeSolicitud.innerText = "✅ Solicitud enviada con éxito.";
+            });
+        }
+    });
+</script>
+</body>
+</html>

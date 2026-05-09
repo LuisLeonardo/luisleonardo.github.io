@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo II: Diagnóstico Comunitario — CPEE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Libre+Baskerville:ital@1&display=swap" rel="stylesheet">
+<style>
+/* PALETA ORGANIZACIÓN COMUNITARIA */
+:root {
+    --crema: #fff1da;
+    --ocre-comunidad: #b85b3f; 
+    --ocre-oscuro: #8b3e28;
+    --cafe: #2B1B12;
+    --cafe-claro: #6b4c35;
+    --naranja: #d35a34;
+    --negro: #111111;
+    --texto-suave: #4a3828;
+    --fondo-tarjeta: #fdfaf6;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background-color: var(--crema); color: var(--negro); font-family: 'DM Sans', sans-serif; line-height: 1.7; overflow-x: hidden; }
+
+/* MENU */
+.menu-trigger { position: fixed; top: 22px; left: 24px; z-index: 1100; background: var(--cafe); border: none; border-radius: 8px; width: 44px; height: 44px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: background 0.2s; }
+.menu-trigger:hover { background: var(--ocre-comunidad); }
+.menu-trigger span { display: block; width: 20px; height: 2px; background: var(--crema); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease; transform-origin: center; }
+.menu-trigger.abierto span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-trigger.abierto span:nth-child(2) { opacity: 0; width: 0; }
+.menu-trigger.abierto span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.menu-overlay { position: fixed; inset: 0; background: rgba(43,27,18,0.45); backdrop-filter: blur(3px); opacity: 0; pointer-events: none; z-index: 1050; transition: opacity 0.3s ease; }
+.menu-overlay.visible { opacity: 1; pointer-events: all; }
+.menu-panel { position: fixed; top: 0; left: 0; height: 100%; width: 280px; background: var(--cafe); z-index: 1090; transform: translateX(-100%); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1); display: flex; flex-direction: column; padding: 80px 0 40px; }
+.menu-panel.abierto { transform: translateX(0); }
+.menu-panel-logo { padding: 0 28px 32px; border-bottom: 1px solid rgba(215,196,165,0.2); margin-bottom: 12px; }
+.menu-panel-logo span { font-family: 'DM Serif Display', serif; font-size: 1.05rem; color: #D7C4A5; line-height: 1.3; display: block; }
+.menu-panel nav a { display: flex; align-items: center; gap: 12px; padding: 13px 28px; color: #D7C4A5; text-decoration: none; font-size: 0.95rem; font-weight: 400; border-left: 3px solid transparent; transition: background 0.2s, border-color 0.2s, color 0.2s; }
+.menu-panel nav a:hover { background: rgba(215,196,165,0.07); border-left-color: var(--ocre-comunidad); color: #f0dfc0; }
+
+/* BREADCRUMB */
+.breadcrumb { padding: 18px 48px 18px 90px; display: flex; align-items: center; gap: 8px; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--cafe-claro); opacity: 0.7; border-bottom: 1px solid rgba(43,27,18,0.08); flex-wrap: wrap; }
+.breadcrumb a { color: inherit; text-decoration: none; }
+.breadcrumb a:hover { color: var(--ocre-comunidad); }
+.breadcrumb .actual { color: var(--ocre-comunidad); opacity: 1; }
+
+/* HEADER */
+header { position: relative; padding: 48px 48px 40px; border-bottom: 1px solid rgba(43,27,18,0.15); overflow: hidden; }
+.header-inner { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.header-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocre-comunidad); margin-bottom: 12px; }
+header h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.7rem, 3.5vw, 2.5rem); color: var(--cafe); line-height: 1.2; }
+.modulo-badge { background: rgba(184,91,63,0.08); border: 1px solid rgba(184,91,63,0.15); border-radius: 10px; padding: 14px 20px; text-align: center; }
+.modulo-badge .num { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--ocre-comunidad); line-height: 1; display: block; }
+
+/* SLIDE CONTAINER */
+main { max-width: 820px; margin: 0 auto; padding: 48px 48px 80px; }
+.slide-container { background: white; border: 1px solid rgba(43,27,18,0.1); border-radius: 12px; padding: 40px; min-height: 450px; position: relative; box-shadow: 0 4px 20px rgba(43,27,18,0.06); display: flex; flex-direction: column; }
+.slide { display: none; animation: fadeIn 0.4s ease; flex: 1; }
+.slide.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* COMPONENTES DE CONTENIDO */
+.slide-tipo { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; margin-bottom: 15px; background: rgba(184,91,63,0.1); color: var(--ocre-comunidad); }
+.slide h2 { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--cafe); margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+.contenido-texto { font-size: 0.95rem; color: var(--texto-suave); line-height: 1.8; }
+.contenido-texto ul { padding-left: 20px; margin: 15px 0; }
+.contenido-texto li { margin-bottom: 8px; }
+.contenido-texto li::marker { color: var(--ocre-comunidad); }
+
+.caja-resaltada { background: var(--fondo-tarjeta); border-left: 4px solid var(--ocre-comunidad); padding: 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.caja-resaltada strong { color: var(--ocre-comunidad); display: block; margin-bottom: 5px; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
+
+.caja-analisis { background: rgba(215,196,165,0.15); border: 1px solid rgba(43,27,18,0.1); border-left: 4px solid var(--cafe); padding: 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.caja-analisis strong { color: var(--cafe); display: block; margin-bottom: 5px; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
+
+/* RECURSOS Y VIDEOS (SIN IFRAME) */
+.caja-video { background: #fdf8f5; border: 1px solid #f2e3dd; border-radius: 8px; padding: 20px; margin: 20px 0; display: flex; align-items: flex-start; gap: 15px; flex-wrap: wrap; }
+.caja-video-icono { font-size: 2rem; line-height: 1; flex-shrink: 0; }
+.caja-video-contenido { flex: 1; min-width: 250px; }
+.caja-video-contenido h4 { color: var(--cafe); font-size: 1.05rem; margin-bottom: 5px; }
+.caja-video-contenido p { font-size: 0.9rem; color: var(--texto-suave); margin-bottom: 12px; line-height: 1.5; }
+.video-link-directo { display: inline-block; background: var(--ocre-comunidad); color: white; text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; transition: background 0.2s; }
+.video-link-directo:hover { background: var(--ocre-oscuro); color: white; }
+
+/* NAV BUTTONS */
+.nav-buttons { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
+.btn-nav { padding: 10px 20px; background: var(--cafe); color: #D7C4A5; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.85rem; transition: background 0.2s; }
+.btn-nav:hover:not(:disabled) { background: var(--ocre-comunidad); }
+.btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+.puntos-nav { display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap;}
+.punto { width: 8px; height: 8px; border-radius: 50%; background: rgba(43,27,18,0.15); transition: background 0.3s, transform 0.3s; cursor: pointer; border: none; padding: 0; }
+.punto.activo { background: var(--ocre-comunidad); transform: scale(1.25); }
+
+.btn-completar { width: 100%; padding: 16px; background: var(--ocre-comunidad); color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; margin-top: 20px; transition: 0.3s; font-size: 1.05rem; }
+.btn-completar:hover:not(:disabled) { background: var(--ocre-oscuro); }
+.btn-completar:disabled { background: var(--cafe-claro); opacity: 0.7; cursor: default; }
+
+.modulo-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 28px; gap: 12px; }
+.btn-modulo { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(255,255,255,0.6); border: 1px solid rgba(43,27,18,0.12); color: var(--texto-suave); text-decoration: none; font-size: 0.82rem; font-weight: 500; border-radius: 8px; transition: all 0.2s; }
+.btn-modulo:hover { background: white; border-color: var(--ocre-comunidad); color: var(--ocre-comunidad); }
+
+/* CIERRE */
+.slide-cierre { text-align:center; padding: 20px 0; }
+.cierre-emoji { font-size:3.5rem; margin-bottom:18px; display:block; }
+.cierre-titulo { font-family:'DM Serif Display',serif; font-size:1.8rem; color: var(--ocre-comunidad); margin-bottom:14px; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<button class="menu-trigger" id="menuBtn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+<aside class="menu-panel" id="menuPanel">
+    <div class="menu-panel-logo"><span>Centro Popular de<br>Estudios Económicos</span></div>
+    <nav>
+        <a href="../../index.html">Inicio</a>
+        <a href="../lab.html">Laboratorio</a>
+        <a href="oc_inicio.html">Índice del Curso</a>
+    </nav>
+</aside>
+
+<div class="breadcrumb">
+    <a href="../lab.html">Laboratorio</a><span class="sep">/</span>
+    <a href="oc_inicio.html">Organización Comunitaria</a><span class="sep">/</span>
+    <span class="actual">Módulo II</span>
+</div>
+
+<header>
+    <div class="header-inner">
+        <div class="header-texto">
+            <p class="header-eyebrow">La Arquitectura del Problema</p>
+            <h1>Diagnóstico y Análisis Comunitario</h1>
+        </div>
+        <div class="modulo-badge"><span class="num">II</span></div>
+    </div>
+</header>
+
+<main>
+    <div class="slide-container">
+        
+        <div class="slide active">
+            <span class="slide-tipo">🎯 Introducción y Objetivos</span>
+            <h2>El error de "llegar a salvar"</h2>
+            <div class="contenido-texto">
+                <p>Uno de los errores más destructivos en la organización social es diseñar la "solución" en un escritorio y luego intentar forzarla sobre la comunidad. Esto genera rechazo, desperdicio de recursos y proyectos fantasmas. Antes de actuar, es imperativo realizar un <strong>Diagnóstico Comunitario</strong> serio y fundamentado.</p>
+                
+                <div class="caja-resaltada">
+                    <strong>Objetivos de Aprendizaje</strong>
+                    <ul>
+                        <li>Aprender a distinguir entre un <em>síntoma</em> visible y una <em>causa estructural</em>.</li>
+                        <li>Entender la importancia de la observación no participativa (la escuela de Jane Jacobs).</li>
+                        <li>Dominar herramientas básicas: El Mapeo de Actores y el Árbol de Problemas.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <span class="slide-tipo">📖 Explicación Conceptual</span>
+            <h2>La mirada de Jane Jacobs</h2>
+            <div class="contenido-texto">
+                <p>En los años 60, los urbanistas de traje querían demoler barrios de Nueva York para hacer enormes autopistas, argumentando que los barrios viejos eran "caóticos e ineficientes". La periodista y teórica urbana <strong>Jane Jacobs</strong> se opuso mediante un arma letal: <strong>la observación empírica de la calle.</strong></p>
+                
+                <p>Jacobs enseñó que antes de planear, hay que observar la <em>"danza de las calles"</em>. Demostró que el "caos" de los comerciantes locales, los vecinos asomados a las ventanas y los niños en la acera no era desorden, sino una intrincada red de vigilancia natural y seguridad (Capital Social).</p>
+
+                <p><em>Lección organizativa:</em> Nunca asumas que entiendes cómo funciona un espacio público hasta que te sientas a observarlo en silencio durante diferentes horas del día.</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <span class="slide-tipo">⚠️ Diferenciación</span>
+            <h2>Síntoma vs. Enfermedad</h2>
+            <div class="contenido-texto">
+                <p>Al hacer encuestas o asambleas, la comunidad suele reportar <strong>síntomas</strong>, no enfermedades. Nuestro deber analítico es cavar más hondo.</p>
+                
+                <ul>
+                    <li><em>Lo que la gente dice (Síntoma):</em> "Los jóvenes de aquí son unos vagos, paran bebiendo en la esquina y vandalizan."</li>
+                    <li><em>Lo que el activista ingenuo hace:</em> Pinta la barda o llama a la policía.</li>
+                    <li><em>La necesidad estructural (Enfermedad):</em> No hay infraestructura recreativa gratuita, existe un alto nivel de deserción por costos de transporte escolar, y las redes de reclutamiento informal absorben a la juventud.</li>
+                </ul>
+
+                <p>Pintar la barda te hará sentir bien un fin de semana. Analizar el transporte y exigir espacios al municipio genera un cambio duradero.</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <span class="slide-tipo">🛠️ Herramienta Práctica</span>
+            <h2>El Árbol de Problemas</h2>
+            <div class="contenido-texto">
+                <p>Para no perdernos entre síntomas y causas, la organización comunitaria utiliza una herramienta visual muy sencilla pero poderosa: el <strong>Árbol de Problemas</strong>.</p>
+                
+                <div class="caja-analisis">
+                    <strong>¿Cómo se construye?</strong>
+                    <ul>
+                        <li><strong>El Tronco (Problema Central):</strong> Se define de forma concreta y negativa. Ej: <em>"Alto índice de enfermedades gastrointestinales infantiles en el barrio X"</em>.</li>
+                        <li><strong>Las Raíces (Causas):</strong> ¿Por qué ocurre? Ej: <em>Falta de red de drenaje, ausencia de información sobre hervir el agua, descargas industriales cercanas.</em></li>
+                        <li><strong>Las Hojas/Ramas (Efectos):</strong> ¿Qué provoca esto? Ej: <em>Ausentismo escolar, saturación de la clínica local, empobrecimiento familiar por compra de medicinas.</em></li>
+                    </ul>
+                </div>
+                <p>Cualquier proyecto u organización que decidas emprender debe atacar directamente a las <strong>Raíces</strong>.</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <span class="slide-tipo">🗺️ Metodología</span>
+            <h2>Mapeo de Actores y Territorio</h2>
+            <div class="contenido-texto">
+                <p>Antes de convocar a una asamblea o planear una acción, necesitas saber quién es quién en el territorio. No basta con imprimir volantes; necesitas identificar el tejido del poder local.</p>
+                
+                <p>Debes mapear tres cosas esenciales:</p>
+                <ol>
+                    <li><strong>Líderes formales e informales:</strong> El representante oficial de la colonia vs. la señora de la tienda a la que todo el mundo le cuenta sus problemas y confía en ella. A menudo, convencer a la segunda es más importante.</li>
+                    <li><strong>Zonas de conflicto/encuentro:</strong> Identificar qué lugares son seguros para las reuniones y cuáles están cooptados por grupos delictivos o caciques.</li>
+                    <li><strong>Recursos existentes:</strong> ¿Qué saberes y herramientas ya tiene la comunidad? (Carpinteros, maestros, un salón comunal vacío, etc.).</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="slide">
+            <span class="slide-tipo">✍️ Taller Práctico</span>
+            <h2>Simulación de Diagnóstico</h2>
+            <div class="contenido-texto">
+                <p>Aplica las herramientas de este módulo en el siguiente escenario realista.</p>
+                
+                <div class="caja-resaltada" style="background:#fffbe6; border-color:var(--naranja);">
+                    <strong>El Caso del Comedor Comunitario:</strong><br>
+                    Llegas a un barrio y notas que hay desnutrición infantil. Organizas una colecta, consigues fondos y abres un comedor comunitario con comida gratuita los fines de semana. Seis meses después, te quedas sin dinero y el comedor cierra. La desnutrición vuelve.<br><br>
+                    <strong>Análisis:</strong><br>
+                    1. Usando el <em>Árbol de Problemas</em>, ¿la desnutrición era la "raíz" o solo un "efecto" de un problema mayor (desempleo, salarios, falta de redes de abasto)?<br>
+                    2. Al no hacer un <em>Mapeo de Actores</em>, ¿ignoraste a las madres de familia que ya tenían redes de compra al mayoreo o "tandas" de alimentos a las que podías haber apoyado estructuralmente en lugar de regalarles tú la comida?
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <span class="slide-tipo">📚 Lecturas y Recursos</span>
+            <h2>Material Complementario</h2>
+            <div class="contenido-texto">
+                <p><strong>Glosario Técnico del Módulo:</strong></p>
+                <ul>
+                    <li><strong>Diagnóstico Comunitario:</strong> Proceso de recolección y análisis de información para entender la realidad de un grupo social antes de intervenir.</li>
+                    <li><strong>Árbol de Problemas:</strong> Técnica participativa que ayuda a mapear la anatomía de un problema, separando causas (raíces) de efectos (ramas).</li>
+                    <li><strong>Mapeo de Actores:</strong> Identificación sistemática de las personas, organizaciones e instituciones que tienen influencia u operan dentro de un territorio.</li>
+                </ul>
+
+                <div class="caja-video">
+                    <div class="caja-video-icono">🎥</div>
+                    <div class="caja-video-contenido">
+                        <h4>Jane Jacobs y la ciudad viva</h4>
+                        <p>Te recomendamos ampliamente buscar documentales sobre Jane Jacobs para comprender cómo la "mirada externa" de los expertos a menudo destruye lo que la "mirada interna" de los vecinos construye orgánicamente. Su enfoque es la base de la observación comunitaria moderna.</p>
+                        <a href="https://www.youtube.com/watch?v=FjB-iU-9rC8" target="_blank" class="video-link-directo">Ver mini-documental de Jane Jacobs en YouTube →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-cierre">
+                <span class="cierre-emoji">🗺️</span>
+                <h2 class="cierre-titulo">¡Módulo II Completado!</h2>
+                <p style="color: var(--texto-suave); font-size: 1.05rem; max-width: 600px; margin: 0 auto;">
+                    Has aprendido que la base de toda acción útil es la escucha y el análisis. Ya no ves solo los "síntomas" de los problemas en tu entorno, sino que tienes herramientas gráficas y conceptuales para buscar las "raíces". Teniendo un diagnóstico real en la mano, en el <strong>Módulo III</strong> aprenderemos la fase de Planeación: cómo diseñar actividades logísticas y gestionar recursos sin morir en el intento.
+                </p>
+                <button class="btn-completar" id="btnCompletarM2">Guardar Progreso del Módulo II</button>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="btn-nav" id="prevBtn" onclick="changeSlide(-1)">← Anterior</button>
+            <div class="puntos-nav" id="puntos"></div>
+            <button class="btn-nav" id="nextBtn" onclick="changeSlide(1)">Siguiente →</button>
+        </div>
+    </div>
+    
+    <div class="modulo-nav">
+        <a href="oc_m1.html" class="btn-modulo">← Módulo I</a>
+        <a href="oc_inicio.html" class="btn-modulo">↑ Índice</a>
+        <a href="oc_m3.html" class="btn-modulo">Siguiente: Módulo III →</a>
+    </div>
+</main>
+
+<script>
+// Lógica de Slides
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const puntosContainer = document.getElementById('puntos');
+
+// Crear puntos
+slides.forEach((_, i) => {
+    const punto = document.createElement('button');
+    punto.classList.add('punto');
+    if (i === 0) punto.classList.add('activo');
+    punto.addEventListener('click', () => goToSlide(i));
+    puntosContainer.appendChild(punto);
+});
+
+function updateUI() {
+    prevBtn.disabled = currentSlide === 0;
+    nextBtn.disabled = currentSlide === slides.length - 1;
+    document.querySelectorAll('.punto').forEach((p, i) => {
+        p.classList.toggle('activo', i === currentSlide);
+    });
+}
+
+function goToSlide(n) {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = n;
+    slides[currentSlide].classList.add('active');
+    updateUI();
+}
+
+function changeSlide(n) {
+    goToSlide(currentSlide + n);
+}
+
+// Lógica del Menú
+function toggleMenu() {
+    document.getElementById('menuBtn').classList.toggle('abierto');
+    document.getElementById('menuPanel').classList.toggle('abierto');
+    document.getElementById('menuOverlay').classList.toggle('visible');
+}
+</script>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyA5YZCAHcrMA36PmgpOxmHnTOI6zgZNMgg",
+        authDomain: "cpee-plataforma-a655a.firebaseapp.com",
+        projectId: "cpee-plataforma-a655a",
+        storageBucket: "cpee-plataforma-a655a.firebasestorage.app",
+        messagingSenderId: "684415102099",
+        appId: "1:684415102099:web:3f2b649a34386677a87166"
+    };
+
+    const app  = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db   = getFirestore(app);
+    const btnCompletar = document.getElementById("btnCompletarM2");
+
+    onAuthStateChanged(auth, async (user) => {
+        if (!user) { window.location.href = "../../login.html"; return; }
+        
+        const docRef  = doc(db, "progreso_usuarios", user.uid);
+        const docSnap = await getDoc(docRef);
+
+        if (!docSnap.exists() || docSnap.data().acceso_oc !== true) {
+            window.location.href = "oc_inicio.html";
+            return;
+        }
+
+        if (docSnap.data().modulo2_oc_completado === true) {
+            btnCompletar.innerHTML = "✅ Progreso Guardado";
+            btnCompletar.disabled = true;
+        }
+
+        btnCompletar.addEventListener("click", async () => {
+            btnCompletar.innerText = "Registrando...";
+            try {
+                await setDoc(docRef, {
+                    modulo2_oc_completado: true,
+                    fecha_completado_oc_m2: new Date()
+                }, { merge: true });
+                btnCompletar.innerHTML = "✅ Progreso Guardado";
+                btnCompletar.disabled = true;
+            } catch (error) {
+                console.error("Error al guardar: ", error);
+                alert("Hubo un error de red. Intenta de nuevo.");
+                btnCompletar.innerText = "Guardar Progreso del Módulo II";
+            }
+        });
+    });
+</script>
+</body>
+</html>
