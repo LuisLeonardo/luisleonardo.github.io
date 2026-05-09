@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo V: Sostenibilidad Social — CPEE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Libre+Baskerville:ital@1&display=swap" rel="stylesheet">
+<style>
+/* PALETA ORGANIZACIÓN COMUNITARIA */
+:root {
+    --crema: #fff1da;
+    --ocre-comunidad: #b85b3f; 
+    --ocre-oscuro: #8b3e28;
+    --cafe: #2B1B12;
+    --cafe-claro: #6b4c35;
+    --naranja: #d35a34;
+    --negro: #111111;
+    --texto-suave: #4a3828;
+    --fondo-tarjeta: #fdfaf6;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background-color: var(--crema); color: var(--negro); font-family: 'DM Sans', sans-serif; line-height: 1.7; overflow-x: hidden; }
+
+/* MENU */
+.menu-trigger { position: fixed; top: 22px; left: 24px; z-index: 1100; background: var(--cafe); border: none; border-radius: 8px; width: 44px; height: 44px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: background 0.2s; }
+.menu-trigger:hover { background: var(--ocre-comunidad); }
+.menu-trigger span { display: block; width: 20px; height: 2px; background: var(--crema); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease; transform-origin: center; }
+.menu-trigger.abierto span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-trigger.abierto span:nth-child(2) { opacity: 0; width: 0; }
+.menu-trigger.abierto span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.menu-overlay { position: fixed; inset: 0; background: rgba(43,27,18,0.45); backdrop-filter: blur(3px); opacity: 0; pointer-events: none; z-index: 1050; transition: opacity 0.3s ease; }
+.menu-overlay.visible { opacity: 1; pointer-events: all; }
+.menu-panel { position: fixed; top: 0; left: 0; height: 100%; width: 280px; background: var(--cafe); z-index: 1090; transform: translateX(-100%); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1); display: flex; flex-direction: column; padding: 80px 0 40px; }
+.menu-panel.abierto { transform: translateX(0); }
+.menu-panel-logo { padding: 0 28px 32px; border-bottom: 1px solid rgba(215,196,165,0.2); margin-bottom: 12px; }
+.menu-panel-logo span { font-family: 'DM Serif Display', serif; font-size: 1.05rem; color: #D7C4A5; line-height: 1.3; display: block; }
+.menu-panel nav a { display: flex; align-items: center; gap: 12px; padding: 13px 28px; color: #D7C4A5; text-decoration: none; font-size: 0.95rem; font-weight: 400; border-left: 3px solid transparent; transition: background 0.2s, border-color 0.2s, color 0.2s; }
+.menu-panel nav a:hover { background: rgba(215,196,165,0.07); border-left-color: var(--ocre-comunidad); color: #f0dfc0; }
+
+/* BREADCRUMB */
+.breadcrumb { padding: 18px 48px 18px 90px; display: flex; align-items: center; gap: 8px; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--cafe-claro); opacity: 0.7; border-bottom: 1px solid rgba(43,27,18,0.08); flex-wrap: wrap; }
+.breadcrumb a { color: inherit; text-decoration: none; }
+.breadcrumb a:hover { color: var(--ocre-comunidad); }
+.breadcrumb .actual { color: var(--ocre-comunidad); opacity: 1; }
+
+/* HEADER */
+header { position: relative; padding: 48px 48px 40px; border-bottom: 1px solid rgba(43,27,18,0.15); overflow: hidden; }
+.header-inner { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.header-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocre-comunidad); margin-bottom: 12px; }
+header h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.7rem, 3.5vw, 2.5rem); color: var(--cafe); line-height: 1.2; }
+.modulo-badge { background: rgba(184,91,63,0.08); border: 1px solid rgba(184,91,63,0.15); border-radius: 10px; padding: 14px 20px; text-align: center; }
+.modulo-badge .num { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--ocre-comunidad); line-height: 1; display: block; }
+
+/* SLIDE CONTAINER */
+main { max-width: 820px; margin: 0 auto; padding: 48px 48px 80px; }
+.slide-container { background: white; border: 1px solid rgba(43,27,18,0.1); border-radius: 12px; padding: 40px; min-height: 450px; position: relative; box-shadow: 0 4px 20px rgba(43,27,18,0.06); display: flex; flex-direction: column; }
+.slide { display: none; animation: fadeIn 0.4s ease; flex: 1; }
+.slide.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* COMPONENTES DE CONTENIDO */
+.slide-tipo { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; margin-bottom: 15px; background: rgba(184,91,63,0.1); color: var(--ocre-comunidad); }
+.slide h2 { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--cafe); margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+.contenido-texto { font-size: 0.95rem; color: var(--texto-suave); line-height: 1.8; }
+.contenido-texto ul { padding-left: 20px; margin: 15px 0; }
+.contenido-texto li { margin-bottom: 8px; }
+.contenido-texto li::marker { color: var(--ocre-comunidad); }
+
+.caja-resaltada { background: var(--fondo-tarjeta); border-left: 4px solid var(--ocre-comunidad); padding: 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.caja-resaltada strong { color: var(--ocre-comunidad); display: block; margin-bottom: 5px; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
+
+.caja-analisis { background: rgba(215,196,165,0.15); border: 1px solid rgba(43,27,18,0.1); border-left: 4px solid var(--cafe); padding: 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.caja-analisis strong { color: var(--cafe); display: block; margin-bottom: 5px; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
+
+/* RECURSOS Y VIDEOS (SIN IFRAME) */
+.caja-video { background: #fdf8f5; border: 1px solid #f2e3dd; border-radius: 8px; padding: 20px; margin: 20px 0; display: flex; align-items: flex-start; gap: 15px; flex-wrap: wrap; }
+.caja-video-icono { font-size: 2rem; line-height: 1; flex-shrink: 0; }
+.caja-video-contenido { flex: 1; min-width: 250px; }
+.caja-video-contenido h4 { color: var(--cafe); font-size: 1.05rem; margin-bottom: 5px; }
+.caja-video-contenido p { font-size: 0.9rem; color: var(--texto-suave); margin-bottom: 12px; line-height: 1.5; }
+.video-link-directo { display: inline-block; background: var(--ocre-comunidad); color: white; text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; transition: background 0.2s; }
+.video-link-directo:hover { background: var(--ocre-oscuro); color: white; }
+
+/* NAV BUTTONS */
+.nav-buttons { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
+.btn-nav { padding: 10px 20px; background: var(--cafe); color: #D7C4A5; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.85rem; transition: background 0.2s; }
+.btn-nav:hover:not(:disabled) { background: var(--ocre-comunidad); }
+.btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+.puntos-nav { display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap;}
+.punto { width: 8px; height: 8px; border-radius: 50%; background: rgba(43,27,18,0.15); transition: background 0.3s, transform 0.3s; cursor: pointer; border: none; padding: 0; }
+.punto.activo { background: var(--ocre-comunidad); transform: scale(1.25); }
+
+.btn-completar { width: 100%; padding: 16px; background: var(--ocre-comunidad); color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; margin-top: 20px; transition: 0.3s; font-size: 1.05rem; }
+.btn-completar:hover:not(:disabled) { background: var(--ocre-oscuro); }
+.btn-completar:disabled { background: var(--cafe-claro); opacity: 0.7; cursor: default; }
+
+.modulo-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 28px; gap: 12px; }
+.btn-modulo { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(255,255,255,0.6); border: 1px solid rgba(43,27,18,0.12); color: var(--texto-suave); text-decoration: none; font-size: 0.82rem; font-weight: 500; border-radius: 8px; transition: all 0.2s; }
+.btn-modulo:hover { background: white; border-color: var(--ocre-comunidad); color: var(--ocre-comunidad); }
+.btn-finalizar { background: var(--ocre-comunidad); color: white; border: 2px solid var(--ocre-comunidad); font-weight: 700; text-decoration: none; padding: 10px 20px; border-radius: 8px; font-size: 0.85rem; }
+.btn-finalizar:hover { background: var(--ocre-oscuro); color: white; }
+
+/* CIERRE */
+.slide-cierre { text-align:center; padding: 20px 0; }
+.cierre-emoji { font-size:3.5rem; margin-bottom:18px; display:block; }
+.cierre-titulo { font-family:'DM Serif Display',serif; font-size:1.8rem; color: var(--ocre-comunidad); margin-bottom:14px; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<button class="menu-trigger" id="menuBtn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+<aside class="menu-panel" id="menuPanel">
+    <div class="menu-panel-logo"><span>Centro Popular de<br>Estudios Económicos</span></div>
+    <nav>
+        <a href="../../index.html">Inicio</a>
+        <a href="../lab.html">Laboratorio</a>
+        <a href="oc_inicio.html">Índice del Curso</a>
+    </nav>
+</aside>
+
+<div class="breadcrumb">
+    <a href="../lab.html">Laboratorio</a><span class="sep">/</span>
+    <a href="oc_inicio.html">Organización Comunitaria</a><span class="sep">/</span>
+    <span class="actual">Módulo V</span>
+</div>
+
+<header>
+    <div class="header-inner">
+        <div class="header-texto">
+            <p class="header-eyebrow">El Futuro del Proyecto</p>
+            <h1>Acción Comunitaria y Sostenibilidad</h1>
+        </div>
+        <div class="modulo-badge"><span class="num">V</span></div>
+    </div>
+</header>
+
+<main>
+    <div class="slide-container">
+        
+        <div class="slide active">
+            <span class="slide-tipo">🎯 Introducción y Objetivos</span>
+            <h2>¿Sobrevivirá sin ti?</h2>
+            <div class="contenido-texto">
+                <p>La prueba de fuego de un gestor comunitario no es cuánta gente aplaude en la inauguración de un proyecto, sino qué pasa con el proyecto seis meses después de que los fundadores se retiran por agotamiento o falta de fondos.</p>
+                <p>En este módulo, dejaremos de evaluar el activismo por la "cantidad de actividades realizadas" y aprenderemos a evaluarlo por el <strong>impacto estructural</strong> que deja sembrado en un territorio.</p>
+                
+                <div class="caja-resaltada">
+                    <strong>Objetivos de Aprendizaje</strong>
+                    <ul>
+                        <li>Diferenciar entre "Resultados inmediatos" (Outputs) e "Impacto profundo" (Outcomes).</li>
+                        <li>Aprender a delegar poder real para garantizar el relevo generacional.</li>
+                        <li>Diseñar modelos organizativos que no dependan del voluntariado perpetuo ni de donaciones externas constantes.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <span class="slide-tipo">📖 Explicación Conceptual</span>
+            <h2>La trampa de "contar cosas"</h2>
+            <div class="contenido-texto">
+                <p>Cuando los proyectos informan sus logros, suelen caer en una trampa analítica: reportan actividades en lugar de cambios en la realidad.</p>
+                
+                <ul>
+                    <li><strong>El Resultado o "Output":</strong> Es lo que hiciste. (Ejemplo: <em>"Entregamos 500 despensas", "Dimos 10 talleres de oficios"</em>).</li>
+                    <li><strong>El Impacto o "Outcome":</strong> Es cómo cambió el problema central gracias a lo que hiciste. (Ejemplo: <em>"El índice de desnutrición infantil en la cuadra se redujo un 5%", "Tres vecinos iniciaron una cooperativa gracias a los talleres"</em>).</li>
+                </ul>
+
+                <p>Si das 100 talleres de carpintería (Output) pero en tu colonia no hay mercado para vender muebles y nadie consigue ingresos de ello (Outcome), tu proyecto es una simulación de impacto, por muy nobles que sean las intenciones.</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <span class="slide-tipo">⚠️ Gestión Humana</span>
+            <h2>El problema del "Salvador"</h2>
+            <div class="contenido-texto">
+                <p>Los proyectos comunitarios mueren porque se construyen alrededor del ego del fundador o de un financiamiento externo que un día se acaba. El asistencialismo funciona como un analgésico: quita el dolor hoy, pero no cura la enfermedad y genera adicción a la pastilla.</p>
+                
+                <div class="caja-analisis">
+                    <strong>Sostenibilidad real:</strong>
+                    La verdadera intervención comunitaria transfiere herramientas, conocimientos técnicos (cómo administrar, cómo negociar con el municipio, cómo manejar Excel básico) y, sobre todo, <strong>poder de decisión</strong> a los habitantes locales. Si los vecinos no pueden tomar decisiones sobre el presupuesto o el rumbo del proyecto, no son una comunidad organizada, son solo tus beneficiarios.
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <span class="slide-tipo">⚙️ Metodología</span>
+            <h2>Construir a tu reemplazo</h2>
+            <div class="contenido-texto">
+                <p>Todo líder comunitario se cansa, cambia de residencia o consigue un empleo que le absorbe el tiempo. Si la organización depende de que tú tengas las llaves del local o las contraseñas de las redes, el proyecto morirá contigo.</p>
+                
+                <p><strong>El protocolo de sucesión:</strong></p>
+                <ol>
+                    <li><strong>Manuales operativos:</strong> Lo que haces de memoria debe escribirse de forma sencilla. (¿A quién se le pide permiso para la plaza? ¿Dónde se compran los insumos baratos?).</li>
+                    <li><strong>Liderazgo distribuido:</strong> Identifica a las personas que, aunque hablen menos en las asambleas, son constantes y respetadas por sus vecinos. Involúcralas en la toma de decisiones, no solo en la ejecución operativa (limpiar o acomodar sillas).</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="slide">
+            <span class="slide-tipo">✍️ Taller Práctico</span>
+            <h2>Diagnóstico de un Colapso Anunciado</h2>
+            <div class="contenido-texto">
+                <p>Imagina este escenario realista en una zona periférica:</p>
+                
+                <div class="caja-resaltada" style="background:#fffbe6; border-color:var(--naranja);">
+                    <strong>El Caso de la Biblioteca Popular:</strong><br>
+                    Un grupo de universitarios abre un espacio cultural y biblioteca en una cochera prestada en un barrio marginado. Los sábados van, abren, dan clases de regularización y cierran. Durante un año, los niños asisten felices (Output). Pero al año siguiente, los universitarios se gradúan, consiguen trabajos de tiempo completo y ya no pueden ir. La cochera vuelve a cerrar para siempre.<br><br>
+                    <strong>Análisis:</strong><br>
+                    1. ¿Por qué esto es un claro ejemplo de falta de sostenibilidad?<br>
+                    2. ¿Qué debieron hacer los fundadores <em>durante ese año</em> con los padres de familia del barrio para que la biblioteca no dependiera de agentes externos para existir?
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <span class="slide-tipo">📚 Lecturas y Recursos</span>
+            <h2>Material Complementario</h2>
+            <div class="contenido-texto">
+                <p><strong>Glosario Técnico del Módulo:</strong></p>
+                <ul>
+                    <li><strong>Outputs (Resultados):</strong> Las actividades o productos directos generados por un proyecto (ej. clases impartidas, árboles plantados).</li>
+                    <li><strong>Outcomes (Impacto):</strong> Los cambios medibles en las condiciones de vida, comportamientos o capacidades de la comunidad a raíz de los Outputs.</li>
+                    <li><strong>Relevo Institucional:</strong> Proceso organizado mediante el cual se transfiere el liderazgo y los conocimientos operativos a nuevas personas dentro de la misma comunidad para evitar la extinción del proyecto.</li>
+                </ul>
+
+                <div class="caja-video">
+                    <div class="caja-video-icono">🎥</div>
+                    <div class="caja-video-contenido">
+                        <h4>Impacto Social vs Asistencialismo</h4>
+                        <p>Te recomendamos buscar videos o artículos metodológicos sobre <em>"Teoría de Cambio"</em> (Theory of Change). Esta es la herramienta que usan los evaluadores de proyectos internacionales para distinguir entre los que verdaderamente transforman estructuras y los que solo hacen caridad ineficiente.</p>
+                        <a href="https://www.youtube.com/watch?v=0kG7uSAnkEI" target="_blank" class="video-link-directo">Se recomienda ver este video introductorio sobre la Teoría de Cambio →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-cierre">
+                <span class="cierre-emoji">🤝</span>
+                <h2 class="cierre-titulo">¡Curso Teórico Completado!</h2>
+                <p style="color: var(--texto-suave); font-size: 1.05rem; max-width: 600px; margin: 0 auto;">
+                    Felicidades. Has completado tu formación teórica en Organización Comunitaria. Ahora sabes que el activismo real no se trata de "salvar personas", sino de construir tejido social y estructuras resilientes que sobrevivan al tiempo, al conflicto y a la falta de presupuesto. Estás listo para demostrar tu capacidad en la Evaluación Final.
+                </p>
+                <button class="btn-completar" id="btnCompletarM5">Guardar Progreso del Módulo V</button>
+            </div>
+        </div>
+
+        <div class="nav-buttons" id="nav-buttons-container">
+            <button class="btn-nav" id="prevBtn" onclick="changeSlide(-1)">← Anterior</button>
+            <div class="puntos-nav" id="puntos"></div>
+            <button class="btn-nav" id="nextBtn" onclick="changeSlide(1)">Siguiente →</button>
+        </div>
+    </div>
+    
+    <div style="text-align: right; margin-top: 30px;">
+        <a href="evaluacion_oc.html" class="btn-finalizar" style="display: none;" id="btnIrEvaluacion">Ir a la Evaluación Final →</a>
+    </div>
+</main>
+
+<script>
+// Lógica de Slides
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const puntosContainer = document.getElementById('puntos');
+const btnIrEvaluacion = document.getElementById('btnIrEvaluacion');
+
+// Crear puntos
+slides.forEach((_, i) => {
+    const punto = document.createElement('button');
+    punto.classList.add('punto');
+    if (i === 0) punto.classList.add('activo');
+    punto.addEventListener('click', () => goToSlide(i));
+    puntosContainer.appendChild(punto);
+});
+
+function updateUI() {
+    prevBtn.disabled = currentSlide === 0;
+    nextBtn.disabled = currentSlide === slides.length - 1;
+    document.querySelectorAll('.punto').forEach((p, i) => {
+        p.classList.toggle('activo', i === currentSlide);
+    });
+}
+
+function goToSlide(n) {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = n;
+    slides[currentSlide].classList.add('active');
+    updateUI();
+}
+
+function changeSlide(n) {
+    goToSlide(currentSlide + n);
+}
+
+// Lógica del Menú
+function toggleMenu() {
+    document.getElementById('menuBtn').classList.toggle('abierto');
+    document.getElementById('menuPanel').classList.toggle('abierto');
+    document.getElementById('menuOverlay').classList.toggle('visible');
+}
+</script>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyA5YZCAHcrMA36PmgpOxmHnTOI6zgZNMgg",
+        authDomain: "cpee-plataforma-a655a.firebaseapp.com",
+        projectId: "cpee-plataforma-a655a",
+        storageBucket: "cpee-plataforma-a655a.firebasestorage.app",
+        messagingSenderId: "684415102099",
+        appId: "1:684415102099:web:3f2b649a34386677a87166"
+    };
+
+    const app  = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db   = getFirestore(app);
+    const btnCompletar = document.getElementById("btnCompletarM5");
+
+    onAuthStateChanged(auth, async (user) => {
+        if (!user) { window.location.href = "../../login.html"; return; }
+        
+        const docRef  = doc(db, "progreso_usuarios", user.uid);
+        const docSnap = await getDoc(docRef);
+
+        if (!docSnap.exists() || docSnap.data().acceso_oc !== true) {
+            window.location.href = "oc_inicio.html";
+            return;
+        }
+
+        if (docSnap.data().modulo5_oc_completado === true) {
+            btnCompletar.innerHTML = "✅ Progreso Guardado";
+            btnCompletar.disabled = true;
+            btnIrEvaluacion.style.display = "inline-block";
+        }
+
+        btnCompletar.addEventListener("click", async () => {
+            btnCompletar.innerText = "Registrando...";
+            try {
+                await setDoc(docRef, {
+                    modulo5_oc_completado: true,
+                    fecha_completado_oc_m5: new Date()
+                }, { merge: true });
+                btnCompletar.innerHTML = "✅ Progreso Guardado";
+                btnCompletar.disabled = true;
+                btnIrEvaluacion.style.display = "inline-block";
+            } catch (error) {
+                console.error("Error al guardar: ", error);
+                alert("Hubo un error de red. Intenta de nuevo.");
+                btnCompletar.innerText = "Guardar Progreso del Módulo V";
+            }
+        });
+    });
+</script>
+</body>
+</html>
