@@ -13,47 +13,26 @@
             --verde: #2a4939;
             --gris-claro: #f4f4f4;
             --borde: #e0e0e0;
-            --vino-cultura: #6a2c46;
         }
         body { font-family: 'DM Sans', sans-serif; background-color: var(--gris-claro); margin: 0; color: var(--cafe); }
-        
-        /* NAVBAR ADMIN */
         .admin-nav { background: var(--cafe); color: var(--crema); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         .admin-nav h1 { font-family: 'DM Serif Display', serif; margin: 0; font-size: 1.5rem; }
         .btn-salir { background: transparent; border: 1px solid var(--crema); color: var(--crema); padding: 8px 15px; border-radius: 5px; cursor: pointer; transition: 0.3s; }
         .btn-salir:hover { background: var(--crema); color: var(--cafe); }
-
-        /* TABS */
         .tabs { display: flex; background: white; border-bottom: 1px solid var(--borde); padding: 0 30px; }
         .tab-btn { background: none; border: none; padding: 20px 30px; font-family: 'DM Sans', sans-serif; font-size: 1.1rem; font-weight: 600; color: #888; cursor: pointer; border-bottom: 3px solid transparent; transition: 0.3s; }
-        .tab-btn:hover { color: var(--cafe); }
         .tab-btn.active { color: var(--naranja); border-bottom-color: var(--naranja); }
-
-        /* CONTENEDOR PRINCIPAL */
         .container { padding: 30px; max-width: 1400px; margin: 0 auto; }
         .tab-content { display: none; background: white; border-radius: 8px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .tab-content.active { display: block; }
-
-        /* TABLAS */
         table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.85rem; }
         th, td { padding: 12px 10px; text-align: left; border-bottom: 1px solid var(--borde); }
         th { background-color: var(--crema); color: var(--cafe); font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
-        tr:hover { background-color: #fdfdfd; }
-        
-        /* ETIQUETAS Y SWITCHES */
         .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; background: #eee; color: #555; }
         .badge.solicitado { background: #ffeeda; color: var(--naranja); border: 1px solid var(--naranja); }
-        .badge.aprobado { background: #e6f4ea; color: var(--verde); border: 1px solid var(--verde); }
-
         .checkbox-acceso { width: 18px; height: 18px; cursor: pointer; accent-color: var(--verde); }
-        
         .btn-accion { background: var(--verde); color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 0.8rem; transition: 0.3s; }
-        .btn-accion:hover { background: #1e3629; }
-
-        .loading { text-align: center; padding: 50px; font-size: 1.2rem; color: #666; }
-
-        /* PANTALLA DE BLOQUEO */
-        #pantalla-bloqueo { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--crema); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; }
+        #pantalla-bloqueo { position: fixed; inset: 0; background: var(--crema); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; }
     </style>
 </head>
 <body>
@@ -73,18 +52,15 @@
     </div>
 
     <div class="container" id="admin-content" style="display:none;">
-        
         <div id="accesos" class="tab-content active">
             <h2>Alumnos Registrados</h2>
-            <p style="color: #666; margin-bottom: 20px;">Gestiona los permisos de acceso. Los cambios se sincronizan en tiempo real con el laboratorio del alumno.</p>
-            <div id="loading-accesos" class="loading">Sincronizando base de datos...</div>
-            <table id="tabla-accesos" style="display:none;">
+            <table id="tabla-accesos">
                 <thead>
                     <tr>
                         <th>Correo del Alumno</th>
                         <th>Mate</th>
                         <th>C. Política</th>
-                        <th>Crisis Cap.</th>
+                        <th>Crisis</th>
                         <th>P. Crítico</th>
                         <th>Investigación</th>
                         <th>Org. Com.</th>
@@ -96,23 +72,20 @@
         </div>
 
         <div id="constancias" class="tab-content">
-            <h2>Constancias Pendientes</h2>
-            <p style="color: #666; margin-bottom: 20px;">Listado de alumnos que han aprobado evaluaciones finales. Marca como enviada tras remitir el documento.</p>
-            <div id="loading-constancias" class="loading">Buscando solicitudes...</div>
-            <table id="tabla-constancias" style="display:none;">
+            <h2>Solicitudes Pendientes</h2>
+            <table id="tabla-constancias">
                 <thead>
                     <tr>
                         <th>Nombre para Diploma</th>
                         <th>Correo</th>
                         <th>Curso</th>
-                        <th>Fecha de Solicitud</th>
+                        <th>Fecha</th>
                         <th>Acción</th>
                     </tr>
                 </thead>
                 <tbody id="body-constancias"></tbody>
             </table>
         </div>
-
     </div>
 
     <script type="module">
@@ -135,49 +108,30 @@
 
         const CORREO_ADMIN = "cpee.contact@gmail.com"; 
 
+        // IDs corregidos para coincidir con lab.html
         const cursos = [
-            { id: "mate", nombre: "Matemáticas" },
+            { id: "matematicas", nombre: "Mate" },
             { id: "cp", nombre: "C. Política" },
-            { id: "crisis", nombre: "Crisis Cap." },
+            { id: "crisis", nombre: "Crisis" },
             { id: "pc", nombre: "P. Crítico" },
             { id: "inv", nombre: "Investigación" },
             { id: "oc", nombre: "Org. Com." },
-            { id: "cultura", nombre: "Arte y Cultura" }
+            { id: "cultura", nombre: "Cultura" }
         ];
 
         const coleccionesConstancias = [
-            "solicitudes_constancias",
-            "solicitud_constancias_cursofp",
-            "solicitud_constancias_cursoce",
-            "solicitud_constancias_cursomate",
-            "solicitud_constancias_cursocp",
-            "solicitud_constancias_cursocrisis",
-            "solicitud_constancias_cursopc",
-            "solicitud_constancias_cursoinv",
-            "solicitud_constancias_cursooc",
+            "solicitudes_constancias", "solicitud_constancias_cursofp", "solicitud_constancias_cursoce",
+            "solicitud_constancias_cursomate", "solicitud_constancias_cursocp", "solicitud_constancias_cursocrisis",
+            "solicitud_constancias_cursopc", "solicitud_constancias_cursoinv", "solicitud_constancias_cursooc",
             "solicitud_constancias_cursocultura"
         ];
 
         onAuthStateChanged(auth, async (user) => {
-            if (!user) {
-                window.location.href = "login.html";
-                return;
-            }
-
-            if (user.email !== CORREO_ADMIN) {
-                document.getElementById('pantalla-bloqueo').innerHTML = `
-                    <h2 style="color:var(--naranja)">Acceso Denegado</h2>
-                    <p>No posees privilegios de administrador para el CPEE.</p>
-                    <button onclick="window.location.href='index.html'" style="padding:10px 20px; cursor:pointer;">Volver al Inicio</button>
-                `;
-                return;
-            }
-
+            if (!user || user.email !== CORREO_ADMIN) { window.location.href = "login.html"; return; }
             document.getElementById('pantalla-bloqueo').style.display = "none";
             document.getElementById('admin-nav').style.display = "flex";
             document.getElementById('admin-tabs').style.display = "flex";
             document.getElementById('admin-content').style.display = "block";
-
             cargarAccesos();
             cargarConstancias();
         });
@@ -185,54 +139,26 @@
         async function cargarAccesos() {
             const body = document.getElementById('body-accesos');
             body.innerHTML = "";
-            try {
-                const querySnapshot = await getDocs(collection(db, "progreso_usuarios"));
-                querySnapshot.forEach((docUsuario) => {
-                    const data = docUsuario.data();
-                    const uid = docUsuario.id;
-                    const correo = data.correo || "Sin correo";
-                    
-                    let tr = document.createElement('tr');
-                    let tdCorreo = document.createElement('td');
-                    tdCorreo.innerText = correo;
-                    tr.appendChild(tdCorreo);
-
-                    cursos.forEach(curso => {
-                        let td = document.createElement('td');
-                        let statusHtml = "";
-                        
-                        if (data[`solicitud_${curso.id}`] && !data[`acceso_${curso.id}`]) {
-                            statusHtml = `<span class="badge solicitado">Solicitado</span><br>`;
-                        }
-                        
-                        let checked = data[`acceso_${curso.id}`] ? "checked" : "";
-                        statusHtml += `<input type="checkbox" class="checkbox-acceso" data-uid="${uid}" data-curso="${curso.id}" ${checked}>`;
-                        td.innerHTML = statusHtml;
-                        tr.appendChild(td);
-                    });
-                    body.appendChild(tr);
+            const querySnapshot = await getDocs(collection(db, "progreso_usuarios"));
+            querySnapshot.forEach((docUsuario) => {
+                const data = docUsuario.data();
+                const uid = docUsuario.id;
+                let tr = document.createElement('tr');
+                tr.innerHTML = `<td>${data.correo || '---'}</td>`;
+                cursos.forEach(curso => {
+                    let td = document.createElement('td');
+                    let solicitado = data[`solicitud_${curso.id}`] && !data[`acceso_${curso.id}`];
+                    let checked = data[`acceso_${curso.id}`] ? "checked" : "";
+                    td.innerHTML = `${solicitado ? '<span class="badge solicitado">S</span><br>' : ''}<input type="checkbox" class="checkbox-acceso" data-uid="${uid}" data-curso="${curso.id}" ${checked}>`;
+                    tr.appendChild(td);
                 });
-            } catch (error) {
-                console.error("Error al cargar accesos:", error);
-            }
-
-            document.getElementById('loading-accesos').style.display = "none";
-            document.getElementById('tabla-accesos').style.display = "table";
-
+                body.appendChild(tr);
+            });
             document.querySelectorAll('.checkbox-acceso').forEach(checkbox => {
                 checkbox.addEventListener('change', async (e) => {
                     const uid = e.target.getAttribute('data-uid');
-                    const curso = e.target.getAttribute('data-curso');
-                    const tieneAcceso = e.target.checked;
-                    
-                    try {
-                        await updateDoc(doc(db, "progreso_usuarios", uid), {
-                            [`acceso_${curso}`]: tieneAcceso
-                        });
-                    } catch (error) {
-                        alert("Error de permisos en Firebase. Verifica las reglas.");
-                        e.target.checked = !tieneAcceso; 
-                    }
+                    const cursoId = e.target.getAttribute('data-curso');
+                    await updateDoc(doc(db, "progreso_usuarios", uid), { [`acceso_${cursoId}`]: e.target.checked });
                 });
             });
         }
@@ -240,83 +166,32 @@
         async function cargarConstancias() {
             const body = document.getElementById('body-constancias');
             body.innerHTML = "";
-            let hayConstancias = false;
-
-            for (const coleccion of coleccionesConstancias) {
-                try {
-                    const querySnapshot = await getDocs(collection(db, coleccion));
-                    querySnapshot.forEach((docSolicitud) => {
-                        const data = docSolicitud.data();
-                        const uid = docSolicitud.id;
-
-                        if (data.estado === "Pendiente") {
-                            hayConstancias = true;
-                            let tr = document.createElement('tr');
-                            
-                            let fechaStr = "---";
-                            if(data.fecha_solicitud) {
-                                fechaStr = data.fecha_solicitud.toDate ? data.fecha_solicitud.toDate().toLocaleDateString() : data.fecha_solicitud;
-                            }
-
-                            tr.innerHTML = `
-                                <td><strong>${data.nombre_completo || 'Sin nombre'}</strong></td>
-                                <td>${data.correo || '---'}</td>
-                                <td><span class="badge aprobado">${data.curso || 'No especificado'}</span></td>
-                                <td>${fechaStr}</td>
-                                <td>
-                                    <button class="btn-accion btn-marcar" data-col="${coleccion}" data-uid="${uid}">
-                                        Marcar Enviada ✔️
-                                    </button>
-                                </td>
-                            `;
-                            body.appendChild(tr);
-                        }
-                    });
-                } catch (error) {
-                    console.warn("Colección no encontrada o sin datos:", coleccion);
-                }
-            }
-
-            document.getElementById('loading-constancias').style.display = "none";
-            document.getElementById('tabla-constancias').style.display = "table";
-
-            if (!hayConstancias) {
-                body.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 30px; color:#888;">No hay solicitudes pendientes. ¡Todo al día! 🎉</td></tr>`;
-            } else {
-                document.querySelectorAll('.btn-marcar').forEach(btn => {
-                    btn.addEventListener('click', async (e) => {
-                        const col = e.target.getAttribute('data-col');
-                        const id = e.target.getAttribute('data-uid');
-                        
-                        e.target.innerText = "Sincronizando...";
-                        e.target.disabled = true;
-
-                        try {
-                            await updateDoc(doc(db, col, id), {
-                                estado: "Enviada",
-                                fecha_envio: new Date()
-                            });
-                            e.target.parentElement.parentElement.remove();
-                        } catch (error) {
-                            alert("Error al actualizar el estado en la base de datos.");
-                            e.target.innerText = "Marcar Enviada ✔️";
-                            e.target.disabled = false;
-                        }
-                    });
+            for (const col of coleccionesConstancias) {
+                const q = await getDocs(collection(db, col));
+                q.forEach((docS) => {
+                    const d = docS.data();
+                    if (d.estado === "Pendiente") {
+                        let tr = document.createElement('tr');
+                        tr.innerHTML = `<td>${d.nombre_completo}</td><td>${d.correo}</td><td>${d.curso}</td><td>${d.fecha_solicitud?.toDate().toLocaleDateString() || '---'}</td><td><button class="btn-accion" onclick="marcarEnviada('${col}','${docS.id}', this)">✔️</button></td>`;
+                        body.appendChild(tr);
+                    }
                 });
             }
         }
 
-        window.switchTab = function(tabId) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
+        window.marcarEnviada = async (col, id, btn) => {
+            await updateDoc(doc(db, col, id), { estado: "Enviada" });
+            btn.parentElement.parentElement.remove();
+        }
+
+        window.switchTab = (id) => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
             event.target.classList.add('active');
         }
 
-        window.cerrarSesion = function() {
-            signOut(auth).then(() => window.location.href = "login.html");
-        }
+        window.cerrarSesion = () => signOut(auth).then(() => window.location.href = "login.html");
     </script>
 </body>
 </html>
